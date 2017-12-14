@@ -1,0 +1,4 @@
+ace_mk6mortar_fnc_handlePlayerVehicleChanged = compile preprocessFileLineNumbers 'orbis_rhs_artillery_config\scripts\fnc_handlePlayerVehicleChanged.sqf';
+/* ace_mk6mortar_fnc_rangeTableOpen = compile preprocessFileLineNumbers 'orbis_rhs_artillery_config\scripts\fnc_rangeTableOpen.sqf';
+ace_mk6mortar_fnc_rangeTablePageChange = compile preprocessFileLineNumbers 'orbis_rhs_artillery_config\scripts\fnc_rangeTablePageChange.sqf';
+ace_mk6mortar_fnc_rangeTablePreCalculatedValues = compile preprocessFileLineNumbers 'orbis_rhs_artillery_config\scripts\fnc_rangeTablePreCalculatedValues.sqf'; */
