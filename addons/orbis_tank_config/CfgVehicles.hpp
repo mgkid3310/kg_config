@@ -176,11 +176,11 @@ class CfgVehicles {
 		};
 		class EventHandlers: EventHandlers {
 			class RHSUSF_EventHandlers {
-				init = "_this call RHS_fnc_M1_init";
+				init = "_this spawn orbis_tank_fnc_abramsInit; _this call RHS_fnc_M1_init";
 				fired = "_this spawn RHS_fnc_Abrams_Loader; _this call (uinamespace getvariable 'RHSUSF_fnc_effectFired')";
-				hit = "_this spawn orbis_tank_fnc_hitEH; _this call RHS_fnc_M1_damage";
+				hit = "_this spawn orbis_tank_fnc_abramsHit; _this call RHS_fnc_M1_damage";
 				engine = "[_this select 0,_this select 1,20] call rhs_fnc_engineStartupDelay";
-				hitpart = "_this spawn orbis_tank_fnc_hitPartEH; _this call rhsusf_fnc_hitSpall";
+				hitpart = "_this spawn orbis_tank_fnc_abramsHitPart; _this call rhsusf_fnc_hitSpall";
 			};
 		};
 	};
