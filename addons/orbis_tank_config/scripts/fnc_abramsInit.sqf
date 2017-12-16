@@ -1,10 +1,9 @@
 params ["_vehicle"];
 
-private _eraNumber = 0;
-private _isGone = 0;
+private ["_eraNumber", "_isGone"];
 waitUntil {
 	_eraNumber = 1;
-	_isGone = 0;
+	_isGone = false;
 	while {format ["era_%1_hitpoint", _eraNumber]} do {
 		_isGone = _isGone || (_vehicle getHitPointDamage format ["era_%1_hitpoint", _eraNumber] isEqualTo 1);
 	};
