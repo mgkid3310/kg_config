@@ -65,8 +65,8 @@
 		};
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18E {
-				init="_this spawn JS_JC_fnc_FA18E_init; _this call BIS_fnc_AircraftSystemsInit; _this spawn orbis_airforce_fnc_FA18E_init";
-				Hit="_this call BIS_fnc_PlaneAiEject";
+				init = "_this spawn JS_JC_fnc_FA18E_init; _this spawn orbis_airforce_fnc_FA18Einit; _this call BIS_fnc_AircraftSystemsInit";
+				hit = ""; // _this call BIS_fnc_PlaneAiEject
 			};
 		};
 	};
@@ -114,8 +114,8 @@
 		};
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18F {
-				init="_this spawn JS_JC_fnc_FA18F_init; _this call BIS_fnc_AircraftSystemsInit; _this spawn orbis_airforce_fnc_FA18F_init";
-				Hit="_this call BIS_fnc_PlaneAiEject";
+				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18Finit; _this call BIS_fnc_AircraftSystemsInit";
+				hit = "";
 			};
 		};
 	};
