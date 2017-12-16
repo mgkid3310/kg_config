@@ -8,4 +8,4 @@ private _impact = 30;
 
 hintSilent format ["%1", _impact];
 
-[_impact] spawn ace_hearing_fnc_earRinging;
+[_impact] call ace_hearing_fnc_earRinging;
