@@ -1,1 +1,0 @@
-orbis_breaching_fnc_explosiveActivated = compile preprocessFileLineNumbers "orbis_breaching\scripts\fnc_explosiveActivated.sqf";

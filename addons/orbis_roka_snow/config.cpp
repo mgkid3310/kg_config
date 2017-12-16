@@ -1,7 +1,7 @@
 class CfgPatches {
 	class orbis_roka_snow {
 		version = 2.000000;
-		units[] = {"ROKA_D_Arctic_Soldier_R", "ROKA_D_Arctic_Medic_Soldier_R", "ROKA_D_Arctic_Nato_Soldier_R"};
+		units[] = {"ROKA_D_Arctic_Soldier_R", "ROKA_D_Arctic_Medic_Soldier_R"/* , "ROKA_D_Arctic_Nato_Soldier_R" */};
 		weapons[] = {};
 		requiredVersion = 0.100000;
 		requiredAddons[] = {"roka_d", "ROKA_D_ARMOR_FIX"};
@@ -66,7 +66,7 @@ class CfgWeapons {
 			hiddenSelections[] = {"camo", "insignia"};
 		};
 	};
-	class ROKA_D_Arctic_Uniform_Nato: ROKA_D_Spec_Uniform_Nato {
+	/* class ROKA_D_Arctic_Uniform_Nato: ROKA_D_Spec_Uniform_Nato {
 		author = "KG";
 		scope = 2;
 		displayName = "ROKA Uniform C [Arctic]";
@@ -81,7 +81,7 @@ class CfgWeapons {
 			mass = 50;
 			hiddenSelections[] = {"camo", "insignia"};
 		};
-	};
+	}; */
 
 	/* class ROKA_D_Arctic_PlateCarrier_IA: ROKA_D_Spec_PlateCarrier_IA {
 		author = "KG";
@@ -234,7 +234,7 @@ class CfgVehicles {
 		hiddenSelections[] = {"camo", "insignia"};
 		hiddenSelectionsTextures[] = {"\orbis_roka_snow\textures\ROKA_D_Arctic_Clothing_IA.paa"};
 	};
-	class ROKA_D_Arctic_Nato_Soldier_R: ROKA_D_Spec_Nato_Soldier_R {
+	/* class ROKA_D_Arctic_Nato_Soldier_R: ROKA_D_Spec_Nato_Soldier_R {
 		author = "KG";
 		_generalMacro = "ROKA_D_Arctic_Nato_Soldier_R";
 		displayName = "Rifleman (Nato)";
@@ -255,5 +255,5 @@ class CfgVehicles {
 		respawnMagazines[] = {"30Rnd_65x39_caseless_mag", "30Rnd_65x39_caseless_mag", "30Rnd_65x39_caseless_mag", "30Rnd_65x39_caseless_mag_Tracer", "30Rnd_65x39_caseless_mag_Tracer", "HandGrenade", "HandGrenade"};
 		hiddenSelections[] = {"camo", "insignia"};
 		hiddenSelectionsTextures[] = {"\orbis_roka_snow\textures\ROKA_D_Arctic_Clothing_IA.paa"};
-	};
+	}; */
 };
