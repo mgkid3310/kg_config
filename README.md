@@ -14,4 +14,5 @@ wip_ver: Work in progress addons. Does not include files from dev_ver or master 
 Contributors
 
 Orbis : Project Manager / Programmer
+
 jadeguy : Texture Designer
