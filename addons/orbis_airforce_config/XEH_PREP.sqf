@@ -1,7 +1,10 @@
-orbis_fnc_aerobaticF16Init = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16Init.sqf";
-orbis_fnc_aerobaticF16Loop = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16Loop.sqf";
-orbis_fnc_aerobaticF16PostInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16PostInit.sqf";
-orbis_fnc_commonInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_commonInit.sqf";
-orbis_fnc_firECM_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_config.sqf";
-orbis_fnc_firECM_ON_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_ON_config.sqf";
-orbis_fnc_toggleSmoke = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_toggleSmoke.sqf";
+orbis_airforce_fnc_aerobaticF16Init = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16Init.sqf";
+orbis_airforce_fnc_aerobaticF16Loop = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16Loop.sqf";
+orbis_airforce_fnc_aerobaticF16PostInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_aerobaticF16PostInit.sqf";
+orbis_airforce_fnc_autoSwapWeapon = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_autoSwapWeapon.sqf";
+orbis_airforce_fnc_commonInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_commonInit.sqf";
+orbis_airforce_fnc_FA18eInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18eInit.sqf";
+orbis_airforce_fnc_FA18fInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18fInit.sqf";
+orbis_airforce_fnc_firECM_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_config.sqf";
+orbis_airforce_fnc_firECM_ON_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_ON_config.sqf";
+orbis_airforce_fnc_toggleSmoke = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_toggleSmoke.sqf";
