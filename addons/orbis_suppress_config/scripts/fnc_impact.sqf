@@ -21,6 +21,6 @@ if (((vehicle player) == player) || (isTurnedOut player)) then {
 	};
 };
 
-if ((vehicle player typeOf "Tank_F") && !(isTurnedOut player)) then {
+/* if ((vehicle player typeOf "Tank_F") && !(isTurnedOut player)) then {
 	
-};
+}; */
