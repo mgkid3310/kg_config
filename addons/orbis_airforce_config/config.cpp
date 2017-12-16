@@ -69,6 +69,11 @@ class CfgAmmo {
 
 class CfgMagazines {
 	class VehicleMagazine;
+	class FIR_240rnd_CMFlare_Chaff_Magazine: VehicleMagazine {};
+
+	class FIR_960rnd_CMFlare_Chaff_Magazine: FIR_240rnd_CMFlare_Chaff_Magazine {
+		count = 960;
+	};
 
 	class FIR_F16C_Fueltank_P_1rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_AG_HP", "FIR_Aerobatics_Side"};
