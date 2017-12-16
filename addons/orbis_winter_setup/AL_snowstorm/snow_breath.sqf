@@ -17,7 +17,7 @@ _alias_breath attachto [_footmobile,[0,0.17,0], "neck"];
 
 if (terrain_type_vanilla) then {
 	
-	while {alive _footmobile} do {
+	while {alive _footmobile && (vehicle player isEqualTo player)} do {
 		//_stamina_pl = getStamina player;
 		//if (_stamina_pl<_stamina_pl_fresh) then {} else {};
 		//_direction_p = direction player;	hint str _direction_p;
@@ -36,7 +36,7 @@ if (terrain_type_vanilla) then {
 	deletevehicle _alias_breath;
 
 } else {
-	while {alive _footmobile} do {
+	while {alive _footmobile && (vehicle player isEqualTo player)} do {
 		//_direction_p = direction player;	hint str _direction_p;
 		//_stamina_pl = getStamina player;
 		//_obo = 3*(_stamina_pl/_stamina_pl_fresh)+0.25;
