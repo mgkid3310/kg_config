@@ -12,11 +12,4 @@ waitUntil {
 };
 
 _vehicle setHit ["HitHull", 0.6];
-private _repeat = 0;
-while {_repeat < 4} do {
-	playSound "RHSUSF_Error";
-	_repeat = _repeat + 1;
-	sleep 1;
-};
-
-
+["RHSUSF_Error", 1, 4] spawn orbis_tank_fnc_repeatSound;
