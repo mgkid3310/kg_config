@@ -184,6 +184,26 @@ class CfgVehicles {
 				explosion = "_this spawn orbis_tank_fnc_abramsAlert";
 			};
 		};
+		class ACE_Actions {
+			class ACE_MainActions {
+				class flipTank {
+					displayName = "Flip Tank";
+					condition = "{alive _x} count (crew (_this select 0)) isEqualTo 0";
+					statement = "(_this select 0) setPos ((getPos (_this select 0)) vectorAdd [0, 0, 1]); (_this select 0) setVectorUp [0, 0, 1]";
+					icon = "";
+				};
+			};
+		};
+		class UserActions {
+			class turnTurret {
+				displayName = "Turn Turret";
+				position = "trunk_action";
+				radius = 4;
+				onlyForplayer = 0;
+				condition = "(ACE_player isEqualTo commander this) && (!isTurnedOut commander this)";
+				statement = "[((eyePos this) vectorAdd ((getCameraViewDirection commander this) vectorMultiply 1000))] remoteExec ";
+			};
+		};
 	};
 
 	class rhsusf_m1a2tank_base: rhsusf_m1a1tank_base {
@@ -235,27 +255,5 @@ class CfgVehicles {
 				};
 			};
 		};
-
-		/* class ACE_Actions {
-			class ACE_MainActions {
-				class flipTank {
-					displayName = "Flip Tank";
-					condition = "{alive _x} count (crew (_this select 0)) isEqualTo 0";
-					statement = "(_this select 0) setPos ((getPos (_this select 0)) vectorAdd [0, 0, 1]); (_this select 0) setVectorUp [0, 0, 1]";
-					icon = "";
-				};
-			};
-		};
-
-		class UserActions {
-			class turnTurret {
-				displayName = "Turn Turret";
-				position = "trunk_action";
-				radius = 4;
-				onlyForplayer = 0;
-				condition = "(ACE_player isEqualTo commander this) && (!isTurnedOut commander this)";
-				statement = "[((eyePos this) vectorAdd ((getCameraViewDirection commander this) vectorMultiply 1000))] remoteExec ";
-			};
-		}; */
 	};
 };
