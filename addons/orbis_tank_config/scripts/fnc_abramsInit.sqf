@@ -15,13 +15,17 @@ waitUntil {
 _vehicle setHit ["HitHull", 0.6]; */
 
 [_vehicle] spawn {
+	diag_log "orbis tank loop init";
 	private _vehicle = _this select 0;
 	private _alertAmmotypes = ["ShellBase", "RocketBase", "MissileBase"];
-	while (alive _vehicle) do {
+	while {alive _vehicle} do {
+		diag_log format ["orbis tank loop %1", time];
 		if (player in _vehicle) then {
 			private _nearObjects = nearestObjects [_vehicle, _alertAmmotypes, 100];
+			diag_log format ["orbis tank loop %1", _nearObjects];
 			{
 				if (((_x distance _vehicle) / (speed _x / 3.6) < 0.2) && (_x getRelDir _vehicle < 45 || _x getRelDir _vehicle < 315)) exitWith {
+					hint "incoming";
 					["RHSUSF_Error", 1, 2] spawn orbis_tank_fnc_repeatSound;
 					sleep 2;
 				};
