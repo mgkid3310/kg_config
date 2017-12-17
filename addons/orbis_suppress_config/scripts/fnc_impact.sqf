@@ -4,8 +4,11 @@
 if !(alive player) exitWith {};
 
 private _intensity = GVAR(intensity);
-if (((vehicle player) == player) || (isTurnedOut player)) then {
-	_intensity = _intensity * 0.3;
+
+if (isNil (_this select 0)) then {
+	if !(((vehicle player) == player) || (isTurnedOut player)) exitWith {};
+} else {
+	_intensity = _intensity * (_this select 0);
 };
 
 GVAR(impactBlur) ppEffectAdjust [0.015 * _intensity, 0.015 * _intensity, 0.2 * _intensity, 0.2 * _intensity];
