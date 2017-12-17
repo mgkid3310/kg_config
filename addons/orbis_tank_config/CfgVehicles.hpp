@@ -181,7 +181,7 @@ class CfgVehicles {
 				hit = "_this spawn orbis_tank_fnc_abramsHit; _this call RHS_fnc_M1_damage";
 				engine = "[_this select 0,_this select 1,20] call rhs_fnc_engineStartupDelay";
 				hitpart = "_this spawn orbis_tank_fnc_abramsHitPart; _this call rhsusf_fnc_hitSpall";
-				explosion = "_this spawn orbis_tank_fnc_abramsAlert"
+				explosion = "_this spawn orbis_tank_fnc_abramsAlert";
 			};
 		};
 	};

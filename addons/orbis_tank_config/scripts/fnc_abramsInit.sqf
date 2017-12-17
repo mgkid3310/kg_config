@@ -1,6 +1,6 @@
 params ["_vehicle"];
 
-private ["_eraNumber", "_isGone"];
+/* private ["_eraNumber", "_isGone"];
 waitUntil {
 	_eraNumber = 1;
 	_isGone = false;
@@ -12,5 +12,23 @@ waitUntil {
 	_isGone
 };
 
-_vehicle setHit ["HitHull", 0.6];
-["RHSUSF_Error", 1, 4] spawn orbis_tank_fnc_repeatSound;
+_vehicle setHit ["HitHull", 0.6]; */
+
+[_vehicle] spawn {
+	private _vehicle = _this select 0;
+	private _alertAmmotypes = ["ShellBase", "RocketBase", "MissileBase"];
+	while (alive _vehicle) do {
+		if (player in _vehicle) then {
+			private _nearObjects = nearestObjects [_vehicle, _alertAmmotypes, 100];
+			{
+				if (((_x distance _vehicle) / (speed _x / 3.6) < 0.2) && (_x getRelDir _vehicle < 45 || _x getRelDir _vehicle < 315)) exitWith {
+					["RHSUSF_Error", 1, 2] spawn orbis_tank_fnc_repeatSound;
+					sleep 2;
+				};
+			} forEach _nearObjects;
+		};
+
+		private _frameNo = diag_frameNo;
+		waitUntil {diag_frameNo > _frameNo};
+	};
+};
