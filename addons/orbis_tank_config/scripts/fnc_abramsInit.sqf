@@ -15,21 +15,31 @@ waitUntil {
 _vehicle setHit ["HitHull", 0.6]; */
 
 [_vehicle] spawn {
-	diag_log "orbis tank loop init";
+	// diag_log "orbis tank loop init";
 	private _vehicle = _this select 0;
 	private _alertAmmotypes = ["ShellBase", "RocketBase", "MissileBase"];
 	while {alive _vehicle} do {
-		diag_log format ["orbis tank loop %1", time];
+		// diag_log format ["orbis tank loop %1", time];
 		if (player in _vehicle) then {
-			private _nearObjects = nearestObjects [_vehicle, _alertAmmotypes, 100];
-			diag_log format ["orbis tank loop %1", _nearObjects];
+			private _nearObjects = _vehicle nearObjects 100;
+			// diag_log format ["orbis tank near %1", _nearObjects];
+			_nearAmmos = _nearObjects select {
+				private _ammo = _x;
+				{
+					if (typeOf _ammo isKindOf [_x, configFile >> "CfgAmmo"]) exitWith {
+						true
+					};
+					false
+				} forEach _alertAmmotypes;
+			};
+			// diag_log format ["orbis tank ammo %1", _nearAmmos];
 			{
 				if (((_x distance _vehicle) / (speed _x / 3.6) < 0.2) && (_x getRelDir _vehicle < 45 || _x getRelDir _vehicle < 315)) exitWith {
-					hint "incoming";
+					// hint "incoming";
 					["RHSUSF_Error", 1, 2] spawn orbis_tank_fnc_repeatSound;
 					sleep 2;
 				};
-			} forEach _nearObjects;
+			} forEach _nearAmmos;
 		};
 
 		private _frameNo = diag_frameNo;
