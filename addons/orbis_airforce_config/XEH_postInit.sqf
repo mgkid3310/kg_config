@@ -1,4 +1,4 @@
-["toggleSmoke", {_this spawn orbis_fnc_toggleSmoke;}] call CBA_fnc_addEventHandler;
+["toggleSmoke", {_this spawn orbis_airforce_fnc_toggleSmoke;}] call CBA_fnc_addEventHandler;
 
 [] spawn {
 	while {hasInterface} do {

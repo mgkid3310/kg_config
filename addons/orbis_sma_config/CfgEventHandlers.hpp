@@ -6,6 +6,6 @@ class Extended_PreStart_EventHandlers {
 
 class Extended_PreInit_EventHandlers {
 	class orbis_sma_config {
-		init = "call compile preProcessFileLineNumbers 'orbis_sma_config\XEH_preInitClient.sqf'";
+		init = "call compile preProcessFileLineNumbers 'orbis_sma_config\XEH_preInit.sqf'";
 	};
 };
