@@ -6,7 +6,7 @@ class CfgAmmo {
 	class rhs_ammo_m1_he: Sh_155mm_AMOS {
 		cost = 100;
 		artilleryLock = 1;
-		hit = 220; //  110
+		hit = 220; // 110
 		indirectHit = 150; // 75
 		indirectHitRange = 21;
 		timetolive = 220;
@@ -53,7 +53,7 @@ class CfgAmmo {
 	};
 
 	class orbis_ammo_105mm_smoke_green: Smoke_120mm_AMOS_White {
-		submunitionAmmo="SmokeShellGreen";
+		submunitionAmmo = "SmokeShellGreen";
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
