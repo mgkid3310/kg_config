@@ -18,7 +18,7 @@ class CfgSounds {
 		sound[]=
 		{
 			"\rhsusf\addons\rhsusf_c_m1a1\scripts\alarm_loop1.wss",
-			2,
+			10,
 			1.5
 		};
 		titles[]={};
