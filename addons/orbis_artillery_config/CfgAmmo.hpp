@@ -51,4 +51,16 @@ class CfgAmmo {
 		CraterEffects = "";
 		whistleDist = 0;
 	};
+
+	class orbis_ammo_105mm_smoke_green: Smoke_120mm_AMOS_White {
+		submunitionAmmo="SmokeShellGreen";
+		hit = 8;
+		indirectHit = 0;
+		indirectHitRange = 0;
+		explosive = 0.1;
+		ExplosionEffects = "";
+		soundHit[] = {"", 0, 1};
+		CraterEffects = "";
+		whistleDist = 0;
+	};
 };
