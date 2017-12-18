@@ -3,8 +3,8 @@ class CfgPatches {
 		name = "Orbis Airforce Config";
 		author = "Orbis2358";
 		requiredVersion = 0.1;
-		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", "FIR_F16_F", "FIR_F16D_F"};
-		units[] = {"F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics"};
+		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", /* "FIR_F16_F", "FIR_F16D_F", */"JS_JC_FA18", "JS_JC_SU35"};
+		units[] = {/* "F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics "*/};
 		weapons[] = {};
 	};
 };
@@ -69,6 +69,11 @@ class CfgAmmo {
 
 class CfgMagazines {
 	class VehicleMagazine;
+	class FIR_240rnd_CMFlare_Chaff_Magazine: VehicleMagazine {};
+
+	class FIR_960rnd_CMFlare_Chaff_Magazine: FIR_240rnd_CMFlare_Chaff_Magazine {
+		count = 960;
+	};
 
 	class FIR_F16C_Fueltank_P_1rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_AG_HP", "FIR_Aerobatics_Side"};
@@ -82,11 +87,31 @@ class CfgMagazines {
 	class FIR_SniperXR_1_P_1rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_Aux_HP", "FIR_Aerobatics_Aux"};
 	};
+
+	class FIR_AIM120_P_type1_2rnd_M : VehicleMagazine {
+		hardpoints[] = {"FIR_F15SE_AA_UNDER_HP", "FIR_F15SE_Midwing_HP", "FIR_SH_Dual_HP_config"};
+	};
+	class FIR_AIM132_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"FIR_F16_AA_HP", "FIR_F16_Combined_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Wingtip_HP"};
+	};
+	class FIR_AIM9X_P_2rnd_M : VehicleMagazine{
+		displayName = "AIM-9X Sidewinder x2";
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config"};			
+	};
+
+	class js_m_fa18_buddypod_x1: VehicleMagazine {
+		displayName = "Buddy Pod";
+		hardpoints[] = {"FIR_SH_Under_HP"};		
+	};
+	class js_m_fa18_wing_tank_x1: VehicleMagazine {
+		hardpoints[] = {"JS_JC_F18_Pylon", "JSJC_Fueltank"};
+	};
 };
 
 class CfgWeapons {
 	class RocketPods;
 	class Mk82BombLauncher;
+	class CannonCore;
 
 	class FIR_APKWS_Launcher: RocketPods {
 		ace_laser_canSelect = 1;
@@ -126,6 +151,39 @@ class CfgWeapons {
 	};
 };
 
+class SensorTemplatePassiveRadar;
+class SensorTemplateActiveRadar;
+class SensorTemplateIR;
+class SensorTemplateVisual;
+class SensorTemplateMan;
+class SensorTemplateLaser;
+class SensorTemplateNV;
+class DefaultVehicleSystemsDisplayManagerLeftSensors {
+	class components;
+};
+class DefaultVehicleSystemsDisplayManagerRightSensors {
+	class components;
+};
+/* class VehicleSystemsTemplateLeftSensorsCommander: DefaultVehicleSystemsDisplayManagerLeftSensors {
+	class components: components {};
+};
+class VehicleSystemsTemplateRightSensorsCommander: DefaultVehicleSystemsDisplayManagerRightSensors {
+	class components: components {};
+};
+class VehicleSystemsTemplateLeftSensorsGunner: DefaultVehicleSystemsDisplayManagerLeftSensors {
+	class components: components {};
+};
+class VehicleSystemsTemplateRightSensorsGunner: DefaultVehicleSystemsDisplayManagerRightSensors {
+	class components: components {};
+}; */
+class VehicleSystemsTemplateLeftSensorsPilot: DefaultVehicleSystemsDisplayManagerLeftSensors {
+	class components: components {};
+};
+class VehicleSystemsTemplateRightSensorsPilot: DefaultVehicleSystemsDisplayManagerRightSensors {
+	class components: components {};
+};
+
+class Eventhandlers;
 class CfgVehicles {
 	class Plane;
 	class Plane_Base_F: Plane {
@@ -134,77 +192,8 @@ class CfgVehicles {
 	class Plane_CAS_01_base_F: Plane_Base_F {};
 	class Plane_Fighter_03_base_F: Plane_Base_F {};
 
-	class FIR_A10A_Base: Plane_CAS_01_base_F {
-		#include "A10_UserActions.hpp"
-		
-		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_A10A\sqs\init\init.sqf'; _this spawn orbis_fnc_commonInit;";
-		};
-	};
-	class FIR_A10C_Base: Plane_CAS_01_base_F {
-		#include "A10_UserActions.hpp"
-		
-		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_A10C\sqs\init\init.sqf'; _this spawn orbis_fnc_commonInit;";
-		};
-	};
-
-	class FIR_F16_Base: Plane_Fighter_03_base_F {
-		#include "F16_UserActions.hpp"
-
-		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_fnc_commonInit;";
-		};
-	};
-	class FIR_F16D_Base: Plane_Fighter_03_base_F {
-		#include "F16_UserActions.hpp"
-
-		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_fnc_commonInit;";
-		};
-	};
-
-	class FIR_F16C: FIR_F16_Base {};
-	class FIR_F16C_ROKAF: FIR_F16C {};
-	class F16C_ROKAF_Aerobatics: FIR_F16C_ROKAF {
-		displayName = "F-16C Fighting Falcon (ROKAF Aerobatics)";
-		fir_f16d_custom_skin = 1;
-		fir_f16d_custom_name = "ROKAF Aerobatics";
-		fir_f16d_custom_code = "FIR_F16C_ROKAF_Aerobatics";
-		fir_f16_custom_preview_pic = "\FIR_F16\ui\preview\pic_rokaf.paa";
-		hiddenselectionstextures[] = {"FIR_F16\skin\body_rokaf_co.paa","FIR_F16\skin\wing_rokaf_co.paa","",""};
-		editorPreview = "\FIR_F16\ui\preview\pic_rokaf.paa";
-		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
-		magazines[] = {"FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine"};
-
-		#include "AerobaticF16_UserActions.hpp"
-		#include "AerobaticF16_Components.hpp"
-		
-		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_fnc_aerobaticF16Init;";
-			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
-		};
-	};
-
-	class FIR_F16D: FIR_F16D_Base {};
-	class FIR_F16D_ROKAF: FIR_F16D {};
-	class F16D_ROKAF_Aerobatics: FIR_F16D_ROKAF {
-		displayName = "F-16D Fighting Falcon (ROKAF Aerobatics)";
-		fir_f16d_custom_skin = 1;
-		fir_f16d_custom_name = "ROKAF Aerobatics";
-		fir_f16d_custom_code = "FIR_F16D_ROKAF_Aerobatics";
-		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa";
-		hiddenselectionstextures[] = {"FIR_F16D\skin\body_rokaf_d_co.paa", "FIR_F16D\skin\wing_rokaf_co.paa"};
-		editorPreview = "\FIR_F16D\ui\preview\pic_rokaf.paa";
-		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
-		magazines[] = {"FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine", "FIR_240rnd_CMFlare_Chaff_Magazine"};
-
-		#include "AerobaticF16_UserActions.hpp"
-		#include "AerobaticF16_Components.hpp"
-
-		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_fnc_aerobaticF16Init;";
-			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
-		};
-	};
+	#include "FIR_A10_config.hpp"
+	// #include "FIR_F16_config.hpp"
+	#include "JSJC_FA18_config.hpp"
+	#include "JSJC_Su35_config.hpp"
 };

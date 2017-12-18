@@ -30,7 +30,7 @@ class ACE_Medical_Actions {
 	class Advanced {
 		class fieldDressing {
 			treatmentType = "Bandage";
-			requiredMedic = 0;
+			requiredMedic = 0; // 0 = All, 1 = Medic, 2 = Doc
 			treatmentTime = "[ACE_player, [16, 8, 6]] call orbis_fnc_treatmentTime";
 		};
 		class PackingBandage: fieldDressing {
@@ -69,7 +69,7 @@ class ACE_Medical_Actions {
 		class BloodIV: fieldDressing {
 			treatmentType = "Injection";
 			treatmentDisplay = "IV";
-			requiredMedic = 2;
+			requiredMedic = 1;
 			treatmentTime = "[ACE_player, [12, 12, 12]] call orbis_fnc_treatmentTime";
 		};
 		class SurgicalKit: fieldDressing {
