@@ -6,8 +6,8 @@ class CfgAmmo {
 	class rhs_ammo_m1_he: Sh_155mm_AMOS {
 		cost = 100;
 		artilleryLock = 1;
-		hit = 110;
-		indirectHit = 75;
+		hit = 220; //  110
+		indirectHit = 150; // 75
 		indirectHitRange = 21;
 		timetolive = 220;
 		class CamShakeExplode {
