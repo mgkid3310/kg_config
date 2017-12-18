@@ -1,5 +1,5 @@
 class CfgPatches {
-	class orbis_rhs_artillery_config {
+	class orbis_artillery_config {
 		name = "Orbis RHS Artillery Config";
 		author = "Orbis2358";
 		requiredVersion = 0.1;
@@ -8,3 +8,8 @@ class CfgPatches {
 		weapons[] = {};
 	};
 };
+
+#include "CfgEventHandlers.hpp"
+
+#include "CfgAmmo.hpp"
+#include "CfgVehicles.hpp"
