@@ -1,5 +1,9 @@
 params ["_vehicle"];
 
+private _maxSmoke = {_x isEqualTo "SmokeLauncherMag"} count getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret" >> "Turrets" >> "CommanderOptics" >> "magazines");
+_vehicle setVariable ["maxSmoke", _maxSmoke];
+_vehicle setVariable ["smokeReserve", _maxSmoke * 6];
+
 /* private ["_eraNumber", "_isGone"];
 waitUntil {
 	_eraNumber = 1;
@@ -15,14 +19,11 @@ waitUntil {
 _vehicle setHit ["HitHull", 0.6]; */
 
 [_vehicle] spawn {
-	// diag_log "orbis tank loop init";
 	private _vehicle = _this select 0;
 	private _alertAmmotypes = ["ShellBase", "RocketBase", "MissileBase"];
 	while {alive _vehicle} do {
-		// diag_log format ["orbis tank loop %1", time];
 		if (player in _vehicle) then {
 			private _nearObjects = _vehicle nearObjects 100;
-			// diag_log format ["orbis tank near %1", _nearObjects];
 			_nearAmmos = _nearObjects select {
 				private _ammo = _x;
 				{
@@ -32,10 +33,8 @@ _vehicle setHit ["HitHull", 0.6]; */
 					false
 				} forEach _alertAmmotypes;
 			};
-			// diag_log format ["orbis tank ammo %1", _nearAmmos];
 			{
 				if (((_x distance _vehicle) / (speed _x / 3.6) < 0.2) && (_x getRelDir _vehicle < 45 || _x getRelDir _vehicle < 315)) exitWith {
-					// hint "incoming";
 					["RHSUSF_Error_High", 0.5, 2] spawn orbis_tank_fnc_repeatSound;
 					sleep 2;
 				};
