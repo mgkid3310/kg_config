@@ -1,5 +1,5 @@
 private _vehicle = _this select 0 select 0;
-private _turretPath = _vehicle call ace_common_fnc_getTurretCommander;
+private _turretPath = [_vehicle] call ace_common_fnc_getTurretCommander;
 
 private _maxSmoke = _vehicle getVariable ["maxSmoke", 0];
 private _smokeReserve = _vehicle getVariable ["smokeReserve", 0];
