@@ -1,8 +1,29 @@
 params ["_vehicle"];
 
+// init smoke reload
 private _maxSmoke = {_x isEqualTo "SmokeLauncherMag"} count getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret" >> "Turrets" >> "CommanderOptics" >> "magazines");
 _vehicle setVariable ["maxSmoke", _maxSmoke];
 _vehicle setVariable ["smokeReserve", _maxSmoke * 6];
+
+// add smoke reload action
+private _action = [
+"reloadSmoke",
+"Reload Smoke",
+"",
+{[_this select 0] call orbis_tank_fnc_rearmSmokeScreen},
+{[_this select 0] call orbis_tank_fnc_canRearmSmoke},
+{},
+[],
+[0, 0, 0],
+10
+] call ace_interact_menu_fnc_createAction;
+
+[
+_vehicle,
+0,
+["ACE_MainActions"],
+_action
+] call ace_interact_menu_fnc_addActionToObject; 
 
 /* private ["_eraNumber", "_isGone"];
 waitUntil {

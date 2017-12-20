@@ -180,29 +180,29 @@ class CfgVehicles {
 		class EventHandlers: EventHandlers {
 			class RHSUSF_EventHandlers {
 				init = "_this spawn orbis_tank_fnc_abramsInit; _this call RHS_fnc_M1_init";
-				fired = "_this spawn RHS_fnc_Abrams_Loader; _this call (uinamespace getvariable 'RHSUSF_fnc_effectFired')";
-				hit = "_this spawn orbis_tank_fnc_abramsHit; _this call RHS_fnc_M1_damage";
-				engine = "[_this select 0,_this select 1,20] call rhs_fnc_engineStartupDelay";
-				hitpart = "_this spawn orbis_tank_fnc_abramsHitPart; _this call rhsusf_fnc_hitSpall";
-				explosion = "_this spawn orbis_tank_fnc_abramsAlert";
 			};
 		};
-		class ACE_Actions: ACE_Actions {
+		/* class ACE_Actions: ACE_Actions {
 			class ACE_MainActions: ACE_MainActions {
 				class reloadSmoke {
+                    selection = "";
 					displayName = "Reload Smoke";
-					condition = "[_target] call orbis_tank_fnc_canRearmSmoke";
+                    distance = 10;
+					condition = "true"; // "[_target] call orbis_tank_fnc_canRearmSmoke";
 					statement = "[_target] call orbis_tank_fnc_rearmSmokeScreen";
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
 					icon = "";
 				};
-				/* class flipTank {
+				class flipTank {
 					displayName = "Flip Tank";
 					condition = "{alive _x} count (crew (_this select 0)) isEqualTo 0";
 					statement = "(_this select 0) setPos ((getPos (_this select 0)) vectorAdd [0, 0, 1]); (_this select 0) setVectorUp [0, 0, 1]";
 					icon = "";
-				}; */
+				};
 			};
-		};
+		}; */
 		/* class UserActions {
 			class turnTurret {
 				displayName = "Turn Turret";

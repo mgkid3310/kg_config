@@ -1,6 +1,3 @@
-orbis_tank_fnc_abramsAlert = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_abramsAlert.sqf';
-orbis_tank_fnc_abramsHit = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_abramsHit.sqf';
-orbis_tank_fnc_abramsHitPart = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_abramsHitPart.sqf';
 orbis_tank_fnc_abramsInit = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_abramsInit.sqf';
 orbis_tank_fnc_canRearmSmoke = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_canRearmSmoke.sqf';
 orbis_tank_fnc_rearmSmokeScreen = compile preprocessFileLineNumbers 'orbis_tank_config\scripts\fnc_rearmSmokeScreen.sqf';

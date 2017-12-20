@@ -14,8 +14,9 @@ if (_smokeReserve + _smokeCount < _maxSmoke) then {
 };
 
 _vehicle removeMagazinesTurret ["SmokeLauncherMag", _turretPath];
+_smokeReserve = _smokeReserve + _smokeCount;
 _vehicle addMagazineTurret ["SmokeLauncherMag", _turretPath, _numberToAdd];
-_smokeReserve = _smokeReserve + _smokeCount - _numberToAdd;
+_smokeReserve = _smokeReserve - _numberToAdd;
 _vehicle setVariable ["smokeReserve", _smokeReserve];
 
 hintSilent format ["%1 reserve smoke left", _smokeReserve];
