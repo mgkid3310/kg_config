@@ -1,5 +1,5 @@
 	class JS_JC_SU35: Plane_Base_F {
-		class UserActions {
+		/* class UserActions {
 			class ECM_ON {
 				displayName = "ECM JAMMER ON";
 				position = "pilotcontrol";
@@ -11,7 +11,7 @@
 				hideOnUse = 1;
 				showWindow = 0;
 			};
-		};
+		}; */
 		class Components: Components {
 			/* class SensorsManagerComponent {
 				class Components {
