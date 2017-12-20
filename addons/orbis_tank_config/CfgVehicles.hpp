@@ -1,3 +1,6 @@
+class ACE_Actions;
+class ACE_MainActions;
+
 class CfgVehicles {
 	class LandVehicle;
 	class Tank: LandVehicle {
@@ -184,17 +187,23 @@ class CfgVehicles {
 				explosion = "_this spawn orbis_tank_fnc_abramsAlert";
 			};
 		};
-		class ACE_Actions {
-			class ACE_MainActions {
-				class flipTank {
+		class ACE_Actions: ACE_Actions {
+			class ACE_MainActions: ACE_MainActions {
+				class reloadSmoke {
+					displayName = "Reload Smoke";
+					condition = "[_target] call orbis_tank_fnc_canRearmSmoke";
+					statement = "[_target] call orbis_tank_fnc_rearmSmokeScreen";
+					icon = "";
+				};
+				/* class flipTank {
 					displayName = "Flip Tank";
 					condition = "{alive _x} count (crew (_this select 0)) isEqualTo 0";
 					statement = "(_this select 0) setPos ((getPos (_this select 0)) vectorAdd [0, 0, 1]); (_this select 0) setVectorUp [0, 0, 1]";
 					icon = "";
-				};
+				}; */
 			};
 		};
-		class UserActions {
+		/* class UserActions {
 			class turnTurret {
 				displayName = "Turn Turret";
 				position = "trunk_action";
@@ -203,7 +212,7 @@ class CfgVehicles {
 				condition = "(ACE_player isEqualTo commander this) && (!isTurnedOut commander this)";
 				statement = "[((eyePos this) vectorAdd ((getCameraViewDirection commander this) vectorMultiply 1000))] remoteExec ";
 			};
-		};
+		}; */
 	};
 
 	class rhsusf_m1a2tank_base: rhsusf_m1a1tank_base {
