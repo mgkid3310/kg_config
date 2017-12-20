@@ -11,7 +11,6 @@ if !(_magazinesNew isEqualType []) then {
 	_magazinesNew = [_magazinesNew];
 };
 
-
 while {alive _vehicle} do {
 	if (_vehicle hasWeapon "_weaponOld") then {
 		{
