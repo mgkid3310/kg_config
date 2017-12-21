@@ -1,7 +1,7 @@
 private _vehicle = _this select 0;
 private _turretPath = [_vehicle] call ace_common_fnc_getTurretCommander;
 
-if !(player isEqualTo vehicle player) exitwith {false};
+if !((alive _vehicle) && (player isEqualTo vehicle player)) exitwith {false};
 
 private _maxSmoke = _vehicle getVariable ["maxSmoke", 0];
 private _smokeReserve = _vehicle getVariable ["smokeReserve", 0];
