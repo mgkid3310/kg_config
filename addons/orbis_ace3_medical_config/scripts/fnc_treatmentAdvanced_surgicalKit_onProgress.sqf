@@ -33,18 +33,19 @@ if (count _bandagedWounds == 0) exitWith { false };
 if ((_totalTime - _elapsedTime) <= (((count _bandagedWounds) - 1) * 5)) then {
 	_bandagedWounds deleteAt 0;
 	_target setVariable [QGVAR(bandagedWounds), _bandagedWounds, true];
-};
 
-// Any body part that has no bandaged wounds is healed to full health
-private _bodyStatus = _target getVariable [QGVAR(bodyPartStatus), [0, 0, 0, 0, 0, 0]];
-private _index = 0;
-for "_index" from 0 to 5 do {
-	if (count (_bandagedWounds select {_x select 2 isEqualTo _index}) isEqualTo 0) then {
-		_bodyStatus set [_index, 0];
+	// Any body part that has no bandaged wounds is healed to full health
+	private _openWounds = _unit getVariable [QGVAR(openWounds), []];
+	private _bodyStatus = _target getVariable [QGVAR(bodyPartStatus), [0, 0, 0, 0, 0, 0]];
+	private _index = 0;
+	for "_index" from 0 to 5 do {
+		if (({(_x select 2) isEqualTo _index} count _bandagedWounds isEqualTo 0) && ({(_x select 2) isEqualTo _index} count _openWounds isEqualTo 0)) then {
+			_bodyStatus set [_index, 0];
+		};
 	};
+	_target setVariable [QGVAR(bodyPartStatus), _bodyStatus, true];
 };
 
-_target setVariable [QGVAR(bodyPartStatus), _bodyStatus, true];
 [_target] call FUNC(handleDamage_advancedSetDamage);
 
 true

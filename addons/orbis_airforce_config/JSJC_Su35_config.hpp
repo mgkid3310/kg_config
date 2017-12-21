@@ -1,46 +1,5 @@
 	class JS_JC_SU35: Plane_Base_F {
-		/* class UserActions {
-			class ECM_ON {
-				displayName = "ECM JAMMER ON";
-				position = "pilotcontrol";
-				radius = 15;
-				shortcut = "User2";
-				condition = "player in this and this getvariable ""ECMJAMMER"" == ""yes"";";
-				statement = "[this] execVM ""\FIR_AirWeaponSystem_US\Script\ECM\ECM_ON.sqf"";";
-				onlyforplayer = "False";
-				hideOnUse = 1;
-				showWindow = 0;
-			};
-		}; */
 		class Components: Components {
-			/* class SensorsManagerComponent {
-				class Components {
-					class ActiveRadarSensorComponent: SensorTemplateActiveRadar {
-						class AirTarget {
-							minRange = 30000;
-							maxRange = 30000;
-						};
-						class GroundTarget {
-							minRange = 8000;
-							maxRange = 8000;
-						};
-					};
-				};
-			};
-			class VehicleSystemsDisplayManagerComponentLeft: VehicleSystemsTemplateLeftSensorsPilot {
-				class Components: components {
-					class SensorDisplay {
-						range[]={2000, 4000, 8000, 16000, 32000};
-					};
-				};
-			};
-			class VehicleSystemsDisplayManagerComponentRight: VehicleSystemsTemplateRightSensorsPilot {
-				class Components: components {
-					class SensorDisplay {
-						range[]={2000, 4000, 8000, 16000, 32000};
-					};
-				};
-			}; */
 			#include "JSJC_FA18_Sensors.hpp"
 
 			class TransportPylonsComponent {
