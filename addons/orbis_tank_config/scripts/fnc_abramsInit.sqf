@@ -1,9 +1,9 @@
 params ["_vehicle"];
 
 // init smoke reload
-private _maxSmoke = {_x isEqualTo "SmokeLauncherMag"} count getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret" >> "Turrets" >> "CommanderOptics" >> "magazines");
-_vehicle setVariable ["maxSmoke", _maxSmoke];
-_vehicle setVariable ["smokeReserve", _maxSmoke * 6 * 2];
+private _maxSmokeMags = {_x isEqualTo "SmokeLauncherMag"} count getArray (configFile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets" >> "MainTurret" >> "Turrets" >> "CommanderOptics" >> "magazines");
+_vehicle setVariable ["maxSmokeMags", _maxSmokeMags];
+_vehicle setVariable ["smokeReserve", _maxSmokeMags * 6 * 2];
 
 // add smoke reload action
 private _action = [

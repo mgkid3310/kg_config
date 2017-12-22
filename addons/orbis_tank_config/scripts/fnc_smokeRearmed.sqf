@@ -1,7 +1,7 @@
 private _vehicle = _this select 0 select 0;
 private _turretPath = [_vehicle] call ace_common_fnc_getTurretCommander;
 
-private _maxSmoke = _vehicle getVariable ["maxSmoke", 0];
+private _maxSmokeMags = _vehicle getVariable ["maxSmokeMags", 0];
 private _smokeReserve = _vehicle getVariable ["smokeReserve", 0];
 private _allMagaziens = magazinesAllTurrets _vehicle;
 private _turretMagazines = _allMagaziens select {_x select 1 isEqualTo _turretPath};
@@ -9,10 +9,10 @@ private _fullMagNumber = {(_x select 0 isEqualTo "SmokeLauncherMag") && (_x sele
 private _halfMagNumber = {(_x select 0 isEqualTo "SmokeLauncherMag") && (_x select 2 isEqualTo 1)} count _turretMagazines;
 
 private _ammoCount = _halfMagNumber + 2 * _fullMagNumber;
-private _numberToAdd = _maxSmoke;
+private _numberToAdd = _maxSmokeMags;
 private _leftoverAmmo = false;
 
-if (_smokeReserve + _ammoCount < _maxSmoke * 2) then {
+if (_smokeReserve + _ammoCount < _maxSmokeMags * 2) then {
 	_numberToAdd = floor ((_smokeReserve + _ammoCount) / 2);
 	_leftoverAmmo = (_smokeReserve + _ammoCount) % 2;
 };
