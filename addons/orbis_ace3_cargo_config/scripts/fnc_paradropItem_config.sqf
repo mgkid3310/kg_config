@@ -14,6 +14,8 @@
  *
  * Public: No
  */
+
+#include "define_cargo.hpp"
 #include "script_component.hpp"
 
 params ["_item", "_vehicle"];
