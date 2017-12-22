@@ -10,7 +10,7 @@ private _halfMagNumber = {(_x select 0 isEqualTo "SmokeLauncherMag") && (_x sele
 
 private _ammoCount = _halfMagNumber + 2 * _fullMagNumber;
 private _numberToAdd = _maxSmokeMags;
-private _leftoverAmmo = false;
+private _leftoverAmmo = 0;
 
 if (_smokeReserve + _ammoCount < _maxSmokeMags * 2) then {
 	_numberToAdd = floor ((_smokeReserve + _ammoCount) / 2);
@@ -28,7 +28,7 @@ _smokeReserve = _smokeReserve + _ammoCount - _numberToAdd * 2 - _leftoverAmmo;
 _vehicle setVariable ["smokeReserve", _smokeReserve];
 
 if (_smokeReserve % 2 == 0) then {
-	hintSilent format ["reserve smokes left: %1 mags", _smokeReserve / 2];
+	hintSilent format ["Reserve smokes left: %1 mags", _smokeReserve / 2];
 } else {
-	hintSilent format ["reserve smokes left: %1 mags + 1", floor (_smokeReserve / 2)];
+	hintSilent format ["Reserve smokes left: %1 mags + 1", floor (_smokeReserve / 2)];
 };

@@ -8,7 +8,7 @@ _vehicle setVariable ["smokeReserve", _maxSmokeMags * 6 * 2];
 // add smoke reload action
 private _action = [
 "reloadSmoke",
-"Reload Smoke",
+"Rearm Smoke",
 "",
 {[_this select 0] call orbis_tank_fnc_rearmSmokeScreen},
 {[_this select 0] call orbis_tank_fnc_canRearmSmoke},
