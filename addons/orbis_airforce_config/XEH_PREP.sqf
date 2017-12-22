@@ -5,6 +5,4 @@ orbis_airforce_fnc_autoSwapWeapon = compile preProcessFileLineNumbers "orbis_air
 orbis_airforce_fnc_commonInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_commonInit.sqf";
 orbis_airforce_fnc_FA18Einit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18Einit.sqf";
 orbis_airforce_fnc_FA18Finit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18Finit.sqf";
-orbis_airforce_fnc_firECM_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_config.sqf";
-orbis_airforce_fnc_firECM_ON_config = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_firECM_ON_config.sqf";
 orbis_airforce_fnc_toggleSmoke = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_toggleSmoke.sqf";

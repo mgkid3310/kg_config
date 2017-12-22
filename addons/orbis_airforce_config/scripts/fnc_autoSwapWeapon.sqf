@@ -4,13 +4,12 @@ private _magazinesOld = _this select 1 select 1;
 private _weaponNew = _this select 2 select 0;
 private _magazinesNew = _this select 2 select 1;
 
-if !(_magazinesOld isEqualType []]) then {
+if !(_magazinesOld isEqualType []) then {
 	_magazinesOld = [_magazinesOld];
 };
 if !(_magazinesNew isEqualType []) then {
 	_magazinesNew = [_magazinesNew];
 };
-
 
 while {alive _vehicle} do {
 	if (_vehicle hasWeapon "_weaponOld") then {

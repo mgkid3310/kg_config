@@ -76,7 +76,7 @@ class ACE_Medical_Actions {
 			treatmentType = "Others";
 			treatmentDisplay = "Using SurgicalKit";
 			requiredMedic = 2;
-			treatmentTime = "[ACE_player, [120, 80, 60]] call orbis_fnc_treatmentTime";
+			// treatmentTime = "[ACE_player, [120, 80, 60]] call orbis_fnc_treatmentTime";
 		};
 		class PersonalAidKit: fieldDressing {
 			treatmentType = "Others";
