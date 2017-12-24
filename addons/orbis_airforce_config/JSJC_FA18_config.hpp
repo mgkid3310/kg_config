@@ -52,7 +52,7 @@
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "JSJC_Fueltank"};
 					};
 					class pylon9: pylon1 {
-						hardpoints[] = {"FIR_SH_AA_HP"};
+						hardpoints[] = {"FIR_SH_AA_HP", "FIR_SH_AUX_HP"};
 					};
 					class pylon10: pylon1 {
 						hardpoints[] = {"FIR_SH_AA_HP"};
