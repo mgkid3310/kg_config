@@ -85,7 +85,13 @@ class CfgMagazines {
 		hardpoints[] = {"FIR_F16_Combined_HP", "FIR_F16_AG_HP", "B_BOMB_PYLON", "FIR_A10_BOMB_HP", "FIR_SH_AG_HP", "FIR_Aerobatics_Side", "FIR_Aerobatics_Wing"};
 	};
 	class FIR_SniperXR_1_P_1rnd_M: VehicleMagazine {
-		hardpoints[] = {"FIR_F16_Aux_HP", "FIR_Aerobatics_Aux", "FIR_SH_AUX_HP"};
+		hardpoints[] = {"FIR_F16_Aux_HP", "FIR_Aerobatics_Aux"};
+	};
+	class FIR_Litening_std_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10_AUX_HP", "FIR_SH_AUX_HP"};
+	};
+	class FIR_SniperXR_2_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10_AUX_HP", "FIR_SH_AUX_HP"};
 	};
 
 	class FIR_AIM120_P_type1_2rnd_M : VehicleMagazine {
