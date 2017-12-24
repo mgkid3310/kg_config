@@ -32,8 +32,8 @@ if (count _bandagedWounds == 0) exitWith { false };
 diag_log format ["orbis_debug medical surgicalKit: count _bandagedWounds: %1", count _bandagedWounds];
 
 //Has enough time elapsed that we can close another wound?
-if ((_totalTime - _elapsedTime) <= (((count _bandagedWounds) - 1) * 5)) then {
-	diag_log format ["orbis_debug medical surgicalKit: _totalTime - _elapsedTime: %1, (count _bandagedWounds) - 1) * 5: %2", _totalTime - _elapsedTime, (count _bandagedWounds) - 1) * 5];
+if ((_totalTime - _elapsedTime) <= ((count _bandagedWounds - 1) * 5)) then {
+	diag_log format ["orbis_debug medical surgicalKit: _totalTime - _elapsedTime: %1, (count _bandagedWounds) - 1) * 5: %2", _totalTime - _elapsedTime, (count _bandagedWounds - 1) * 5];
 	_bandagedWounds deleteAt 0;
 	_target setVariable [QGVAR(bandagedWounds), _bandagedWounds, true];
 
