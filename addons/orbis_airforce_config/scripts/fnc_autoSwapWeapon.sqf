@@ -12,11 +12,10 @@ if !(_magazinesNew isEqualType []) then {
 };
 
 while {alive _vehicle} do {
-	if (_vehicle hasWeapon "_weaponOld") then {
+	if (_vehicle hasWeapon _weaponOld) then {
 		{
 			_vehicle removeMagazines _x;
 		} forEach _magazinesOld;
-		_vehicle removeMagazines _magazinesOld;
 		_vehicle removeWeapon _weaponOld;
 		_vehicle addWeapon _weaponNew;
 		{

@@ -87,6 +87,12 @@ class CfgMagazines {
 	class FIR_SniperXR_1_P_1rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_Aux_HP", "FIR_Aerobatics_Aux"};
 	};
+	/* class FIR_Litening_std_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10_AUX_HP", "FIR_SH_AUX_HP"};
+	};
+	class FIR_SniperXR_2_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10_AUX_HP", "FIR_SH_AUX_HP"};
+	}; */
 
 	class FIR_AIM120_P_type1_2rnd_M : VehicleMagazine {
 		hardpoints[] = {"FIR_F15SE_AA_UNDER_HP", "FIR_F15SE_Midwing_HP", "FIR_SH_Dual_HP_config"};
@@ -99,10 +105,10 @@ class CfgMagazines {
 		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config"};			
 	};
 
-	class js_m_fa18_buddypod_x1: VehicleMagazine {
+	/* class js_m_fa18_buddypod_x1: VehicleMagazine {
 		displayName = "Buddy Pod";
 		hardpoints[] = {"FIR_SH_Under_HP"};		
-	};
+	}; */
 	class js_m_fa18_wing_tank_x1: VehicleMagazine {
 		hardpoints[] = {"JS_JC_F18_Pylon", "JSJC_Fueltank"};
 	};
