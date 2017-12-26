@@ -8,6 +8,6 @@ ace_medical_fnc_isInMedicalVehicle = compile preprocessFileLineNumbers "orbis_ac
 ace_medical_fnc_treatment = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_treatment_config.sqf";
 ace_medical_fnc_treatment_failure = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_treatment_failure_config.sqf";
 ace_medical_fnc_treatment_success = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_treatment_success_config.sqf";
-ace_medical_fnc_treatmentAdvanced_surgicalKit_onProgress = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_treatmentAdvanced_surgicalKit_onProgress.sqf";
+// ace_medical_fnc_treatmentAdvanced_surgicalKit_onProgress = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_treatmentAdvanced_surgicalKit_onProgress.sqf";
 ace_medical_menu_fnc_updateUIInfo = compile preProcessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_updateUIInfo_config.sqf";
 ace_medical_fnc_vitalLoop = compile preprocessFileLineNumbers "orbis_ace3_medical_config\scripts\fnc_vitalLoop_config.sqf";
