@@ -4,6 +4,7 @@ class CfgAmmo {
 	class Flare_82mm_AMOS_White;
 
 	class rhs_ammo_m1_he: Sh_155mm_AMOS {
+		simulation = "shotBullet";
 		cost = 100;
 		artilleryLock = 1;
 		hit = 220; // 110
