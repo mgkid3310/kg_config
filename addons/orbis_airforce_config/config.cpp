@@ -71,6 +71,12 @@ class CfgMagazines {
 	class VehicleMagazine;
 	class FIR_240rnd_CMFlare_Chaff_Magazine: VehicleMagazine {};
 
+	class FIR_M61A2_480rnd_M;
+	class FIR_M61A2_412rnd_M: FIR_M61A2_480rnd_M {
+		scope = 2;
+		count = 412;
+	};
+
 	class FIR_960rnd_CMFlare_Chaff_Magazine: FIR_240rnd_CMFlare_Chaff_Magazine {
 		count = 960;
 	};
