@@ -6,7 +6,11 @@
 	[_reinforcement, _artillery]
 ] call MCC_fnc_MWinitMission; */
 
+// ["mccRequest", [player]] call CBA_fnc_globalEvent;
+
 params ["_player"];
+
+if !(isServer) exitWith {};
 
 private _misisonLocation = true; // true: any location
 private _totalEnemyUnits = 200; // dummy number
