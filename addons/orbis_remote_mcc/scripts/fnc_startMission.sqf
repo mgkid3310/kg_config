@@ -8,9 +8,8 @@
 
 // ["mccRequest", [player]] call CBA_fnc_globalEvent;
 
-params ["_player"];
-
 if !(isServer) exitWith {};
+params ["_player"];
 
 private _misisonLocation = true; // true: any location
 private _totalEnemyUnits = 100; // dummy number
@@ -35,8 +34,10 @@ private _enemyfaction = switch (_sidePlayer) do {
 	default {""}; 
 };
 private _civFaction = "CIV_F";
-
-if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide isEqualTo "") || (_enemyfaction isEqualTo "") || (_civFaction isEqualTo "")) exitWith {diag_log "orbis_remote_mcc mcc request fail: side/faction error"};
+if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide isEqualTo "") || (_enemyfaction isEqualTo "") || (_civFaction isEqualTo "")) exitWith {
+	systemChat "orbis_remote_mcc mcc request fail: side/faction error";
+	diag_log "orbis_remote_mcc mcc request fail: side/faction error";
+};
 
 private _objectsArray = ["None", "None", "None"];
 for "_i" from 0 to 2 do {
