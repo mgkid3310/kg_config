@@ -26,9 +26,9 @@ private _enemySide = switch (_sidePlayer) do {
 	case civilian: {""};
 	default {""}; 
 };
-private _enemyfaction = switch (_sidePlayer) do { 
-	case east: {_bluFactions call BIS_fnc_selectRandom}; 
-	case west: {_opfFactions call BIS_fnc_selectRandom}; 
+private _enemyfaction = switch (_enemySide) do { 
+	case east: {_opfFactions call BIS_fnc_selectRandom}; 
+	case west: {_bluFactions call BIS_fnc_selectRandom}; 
 	case resistance: {""};
 	case civilian: {""};
 	default {""}; 
@@ -41,11 +41,11 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 
 private _objectsArray = ["None", "None", "None"];
 for "_i" from 0 to 2 do {
-	_objectsArray set [_i, ["Destroy Vehicle","Destroy AA","Destroy Artillery","Destroy Weapon Cahce","Destroy Fuel Depot","Secure HVT","Kill HVT","Acquire Intel","Download Intel"] call BIS_fnc_selectRandom];
+	_objectsArray set [_i, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
 };
 
 private _mccArray = [
-	[_misisonLocation, _totalEnemyUnits,  100, 1000, false, true, 2],
+	[_misisonLocation, _totalEnemyUnits, 100, 2000, false, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false],
@@ -53,5 +53,4 @@ private _mccArray = [
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
-
 _mccArray call MCC_fnc_MWinitMission;
