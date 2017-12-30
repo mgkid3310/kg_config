@@ -36,7 +36,7 @@ while {(_executionPoint > _forgiveLimit) && (count _minesArray <= _maxMines) && 
 
 	if (!(_roadList isEqualTo [])) then {
 		diag_log "roadList not null";
-		private _randomRoad = selectRandom _roadList;
+		private _randomRoad = _roadList call BIS_fnc_selectRandom;
 		private _roadPosASL = getPosASL _randomRoad;
 		private _roadPosATL = getPosATL _randomRoad;
 		private _maxViewDistance = getNumber (configFile >> "Orbis_Civilian_Config" >> "generalConfig" >> "maxViewDistance");
