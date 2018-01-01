@@ -42,9 +42,9 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 };
 
 private _objectsArray = ["None", "None", "None"];
-_objectsArray set [0, ["Secure HVT", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
-_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
-_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
+_objectsArray set [0, ["Secure HVT", "Acquire Intel"] call BIS_fnc_selectRandom];
+_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel"] call BIS_fnc_selectRandom];
+_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel"] call BIS_fnc_selectRandom];
 // ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"]
 
 private _mccArray = [
