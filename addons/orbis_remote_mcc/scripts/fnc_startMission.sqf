@@ -52,7 +52,7 @@ private _mccArray = [
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
-	[3, 3]
+	[[1, 2] call BIS_fnc_selectRandom, [0, 1] call BIS_fnc_selectRandom]
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
