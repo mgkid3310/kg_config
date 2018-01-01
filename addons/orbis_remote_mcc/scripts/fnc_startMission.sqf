@@ -6,15 +6,15 @@
 	[_reinforcement, _artillery]
 ] call MCC_fnc_MWinitMission; */
 
-// ["mccRequest", [player]] call CBA_fnc_globalEvent;
+// ["mccRequest", [player, count (allPlayers - entities "HeadlessClient_F")]] call CBA_fnc_globalEvent;
 
 if !(isServer) exitWith {};
-params ["_player"];
+params ["_player", "_playersNumber"];
 
-private _misisonLocation = [nil, ["water"], {_this distance getPos _player > 5500}] call BIS_fnc_randomPos;
-// private _misisonArea = [getPos _misisonLocation, name _misisonLocation]; // true: any location
+private _misisonLocation = [nil, ["water"], {_this distance getPos _player > 6500}] call BIS_fnc_randomPos;
+// private _misisonArea = [getPos _misisonLocation, name _misisonLocation];
 private _misisonArea = [_misisonLocation, ""];
-private _totalEnemyUnits = 100; // dummy number
+private _totalEnemyUnits = 100 + _playersNumber * 5;
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
 private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];
@@ -25,7 +25,7 @@ private _enemySide = switch (_sidePlayer) do {
 	case east: {west}; 
 	case west: {east}; 
 	case resistance: {""};
-	case civilian: {""};
+	case civilian: {east};
 	default {""}; 
 };
 private _enemyfaction = switch (_enemySide) do { 
@@ -42,15 +42,15 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 };
 
 private _objectsArray = ["None", "None", "None"];
-for "_i" from 0 to 2 do {
-	_objectsArray set [_i, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
-};
+_objectsArray set [0, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
+_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
+_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"] call BIS_fnc_selectRandom];
 
 private _mccArray = [
 	[_misisonArea, _totalEnemyUnits, 100, 2000, false, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
-	[true, true, true, true, false, false, false, false, true, false],
+	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
 	[3, 3]
 ];
 
