@@ -6,15 +6,15 @@
 	[_reinforcement, _artillery]
 ] call MCC_fnc_MWinitMission; */
 
-// ["mccRequest", [player, count (allPlayers - entities "HeadlessClient_F")]] call CBA_fnc_globalEvent;
+// ["mccRequest", [player]] call CBA_fnc_globalEvent;
 
 if !(isServer) exitWith {};
-params ["_player", "_playersNumber"];
+params ["_player"];
 
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
-private _misisonLocation = nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 4500} call BIS_fnc_selectRandom;
+private _misisonLocation = nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 3500} call BIS_fnc_selectRandom;
 private _misisonArea = [getPos _misisonLocation, name _misisonLocation];
-private _totalEnemyUnits = 100 + _playersNumber * 5;
+private _totalEnemyUnits = 100 + (count (allPlayers - entities "HeadlessClient_F") * 5);
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
 private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];
@@ -48,7 +48,7 @@ _objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA"
 // ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"]
 
 private _mccArray = [
-	[_misisonArea, _totalEnemyUnits, 100, 1500, false, true, 2],
+	[_misisonArea, _totalEnemyUnits, 100, 1000, 0, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
