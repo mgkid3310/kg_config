@@ -11,7 +11,9 @@
 if !(isServer) exitWith {};
 params ["_player"];
 
-private _misisonLocation = true; // true: any location
+private _misisonLocation = [nil, ["water"], {_this distance getPos _player > 5500}] call BIS_fnc_randomPos;
+// private _misisonArea = [getPos _misisonLocation, name _misisonLocation]; // true: any location
+private _misisonArea = [_misisonLocation, ""];
 private _totalEnemyUnits = 100; // dummy number
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
@@ -45,7 +47,7 @@ for "_i" from 0 to 2 do {
 };
 
 private _mccArray = [
-	[_misisonLocation, _totalEnemyUnits, 100, 2000, false, true, 2],
+	[_misisonArea, _totalEnemyUnits, 100, 2000, false, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false],
