@@ -11,9 +11,9 @@
 if !(isServer) exitWith {};
 params ["_player", "_playersNumber"];
 
-private _misisonLocation = [nil, ["water"], {_this distance getPos _player > 6500}] call BIS_fnc_randomPos;
-// private _misisonArea = [getPos _misisonLocation, name _misisonLocation];
-private _misisonArea = [_misisonLocation, ""];
+private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
+private _misisonLocation = nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 4500} call BIS_fnc_selectRandom;
+private _misisonArea = [getPos _misisonLocation, name _misisonLocation];
 private _totalEnemyUnits = 100 + _playersNumber * 5;
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
@@ -48,7 +48,7 @@ _objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA"
 // ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"]
 
 private _mccArray = [
-	[_misisonArea, _totalEnemyUnits, 100, 2000, false, true, 2],
+	[_misisonArea, _totalEnemyUnits, 100, 1500, false, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
@@ -56,4 +56,6 @@ private _mccArray = [
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
+[_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
+[_enemyfaction] call MCC_fnc_createConfigs;
 _mccArray call MCC_fnc_MWinitMission;
