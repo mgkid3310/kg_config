@@ -48,7 +48,7 @@ _objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA"
 // ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"]
 
 private _mccArray = [
-	[_misisonArea, _totalEnemyUnits, 100, 1000, 0, true, 2],
+	[_misisonArea, _totalEnemyUnits, 300, 1000, 0, true, 2],
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
@@ -56,6 +56,10 @@ private _mccArray = [
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
+
+publicVariable "MCC_fnc_setVehicleInit";
+publicVariable "MCC_fnc_pickItem";
+
 [_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
 [_enemyfaction] call MCC_fnc_createConfigs;
 _mccArray call MCC_fnc_MWinitMission;
