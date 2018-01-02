@@ -42,10 +42,10 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 };
 
 private _objectsArray = ["None", "None", "None"];
-_objectsArray set [0, ["Secure HVT", "Acquire Intel"] call BIS_fnc_selectRandom];
-_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel"] call BIS_fnc_selectRandom];
-_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel"] call BIS_fnc_selectRandom];
-// ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Capture Area"]
+_objectsArray set [0, ["Secure HVT", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
+_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
+_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
+// ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel", "Capture Area"]
 
 private _mccArray = [
 	[_misisonArea, _totalEnemyUnits, 300, 1000, 0, true, 2],
@@ -56,9 +56,6 @@ private _mccArray = [
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
-
-publicVariable "MCC_fnc_setVehicleInit";
-publicVariable "MCC_fnc_pickItem";
 
 [_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
 [_enemyfaction] call MCC_fnc_createConfigs;
