@@ -12,8 +12,8 @@ if !(isServer) exitWith {};
 params ["_player"];
 
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
-private _misisonLocation = nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 3500} call BIS_fnc_selectRandom;
-private _misisonArea = [getPos _misisonLocation, name _misisonLocation];
+private _misisonLocation = selectRandom (nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 3500});
+private _misisonArea = [getPos _misisonLocation, text _misisonLocation];
 private _totalEnemyUnits = 100 + (count (allPlayers - entities "HeadlessClient_F") * 5);
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
@@ -21,16 +21,16 @@ private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];
 
 private _sidePlayer = side _player;
 private _factionPlayer = faction _player;
-private _enemySide = switch (_sidePlayer) do { 
-	case east: {west}; 
-	case west: {east}; 
+private _enemySide = switch (_sidePlayer) do {
+	case west: {east};
+	case east: {west};
 	case resistance: {""};
 	case civilian: {east};
 	default {""}; 
 };
-private _enemyfaction = switch (_enemySide) do { 
-	case east: {_opfFactions call BIS_fnc_selectRandom}; 
-	case west: {_bluFactions call BIS_fnc_selectRandom}; 
+private _enemyfaction = switch (_enemySide) do {
+	case west: {selectRandom _bluFactions};
+	case east: {selectRandom _opfFactions};
 	case resistance: {""};
 	case civilian: {""};
 	default {""}; 
@@ -42,10 +42,12 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 };
 
 private _objectsArray = ["None", "None", "None"];
-_objectsArray set [0, ["Secure HVT", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
-_objectsArray set [1, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
-_objectsArray set [2, ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel"] call BIS_fnc_selectRandom];
-// ["Secure HVT", "Kill HVT", "Destroy Vehicle", "Destroy AA", "Destroy Artillery", "Destroy Weapon Cahce", "Destroy Fuel Depot", "Destroy Radar/Radio", "Acquire Intel", "Download Intel", "Capture Area"]
+private _objectData = [["Secure HVT", 1], ["Kill HVT", 0.6], ["Destroy Vehicle", 0.3], ["Destroy AA", 0.3], ["Destroy Artillery", 0.3], ["Destroy Weapon Cahce", 0.3], ["Destroy Fuel Depot", 0.3], ["Destroy Radar/Radio", 0.3], ["Acquire Intel", 1], ["Download Intel", 1]];
+private _objectList = _objectData apply {_x select 0};
+private _objectChance = _objectData apply {_x select 1};
+_objectsArray set [0, selectRandom ["Secure HVT", "Acquire Intel", "Download Intel"]];
+_objectsArray set [1, _objectList selectRandomWeighted _objectChance];
+_objectsArray set [2, _objectList selectRandomWeighted _objectChance];
 
 private _mccArray = [
 	[_misisonArea, _totalEnemyUnits, 300, 1000, 0, true, 2],
