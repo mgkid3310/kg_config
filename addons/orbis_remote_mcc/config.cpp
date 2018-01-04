@@ -9,4 +9,5 @@ class CfgPatches {
 	};
 };
 
+#include "bombDialog.hpp"
 #include "CfgEventHandlers.hpp"

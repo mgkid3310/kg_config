@@ -42,10 +42,16 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 };
 
 private _objectsArray = ["None", "None", "None"];
-private _objectData = [["Secure HVT", 1], ["Kill HVT", 0.6], ["Destroy Vehicle", 0.3], ["Destroy AA", 0.3], ["Destroy Artillery", 0.3], ["Destroy Weapon Cahce", 0.3], ["Destroy Fuel Depot", 0.3], ["Destroy Radar/Radio", 0.3], ["Acquire Intel", 1], ["Download Intel", 1]];
+private _objectData = [
+	["Secure HVT", 1], ["Kill HVT", 0.6], 
+	["Destroy Vehicle", 0.3], ["Destroy AA", 0.3], ["Destroy Artillery", 0.3], 
+	["Destroy Weapon Cahce", 0.3], ["Destroy Fuel Depot", 0.3], ["Destroy Radar/Radio", 0.3], 
+	["Acquire Intel", 1], ["Download Intel", 1], 
+	["Capture Area", 0], ["Disarm IED", 1]
+];
 private _objectList = _objectData apply {_x select 0};
 private _objectChance = _objectData apply {_x select 1};
-_objectsArray set [0, selectRandom ["Secure HVT", "Acquire Intel", "Download Intel"]];
+_objectsArray set [0, selectRandom ["Secure HVT", "Acquire Intel", "Download Intel", "Disarm IED"]];
 _objectsArray set [1, _objectList selectRandomWeighted _objectChance];
 _objectsArray set [2, _objectList selectRandomWeighted _objectChance];
 
