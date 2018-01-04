@@ -2,7 +2,7 @@
 
 params ["_executionPoint", "_civDeathPosMean", "_civDeathPosSTD", "_playersArray"];
 
-diag_log format ["killPenalty received: %1, %2, %3, %4", _executionPoint, _civDeathPosMean, _civDeathPosSTD, _playersArray];
+// diag_log format ["killPenalty received: %1, %2, %3, %4", _executionPoint, _civDeathPosMean, _civDeathPosSTD, _playersArray];
 
 private _maxTries = getNumber (configFile >> "Orbis_Civilian_Config" >> "generalConfig" >> "maxTries");
 private _forgiveLimit = getNumber (configFile >> "Orbis_Civilian_Config" >> "mineConfig" >> "forgiveLimit");
@@ -31,11 +31,11 @@ while {(_executionPoint > _forgiveLimit) && (count _minesArray <= _maxMines) && 
 		_roadRadius = _roadRadius + 50;
 		_roadList = _randomPos nearRoads _roadRadius;
 	};
-	diag_log format ["numTry2: %1", _numTry2];
-	diag_log format ["roadList: %1", _roadList];
+	// diag_log format ["numTry2: %1", _numTry2];
+	// diag_log format ["roadList: %1", _roadList];
 
 	if (!(_roadList isEqualTo [])) then {
-		diag_log "roadList not null";
+		// diag_log "roadList not null";
 		private _randomRoad = _roadList call BIS_fnc_selectRandom;
 		private _roadPosASL = getPosASL _randomRoad;
 		private _roadPosATL = getPosATL _randomRoad;
@@ -43,7 +43,7 @@ while {(_executionPoint > _forgiveLimit) && (count _minesArray <= _maxMines) && 
 		private _minMineDistance = getNumber (configFile >> "Orbis_Civilian_Config" >> "mineConfig" >> "minMineDistance");
 		private _isInSight = [_roadPosASL, _playersArray, _maxViewDistance] call orbis_civ_fnc_obstacleCheck;
 		private _isNearMines = [_raodPosASL, _minesArray, _minMineDistance] call orbis_civ_fnc_isNearCheck;
-		diag_log format ["isInSight: %1, isNearMines: %2", _isInSight, _isNearMines];
+		// diag_log format ["isInSight: %1, isNearMines: %2", _isInSight, _isNearMines];
 		if (!_isInSight && !_isNearMines) then {
 			_minesArray = [_roadPosATL, _minesArray] call orbis_civ_fnc_setIED;
 			_executionPoint = _executionPoint - 1;
@@ -51,7 +51,7 @@ while {(_executionPoint > _forgiveLimit) && (count _minesArray <= _maxMines) && 
 	};
 };
 
-diag_log format ["numTry1: %1", _numTry1];
+// diag_log format ["numTry1: %1", _numTry1];
 
 missionNamespace setVariable ["minesArray", _minesArray];
 

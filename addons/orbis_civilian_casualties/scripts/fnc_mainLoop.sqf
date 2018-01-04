@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-diag_log format ["mainLoop time: %1", CBA_missionTime];
+// diag_log format ["mainLoop time: %1", CBA_missionTime];
 
 params ["_lastTimeStamp", "_elapsedTime"];
 
@@ -58,7 +58,7 @@ if (_elapsedTime >= _spawnTime) then {
 			_currentNamespace = [_executionPoint, _civDeathPositions];
 			_townNamespaces set [_townIndex, _currentNamespace];
 
-			diag_log format ["time: %1, town: %2, exp: %3", CBA_missionTime, _x, _executionPoint];
+			// diag_log format ["time: %1, town: %2, exp: %3", CBA_missionTime, _x, _executionPoint];
 		};
 	} forEach _townNames;
 
@@ -67,7 +67,7 @@ if (_elapsedTime >= _spawnTime) then {
 	missionNamespace setVariable ["townNamespaces", _townNamespaces];
 	missionNamespace setVariable ["levelOfViolence", _levelOfViolence];
 
-	diag_log format ["lv: %1", _levelOfViolence];
+	// diag_log format ["lv: %1", _levelOfViolence];
 };
 
 [orbis_civ_fnc_mainLoop, [CBA_missionTime, _elapsedTime], _loopTime] call CBA_fnc_waitAndExecute;

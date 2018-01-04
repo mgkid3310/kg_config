@@ -24,7 +24,7 @@ if (_levelOfViolence > _friendlyLimit) then {
 		};
 	} forEach _civiliansArray;
 
-	diag_log format ["availCivils: %1", _availCivilians];
+	// diag_log format ["availCivils: %1", _availCivilians];
 
 	if (!(_availCivilians isEqualTo [])) then {
 		_availCivilians = _availCivilians call BIS_fnc_arrayShuffle;
