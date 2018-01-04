@@ -1,3 +1,7 @@
+class MCC_RscPicture;
+class MCC_RscStructuredText;
+class MCC_RscControlsGroup;
+
 class MCC_bombDefuse
 {
 	idd = 1031983;
