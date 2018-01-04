@@ -2,7 +2,10 @@ orbis_mcc_fnc_startMission = compile preprocessFileLineNumbers 'orbis_remote_mcc
 
 // mcc functions
 if (isServer) then {
-	MCC_fnc_MWObjectiveIntel = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_MWObjectiveIntel.sqf';
+	[] spawn {
+		waitUntil {!isNil MCC_fnc_MWObjectiveIntel};
+		MCC_fnc_MWObjectiveIntel = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_MWObjectiveIntel.sqf';
+	};
 } else {
 	MCC_fnc_bdButtonsModule = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_bdButtonsModule.sqf';
 	MCC_fnc_bdCreateManual = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_bdCreateManual.sqf';
