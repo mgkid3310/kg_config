@@ -1,8 +1,6 @@
-params ["_sound", "_delay", "_repeatNum"];
-
 private _current = 0;
-while {_current < _repeatNum} do {
-	playSound _sound;
+while {_current < (_this select 2)} do {
+	playSound (_this select 0);
 	_current = _current + 1;
-	sleep _delay;
+	sleep (_this select 1);
 };
