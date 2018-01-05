@@ -1,7 +1,7 @@
 orbis_mcc_fnc_startMission = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_startMission.sqf';
 
 // mcc functions
-if (isServer) then {
+if (isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) then {
 	[] spawn {
 		waitUntil {!isNil MCC_fnc_MWObjectiveIntel};
 		MCC_fnc_MWObjectiveIntel = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_MWObjectiveIntel.sqf';
