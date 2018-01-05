@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_target", "_objects", "_maxDistance"];
 
 private _isNear = false;

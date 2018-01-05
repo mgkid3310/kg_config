@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_militiaArrayNew", "_levelOfViolence", "_availCivilians"];
 
 private _weaponsList = [

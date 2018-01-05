@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 // diag_log format ["mainLoop time: %1", CBA_missionTime];
 
 params ["_lastTimeStamp", "_elapsedTime"];

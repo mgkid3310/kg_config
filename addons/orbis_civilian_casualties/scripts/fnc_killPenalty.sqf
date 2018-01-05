@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_executionPoint", "_civDeathPosMean", "_civDeathPosSTD", "_playersArray"];
 
 // diag_log format ["killPenalty received: %1, %2, %3, %4", _executionPoint, _civDeathPosMean, _civDeathPosSTD, _playersArray];

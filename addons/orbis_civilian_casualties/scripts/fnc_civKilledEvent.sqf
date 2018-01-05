@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_unit", "_killer"];
 
 private _locationTypes = getArray (configFile >> "Orbis_Civilian_Config" >> "locationsConfig" >> "locationTypes");

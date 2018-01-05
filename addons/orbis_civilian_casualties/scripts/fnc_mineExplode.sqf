@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_mineTrigger"];
 
 _mineObject = _mineTrigger getVariable ["mineObject", objNull];

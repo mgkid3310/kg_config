@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_target", "_viewers", "_maxDistance"];
 
 private _doesIntersect = false;

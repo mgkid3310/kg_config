@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_levelOfViolence", "_playersArray", "_civiliansArray"];
 
 private _maxViewDistance = getNumber (configFile >> "Orbis_Civilian_Config" >> "generalConfig" >> "maxViewDistance");

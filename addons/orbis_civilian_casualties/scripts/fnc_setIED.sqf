@@ -1,5 +1,3 @@
-#include "script_component.hpp"
-
 params ["_roadPosATL", "_minesArray"];
 
 private _availIED = [["IEDLandSmall_F", "IEDLandSmall_Remote_Ammo"], ["IEDLandBig_F", "IEDLandBig_Remote_Ammo"], ["IEDUrbanSmall_F", "IEDUrbanSmall_Remote_Ammo"], ["IEDUrbanBig_F", "IEDUrbanBig_Remote_Ammo"]];
