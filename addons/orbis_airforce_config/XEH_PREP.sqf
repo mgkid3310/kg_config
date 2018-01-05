@@ -6,3 +6,8 @@ orbis_airforce_fnc_commonInit = compile preProcessFileLineNumbers "orbis_airforc
 orbis_airforce_fnc_FA18Einit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18Einit.sqf";
 orbis_airforce_fnc_FA18Finit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_FA18Finit.sqf";
 orbis_airforce_fnc_toggleSmoke = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_toggleSmoke.sqf";
+
+ace_pylons_fnc_showDialog_run = ace_pylons_fnc_showDialog;
+ace_pylons_fnc_showDialog = {
+	[_this select 0, true] call ace_pylons_fnc_showDialog_run;
+};

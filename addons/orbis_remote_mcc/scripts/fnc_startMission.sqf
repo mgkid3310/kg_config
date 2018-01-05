@@ -11,10 +11,14 @@
 if !(isServer) exitWith {};
 params ["_player"];
 
+private _playerCount = count (allPlayers - entities "HeadlessClient_F");
+
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
 private _misisonLocation = selectRandom (nearestLocations [getPos _player, _locationNames, 50000] select {getPos _x distance getPos _player > 3500});
 private _misisonArea = [getPos _misisonLocation, text _misisonLocation];
-private _totalEnemyUnits = 100 + (count (allPlayers - entities "HeadlessClient_F") * 5);
+private _totalEnemyUnits = 30 + (_playerCount * 5);
+
+private _aoSize = 100 + 30 * (10 max _playerCount min 30);
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
 private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];
@@ -56,11 +60,11 @@ _objectsArray set [1, _objectList selectRandomWeighted _objectChance];
 _objectsArray set [2, _objectList selectRandomWeighted _objectChance];
 
 private _mccArray = [
-	[_misisonArea, _totalEnemyUnits, 300, 1000, 0, true, 2],
+	[_misisonArea, _totalEnemyUnits, 100, _aoSize, 0, false, 2], // no weather change, precise markers, intro
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
-	[true, true, true, true, false, false, false, false, true, false], // with cqb, civ, armor, vehicles, no stealth, ied, armored civ, suicide bomber, with roadblocks, no animals
-	[[1, 2] call BIS_fnc_selectRandom, [0, 1] call BIS_fnc_selectRandom]
+	[true, true, selectRandom [0, 1], selectRandom [0, 1], false, selectRandom [0, 1], false, false, selectRandom [0, 1], false], // with cqb, civ, random armor, vehicles, no stealth, random ied, no armored civ, suicide bomber, random roadblocks, no animals
+	[3, selectRandom [0, 1]]
 ];
 
 diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
