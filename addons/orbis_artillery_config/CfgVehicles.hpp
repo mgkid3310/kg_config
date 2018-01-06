@@ -34,6 +34,13 @@ class CfgVehicles {
 			class MainTurret: MainTurret {
 				turretInfoType = "ACE_Mk6_RscWeaponRangeArtillery";
 				gunnerOpticsModel = "\A3\Weapons_F\acc\reticle_Mortar_01_F.p3d";
+				magazines[] = {
+					"rhs_mag_3of56_10",
+					"rhs_mag_of462_10",
+					"rhs_mag_d462_2",
+					"rhs_mag_s463_2",
+					"rhs_mag_3of69m_2"
+				};
 			};
 		};
 	};
