@@ -6,11 +6,9 @@
 	[_reinforcement, _artillery]
 ] call MCC_fnc_MWinitMission; */
 
-// ["mccRequest", [player]] call CBA_fnc_globalEvent;
+// [] call orbis_mcc_fnc_startMission;
 
-if !(isServer) exitWith {};
-params ["_player"];
-
+private _player = player;
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
@@ -67,8 +65,5 @@ private _mccArray = [
 	[3, selectRandom [0, 1]]
 ];
 
-diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
-
-[_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
-[_enemyfaction] call MCC_fnc_createConfigs;
-_mccArray call MCC_fnc_MWinitMission;
+// diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
+["mccRequest", [_player, _mccArray]] call CBA_fnc_globalEvent;
