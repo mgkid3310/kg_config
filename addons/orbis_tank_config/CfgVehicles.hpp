@@ -75,6 +75,11 @@ class CfgVehicles {
 				radius = 0.300000;
 			};
 		};
+		class EventHandlers: EventHandlers {
+			class RHSUSF_EventHandlers {
+				init = "_this spawn orbis_tank_fnc_vehicleInit;";
+			};
+		};
 	};
 
 	class APC_Tracked_03_base_F: Tank_F {};
@@ -119,6 +124,11 @@ class CfgVehicles {
 				minimalHit = 0.150000;
 				explosionShielding = 0.350000;
 				radius = 0.300000;
+			};
+		};
+		class EventHandlers: EventHandlers {
+			class RHSUSF_EventHandlers {
+				init = "_this spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
 	};
@@ -179,7 +189,7 @@ class CfgVehicles {
 		};
 		class EventHandlers: EventHandlers {
 			class RHSUSF_EventHandlers {
-				init = "_this spawn orbis_tank_fnc_abramsInit; _this call RHS_fnc_M1_init";
+				init = "_this spawn orbis_tank_fnc_vehicleInit; _this call RHS_fnc_M1_init";
 			};
 		};
 		/* class ACE_Actions: ACE_Actions {

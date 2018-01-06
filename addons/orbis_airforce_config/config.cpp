@@ -4,7 +4,7 @@ class CfgPatches {
 		author = "Orbis2358";
 		requiredVersion = 0.1;
 		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", /* "FIR_F16_F", "FIR_F16D_F", */"JS_JC_FA18", "JS_JC_SU35"};
-		units[] = {/* "F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics "*/};
+		units[] = {/* "F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics" */};
 		weapons[] = {};
 	};
 };
@@ -70,6 +70,12 @@ class CfgAmmo {
 class CfgMagazines {
 	class VehicleMagazine;
 	class FIR_240rnd_CMFlare_Chaff_Magazine: VehicleMagazine {};
+
+	class FIR_M61A2_480rnd_M;
+	class FIR_M61A2_412rnd_M: FIR_M61A2_480rnd_M {
+		scope = 2;
+		count = 412;
+	};
 
 	class FIR_960rnd_CMFlare_Chaff_Magazine: FIR_240rnd_CMFlare_Chaff_Magazine {
 		count = 960;

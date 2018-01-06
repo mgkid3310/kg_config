@@ -58,7 +58,7 @@
 						hardpoints[] = {"FIR_SH_AA_HP"};
 					};
 					class pylon11: pylon1 {
-						hardpoints[] = {"FIR_SH_Fueltank_HP", "FIR_SH_Under_HP"};
+						hardpoints[] = {"FIR_SH_Under_HP", "JSJC_Fueltank"};
 					};
 				};
 			};
@@ -107,7 +107,7 @@
 						hardpoints[] = {"FIR_SH_AA_HP"};
 					};
 					class pylon11: pylon1 {
-						hardpoints[] = {"FIR_SH_Fueltank_HP", "FIR_SH_Under_HP"};
+						hardpoints[] = {"FIR_SH_Under_HP", "JSJC_Fueltank"};
 					};
 				};
 			};
