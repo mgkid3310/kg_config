@@ -6,11 +6,11 @@
 	[_reinforcement, _artillery]
 ] call MCC_fnc_MWinitMission; */
 
-// ["mccRequest", [player]] call CBA_fnc_globalEvent;
+// [] call orbis_mcc_fnc_startMission;
 
-if !(isServer) exitWith {};
-params ["_player"];
+// diag_log "orbis_remote_mcc startMission run";
 
+private _player = _this select 0;
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
@@ -51,11 +51,11 @@ private _objectData = [
 	["Destroy Vehicle", 0.3], ["Destroy AA", 0.3], ["Destroy Artillery", 0.3], 
 	["Destroy Weapon Cahce", 0.3], ["Destroy Fuel Depot", 0.3], ["Destroy Radar/Radio", 0.3], 
 	["Acquire Intel", 1], ["Download Intel", 1], 
-	["Capture Area", 0], ["Disarm IED", 1]
+	["Capture Area", 0], ["Disarm IED", 0]
 ];
 private _objectList = _objectData apply {_x select 0};
 private _objectChance = _objectData apply {_x select 1};
-_objectsArray set [0, selectRandom ["Secure HVT", "Acquire Intel", "Download Intel", "Disarm IED"]];
+_objectsArray set [0, selectRandom ["Secure HVT", "Acquire Intel", "Download Intel"]];
 _objectsArray set [1, _objectList selectRandomWeighted _objectChance];
 _objectsArray set [2, _objectList selectRandomWeighted _objectChance];
 
@@ -63,12 +63,9 @@ private _mccArray = [
 	[_misisonArea, _totalEnemyUnits, 100, _aoSize, 0, false, 2], // no weather change, precise markers, intro
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
-	[true, true, selectRandom [0, 1], selectRandom [0, 1], false, selectRandom [0, 1], false, false, selectRandom [0, 1], false], // with cqb, civ, random armor, vehicles, no stealth, random ied, no armored civ, suicide bomber, random roadblocks, no animals
+	[true, true, selectRandom [false, true], selectRandom [false, true], false, selectRandom [false, true], false, false, selectRandom [false, true], false], // with cqb, civ, random armor, vehicles, no stealth, random ied, no armored civ, suicide bomber, random roadblocks, no animals
 	[3, selectRandom [0, 1]]
 ];
 
-diag_log format ["orbis_remote_mcc mcc requested: %1", _mccArray];
-
-[_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
-[_enemyfaction] call MCC_fnc_createConfigs;
-_mccArray call MCC_fnc_MWinitMission;
+// diag_log "orbis_remote_mcc mccRequest event fired";
+["mccRequest", [_player, _mccArray]] call CBA_fnc_serverEvent;
