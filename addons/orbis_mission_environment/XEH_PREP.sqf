@@ -1,0 +1,1 @@
+orbis_mission_fnc_missionStarted = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionStarted.sqf';
