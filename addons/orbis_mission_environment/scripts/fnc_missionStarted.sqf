@@ -1,4 +1,5 @@
 if (missionNamespace getVariable ["misisonLoopRunning", false]) exitWith {};
+missionNamespace setVariable ["misisonLoopRunning", true, true];
 
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 missionNamespace setVariable ["playerCountInit", _playerCount, true];
@@ -38,6 +39,8 @@ switch (_weather) do {
 	default {};
 };
 missionNamespace setVariable ["timeAndWeather", [_time, _weather], true];
+
+sleep (1800 + (time random 1800)); // 30 ~ 60 min
 
 [time, 0, _this] spawn orbis_mission_fnc_missionLoop;
 missionNamespace setVariable ["missionStartTime", time];

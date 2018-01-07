@@ -27,4 +27,4 @@ private _enemySide = _mccArray select 1 select 0;
 _mccArray call MCC_fnc_MWinitMission;
 
 // run enemy reinforcing scripts
-[_mccArray] call orbis_mission_fnc_missionStarted;
+[_mccArray select 1 select 2, _mccArray select 1 select 0, _mccArray select 1 select 1] spawn orbis_mission_fnc_missionStarted;

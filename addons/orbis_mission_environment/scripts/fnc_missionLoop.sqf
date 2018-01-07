@@ -1,16 +1,14 @@
-#include "unitSetup.sqf"
+#include "script_settings.sqf"
 
-params ["_timeOld", "_points", "_mccArray"];
-_mccArray params ["_arrayGeneral", "_arraySides", "_arrayObjectives", "_arrayDefines", "_arrayAssets"];
-
-missionNamespace setVariable ["misisonLoopRunning", true, true];
+params ["_timeOld", "_points", "_factionArray"];
+_factionArray params ["_playerSide", "_objectSide", "_objectFaction"];
 
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 private _playerCountInit = missionNamespace getVariable ["playerCountInit", _playerCount];
-_points = _points + (time - _timeOld) * _playerCount; // 600 points / player / 10min
+_points = _points + (time - _timeOld) * _playerCount * POINT_MULTIPLIER;
 
 // set up units array
-private _playerSideEntities = entities select {side _x isEqualTo (_arraySides select 2) && alive _x};
+private _playerSideEntities = entities select {(side _x isEqualTo _playerSide) && (alive _x)};
 private _playerSidePlanes = _playerSideEntities select {_x isKindOf "Plane"};
 private _playerSidehelis = _playerSideEntities select {_x isKindOf "Helicopter"};
 private _playerSidetanks = _playerSideEntities select {_x isKindOf "Tank"};
@@ -18,7 +16,7 @@ private _playerSidevehicles = _playerSideEntities select {_x isKindOf "Car"};
 private _playerSideinfs = _playerSideEntities select {_x isKindOf "Man"};
 private _playerSideUnits = [_playerSidePlanes, _playerSidehelis, _playerSidetanks, _playerSidevehicles, _playerSideinfs];
 
-private _objectSideEntities = entities select {side _x isEqualTo (_arraySides select 0) && alive _x};
+private _objectSideEntities = entities select {(side _x isEqualTo _objectSide) && (alive _x)};
 private _objectSidePlanes = _objectSideEntities select {_x isKindOf "Plane"};
 private _objectSidehelis = _objectSideEntities select {_x isKindOf "Helicopter"};
 private _objectSidetanks = _objectSideEntities select {_x isKindOf "Tank"};
@@ -44,13 +42,7 @@ missionNamespace setVariable ["deadUints", []];
 
 // update score assessment
 private _scoreNamspace = missionNamespace getVariable ["scoreNamespace", [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]];
-private _totalSpawns = missionNamespace getVariable ["totalSpawns", [0, 0, 0, 0, 0]];
-private _spawnedCount = 0;
-{
-	_spawnedCount = _spawnedCount + _x;
-} forEach _totalSpawns;
-private _spawnRatio = _totalSpawns apply {_x / _spawnedCount};
-
+private _scoreNamspaceOld = _scoreNamspace;
 {
 	_x set [0, _x + _planeKills select {_x select 1 isEqualTo _forEachIndex}];
 	_x set [1, _x + _heliKills select {_x select 1 isEqualTo _forEachIndex}];
@@ -70,15 +62,6 @@ _groundThreat = _groundThreat + (time - _timeOld) * ((count _playerSidetanks * T
 missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
 
-// calculate score/point effectiveness
-private _pointsUsed = missionNamespace getVariable ["pointsUsed", [0, 0, 0, 0, 0]];
-private _scoreEffectiveness = [0, 0, 0, 0, 0];
-for "_i" from 0 to 4 do {
-	if !(_pointsUsed select _i isEqualTo 0) then {
-		_scoreEffectiveness set [_i, (_scores select _i) / (_pointsUsed select _i)];
-	};
-};
-
 // update power assessment
 private _aaPower = 0;
 private _agPower = 0;
@@ -86,9 +69,41 @@ private _agPower = 0;
 	_aaPower = _aaPower + (count _x) * (_scores select _forEachIndex select 0);
 	_agPower = _agPower + (count _x) * (_scores select _forEachIndex select 1);
 } forEach _objectSideUnits;
+private _aaPowerRatio = _aaPower / _airThreat;
+private _agPowerRatio = _agPower / _groundThreat;
 
-// calculate optimal point distribution
-private _
+// calculate score/point effectiveness
+private _pointsUsed = missionNamespace getVariable ["pointsUsed", [0, 0, 0, 0, 0]];
+private _pointAssessment = _objectSideUnits apply {
+	private _point = 0;
+	{
+		_point = _point + orbis_mission_unitPrice select (orbis_mission_unitList find typeOf _x);
+	} forEach _x;
+	_point
+};
+private _scoreEffectiveness = [-1, -1, -1, -1, -1];
+private _scoreAverage = 0;
+private _scoreCount = 0;
+for "_i" from 0 to 4 do {
+	if !(_pointsUsed select _i isEqualTo 0) then {
+		_scoreEffectiveness set [_i, ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i)];
+		_scoreAverage = _scoreAverage + ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i);
+		_scoreCount = _scoreCount + 1;
+	};
+};
+if (_scoreCount isEqualTo 0) then {
+	_scoreEffectiveness = [1, 1, 1, 1, 1];
+} else {
+	_scoreAverage = _scoreAverage / _scoreCount;
+	_scoreEffectiveness apply {if (_x < 0) then {_scoreAverage} else {_x}};
+};
+
+// calculate point distribution
+private _pointRatio = _scoreEffectiveness apply {_x / (_scoreAverage * 5)};
+private _pointDistribution = _pointRatio apply {_x * _points};
+
+// spawn reinforcing units
+
 
 // add killed triggers to units
 {
@@ -114,14 +129,14 @@ private _
 } forEach _objectSideUnits;
 
 // pause script for a moment
-sleep 600;
+sleep (300 + (time random 600)); // 5 ~ 15 min
 
 // check if objects are still running
 private _objects = entities [[], ["Logic"], true] select {_x typeOf "MCC_ModuleObjective_F"};
 private _isRunning = _objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo [];
 
 if (_isRunning) then { // start the next loop or end & set weather changes
-	[time, _points, _mccArray] spawn orbis_mission_fnc_missionLoop;
+	[time, _points, _factionArray] spawn orbis_mission_fnc_missionLoop;
 } else {
 	missionNamespace setVariable ["misisonLoopRunning", false, true];
 
