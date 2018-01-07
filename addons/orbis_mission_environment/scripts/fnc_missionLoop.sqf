@@ -32,4 +32,34 @@ if (_isRunning) then {
 	[time, _points, _mccArray] spawn orbis_mission_fnc_missionLoop;
 } else {
 	missionNamespace setVariable ["misisonLoopRunning", false, true];
+
+	// weather change
+	sleep (300 + (time random 300));
+	missionNamespace getVariable ["timeAndWeather", ["day", "sunny"]] params ["_time", "_weather"];
+	private _randomTime = 300 + (time random 1800);
+	switch ([_weather, ""] selectRandomWeighted [0.5, 0.5]) do { 
+		case "sunny": {
+			_randomTime setOvercast 0.0;
+			_randomTime setRain 0.0;
+			10 setRainbow 0;
+		};
+		case "cloudy": {
+			_randomTime setOvercast 0.2;
+			_randomTime setRain 0.0;
+			10 setRainbow 0;
+		};
+		case "rainy": {
+			_randomTime setOvercast 0.2;
+			_randomTime setRain 0.0;
+			sleep _randomTime;
+			30 setRainbow 1;
+		};
+		case "thunderstorm": {
+			_randomTime setOvercast 0.2;
+			_randomTime setRain 0.0;
+			sleep _randomTime;
+			30 setRainbow 1;
+		};
+		default {};
+	};
 };
