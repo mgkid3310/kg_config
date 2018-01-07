@@ -21,6 +21,8 @@ _groundThreat = _groundThreat + (time - _timeOld) * (_tankCount * 10 + _vehicleC
 missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
 
+
+
 sleep 10;
 
 private _objects = entities [[], ["Logic"], true] select {_x typeOf "MCC_ModuleObjective_F"};
