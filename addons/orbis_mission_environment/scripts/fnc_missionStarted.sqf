@@ -39,5 +39,13 @@ switch (_weather) do {
 };
 missionNamespace setVariable ["timeAndWeather", [_time, _weather], true];
 
+// define unit scores
+#define PLANE_SCORE 10
+#define HELI_SCORE 5
+#define TANK_SCORE 5
+#define VEHICLE_SCORE 3
+#define INF_SCORE 1
+
 private _mccArray = _this;
 [time, 0, _mccArray] spawn orbis_mission_fnc_missionLoop;
+missionNamespace setVariable ["missionStartTime", time];
