@@ -8,20 +8,18 @@ private _playerCountInit = missionNamespace getVariable ["playerCountInit", _pla
 _points = _points + (time - _timeOld) * _playerCount * POINT_MULTIPLIER;
 
 // set up units array
-private _playerSideEntities = entities select {(side _x isEqualTo _playerSide) && (alive _x)};
-private _playerSidePlanes = _playerSideEntities select {_x isKindOf "Plane"};
-private _playerSidehelis = _playerSideEntities select {_x isKindOf "Helicopter"};
-private _playerSidetanks = _playerSideEntities select {_x isKindOf "Tank"};
-private _playerSidevehicles = _playerSideEntities select {_x isKindOf "Car"};
-private _playerSideinfs = _playerSideEntities select {_x isKindOf "Man"};
+private _playerSidePlanes = (entities "Plane") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _playerSidehelis = (entities "Helicopter") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _playerSidetanks = (entities "Tank") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _playerSidevehicles = (entities "Car") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _playerSideinfs = (entities "Man") select {(side _x isEqualTo _playerSide) && (alive _x)};
 private _playerSideUnits = [_playerSidePlanes, _playerSidehelis, _playerSidetanks, _playerSidevehicles, _playerSideinfs];
 
-private _objectSideEntities = entities select {(side _x isEqualTo _objectSide) && (alive _x)};
-private _objectSidePlanes = _objectSideEntities select {_x isKindOf "Plane"};
-private _objectSidehelis = _objectSideEntities select {_x isKindOf "Helicopter"};
-private _objectSidetanks = _objectSideEntities select {_x isKindOf "Tank"};
-private _objectSidevehicles = _objectSideEntities select {_x isKindOf "Car"};
-private _objectSideinfs = _objectSideEntities select {_x isKindOf "Man"};
+private _objectSidePlanes = (entities "Plane") select {(side _x isEqualTo _objectSide) && (alive _x)};
+private _objectSidehelis = (entities "Helicopter") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _objectSidetanks = (entities "Tank") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _objectSidevehicles = (entities "Car") select {(side _x isEqualTo _playerSide) && (alive _x)};
+private _objectSideinfs = (entities "Man") select {(side _x isEqualTo _playerSide) && (alive _x)};
 private _objectSideUnits = [_objectSidePlanes, _objectSidehelis, _objectSidetanks, _objectSidevehicles, _objectSideinfs];
 
 // update dead units
@@ -199,7 +197,7 @@ private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 
 sleep (300 + (time random 600)); // 5 ~ 15 min
 
 // check if objects are still running
-private _objects = entities [[], ["Logic"], true] select {_x typeOf "MCC_ModuleObjective_F"};
+private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
 private _isRunning = _objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo [];
 
 if (_isRunning) then { // start the next loop or end & set weather changes
