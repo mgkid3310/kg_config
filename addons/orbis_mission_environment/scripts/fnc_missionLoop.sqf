@@ -102,8 +102,74 @@ if (_scoreCount isEqualTo 0) then {
 private _pointRatio = _scoreEffectiveness apply {_x / (_scoreAverage * 5)};
 private _pointDistribution = _pointRatio apply {_x * _points};
 
-// spawn reinforcing units
+// get spawn location
+private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
+private _missionPlayerPos = missionNamespace setVariable ["missionPlayerPos", [0, 0, 0]];
+private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
 
+private _missionToPlayer = _missionCenterPos getDir _missionPlayerPos;
+private _missionToPlane = 
+private _planeLoaction = [_missionCenterPos, 40000, _missionToPlane] call BIS_fnc_relPos set [2, 1000];
+
+private _groundLocation = getPos selectRandom (nearestLocations [missionPlayerPos, _locationNames, 50000] select {(getPos _x distance missionCenterPos > 3000) && (getPos _x distance missionCenterPos < 10000) && (getPos _x distance missionPlayerPos > 2000)});
+
+// spawn reinforcing units
+private _spawnGroups = [];
+
+while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
+	private _thisSpawn = selectRandom (orbis_mission_planeArray select {_x <= _pointDistribution select 0});
+	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
+	private _group = createGroup _objectSide;
+	_group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	_spawnGroups pushBack _group;
+
+	_pointDistribution set [0, (_pointDistribution select 0) - (_thisSpawn select 2)];
+};
+
+while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
+	private _thisSpawn = selectRandom (orbis_mission_heliArray select {_x <= _pointDistribution select 1});
+	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1]; 
+	private _group = createGroup _objectSide;
+	_group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	_spawnGroups pushBack _group;
+
+	_pointDistribution set [1, (_pointDistribution select 1) - (_thisSpawn select 2)];
+};
+
+while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
+	private _thisSpawn = selectRandom (orbis_mission_tankArray select {_x <= _pointDistribution select 2});
+	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
+	private _group = createGroup _objectSide;
+	_group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	_spawnGroups pushBack _group;
+
+	_pointDistribution set [2, (_pointDistribution select 2) - (_thisSpawn select 2)];
+};
+
+while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
+	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {_x <= _pointDistribution select 3});
+	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
+	private _group = createGroup _objectSide;
+	_group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	_spawnGroups pushBack _group;
+
+	_pointDistribution set [3, (_pointDistribution select 3) - (_thisSpawn select 2)];
+};
+
+while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
+	private _thisSpawn = selectRandom (orbis_mission_infArray select {_x <= _pointDistribution select 4});
+	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 3];;
+	private _group = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
+	_spawnGroups pushBack _group;
+
+	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
+};
+
+// add waypoint to AO
+private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 500];
+{
+	_x addWaypoint [_missionCenterPos, _missionAreaRadius];
+} forEach _spawnGroups;
 
 // add killed triggers to units
 {

@@ -1,3 +1,4 @@
 orbis_mission_fnc_misiosnLoop = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionLoop.sqf';
 orbis_mission_fnc_missionStarted = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionStarted.sqf';
+orbis_mission_fnc_setupUnits = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_setupUnits.sqf';
 orbis_mission_fnc_unitKilled = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_unitKilled.sqf';

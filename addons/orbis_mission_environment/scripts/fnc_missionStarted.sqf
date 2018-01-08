@@ -42,5 +42,9 @@ missionNamespace setVariable ["timeAndWeather", [_time, _weather], true];
 
 sleep (1800 + (time random 1800)); // 30 ~ 60 min
 
-[time, 0, _this] spawn orbis_mission_fnc_missionLoop;
+(_this select 3) call orbis_mission_fnc_setupUnits
+missionNamespace setVariable ["missionCenterPos", _this select 0];
+missionNamespace setVariable ["missionAreaRadius", _this select 1];
+missionNamespace setVariable ["missionPlayerPos", getPos (_this select 2)];
 missionNamespace setVariable ["missionStartTime", time];
+[time, 0, _this select 3] spawn orbis_mission_fnc_missionLoop;
