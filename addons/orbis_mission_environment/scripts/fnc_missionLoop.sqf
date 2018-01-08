@@ -93,6 +93,7 @@ for "_i" from 0 to 4 do {
 };
 if (_scoreCount isEqualTo 0) then {
 	_scoreEffectiveness = [1, 1, 1, 1, 1];
+	_scoreAverage = 1;
 } else {
 	_scoreAverage = _scoreAverage / _scoreCount;
 	_scoreEffectiveness apply {if (_x < 0) then {_scoreAverage} else {_x}};
