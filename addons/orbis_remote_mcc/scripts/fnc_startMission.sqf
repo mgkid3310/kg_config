@@ -68,4 +68,4 @@ private _mccArray = [
 ];
 
 // diag_log "orbis_remote_mcc mccRequest event fired";
-["mccRequest", [_player, _mccArray]] call CBA_fnc_serverEvent;
+["mccRequest", [_player, _mccArray]] call CBA_fnc_globalEvent;

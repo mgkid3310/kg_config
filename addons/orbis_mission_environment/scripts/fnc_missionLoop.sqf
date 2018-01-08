@@ -1,4 +1,5 @@
 #include "script_settings.sqf"
+diag_log format ["orbis_mission_environment missionLoop run time: %1", time];
 
 params ["_timeOld", "_points", "_factionArray"];
 _factionArray params ["_playerSide", "_objectSide", "_objectFaction"];
@@ -107,8 +108,12 @@ private _missionPlayerPos = missionNamespace setVariable ["missionPlayerPos", [0
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
 
 private _missionToPlayer = _missionCenterPos getDir _missionPlayerPos;
-private _missionToPlane = 
-private _planeLoaction = [_missionCenterPos, 40000, _missionToPlane] call BIS_fnc_relPos set [2, 1000];
+private _dirMax = _missionToPlayer + 45;
+private _missionToPlane = _dirMax + (time random 270);
+if (_missionToPlane >= 360) then {
+	_missionToPlane = _missionToPlane - 360;
+};
+private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
 
 private _groundLocation = getPos selectRandom (nearestLocations [missionPlayerPos, _locationNames, 50000] select {(getPos _x distance missionCenterPos > 3000) && (getPos _x distance missionCenterPos < 10000) && (getPos _x distance missionPlayerPos > 2000)});
 
@@ -198,7 +203,7 @@ sleep (300 + (time random 600)); // 5 ~ 15 min
 
 // check if objects are still running
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
-private _isRunning = _objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo [];
+private _isRunning = !(_objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo []);
 
 if (_isRunning) then { // start the next loop or end & set weather changes
 	[time, _points, _factionArray] spawn orbis_mission_fnc_missionLoop;

@@ -1,3 +1,5 @@
+diag_log format ["orbis_mission_environment missionStarted run time: %1", time];
+
 if (missionNamespace getVariable ["misisonLoopRunning", false]) exitWith {};
 missionNamespace setVariable ["misisonLoopRunning", true, true];
 
