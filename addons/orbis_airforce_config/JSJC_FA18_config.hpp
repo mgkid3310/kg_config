@@ -70,9 +70,10 @@
 			};
 		};
 	};
+
 	class JS_JC_FA18F: Plane_Base_F {
 		class Components: Components {
-			#include "JSJC_FA18_Sensors.hpp"
+			// #include "JSJC_FA18_Sensors.hpp"
 
 			class TransportPylonsComponent {
 				class Pylons {
@@ -112,14 +113,14 @@
 				};
 			};
 		};
-		class NewTurret;
+		/* class NewTurret;
 		class Turrets {
 			class MainTurret: NewTurret {
 				class Components: Components {
 					#include "JSJC_FA18_Sensors.hpp"
 				};
 			};
-		};
+		}; */
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18F {
 				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18Finit; _this call BIS_fnc_AircraftSystemsInit";
