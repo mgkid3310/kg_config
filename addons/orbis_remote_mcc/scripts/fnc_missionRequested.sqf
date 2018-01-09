@@ -12,6 +12,7 @@ if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) exitWith {
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
 private _isRunning = !(_objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo []);
 if (_isRunning) exitWith {
+	systemChat "orbis_remote_mcc mcc request fail: a mission is already running";
 	diag_log "orbis_remote_mcc mcc request fail: a mission is already running";
 };
 
