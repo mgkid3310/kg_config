@@ -41,8 +41,11 @@ switch (_weather) do {
 	default {};
 };
 missionNamespace setVariable ["timeAndWeather", [_time, _weather], true];
+diag_log format ["orbis_mission_environment missionStarted timeAndWeather: %1", [_time, _weather]];
 
-sleep (1800 + (time random 1800)); // 30 ~ 60 min
+private _sleepTime = 1800 + (time random 1800); // 30 ~ 60 min
+diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];
+sleep _sleepTime;
 
 (_this select 3) call orbis_mission_fnc_setupUnits;
 missionNamespace setVariable ["missionCenterPos", _this select 0];

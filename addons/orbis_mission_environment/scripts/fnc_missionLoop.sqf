@@ -7,6 +7,7 @@ _factionArray params ["_playerSide", "_objectSide", "_objectFaction"];
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 private _playerCountInit = missionNamespace getVariable ["playerCountInit", _playerCount];
 _points = _points + (time - _timeOld) * _playerCount * POINT_MULTIPLIER;
+diag_log format ["orbis_mission_environment missionLoop points: %1", _points];
 
 // set up units array
 private _playerSidePlanes = (entities "Plane") select {(side _x isEqualTo _playerSide) && (alive _x)};
@@ -52,6 +53,7 @@ private _scoreNamspaceOld = _scoreNamspace;
 
 missionNamespace setVariable ["scoreNamespace", _scoreNamspace];
 private _scores = _scoreNamspace apply {[(_x select 0) * PLANE_SCORE + (_x select 1) * HELI_SCORE, (_x select 2) * TANK_SCORE + (_x select 3) * VEHICLE_SCORE + (_x select 4) * INF_SCORE]};
+diag_log format ["orbis_mission_environment missionLoop scores: %1", _scores];
 
 // update threat assessment
 private _airThreat = missionNamespace getVariable ["airThreat", 0];
@@ -60,6 +62,7 @@ _airThreat = _airThreat + (time - _timeOld) * ((count _playerSidePlanes * PLANE_
 _groundThreat = _groundThreat + (time - _timeOld) * ((count _playerSidetanks * TANK_SCORE) + (count _playerSidevehicles * VEHICLE_SCORE) + (count _playerSideinfs * INF_SCORE));
 missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
+diag_log format ["orbis_mission_environment missionLoop airThreat: %1, groundThreat: %2", _airThreat, _groundThreat];
 
 // update power assessment
 private _aaPower = 0;
@@ -72,19 +75,18 @@ private _aaPowerRatio = _aaPower / _airThreat;
 private _agPowerRatio = _agPower / _groundThreat;
 
 // calculate score/point effectiveness
-private _pointsUsed = missionNamespace getVariable ["pointsUsed", [0, 0, 0, 0, 0]];
 private _pointAssessment = _objectSideUnits apply {
-	private _point = 0;
+	private _price = 0;
 	{
-		_point = _point + orbis_mission_unitPrice select (orbis_mission_unitList find typeOf _x);
+		_price = _price + orbis_mission_unitPrice select (orbis_mission_unitList find typeOf _x);
 	} forEach _x;
-	_point
+	_price
 };
 private _scoreEffectiveness = [-1, -1, -1, -1, -1];
 private _scoreAverage = 0;
 private _scoreCount = 0;
 for "_i" from 0 to 4 do {
-	if !(_pointsUsed select _i isEqualTo 0) then {
+	if !(_pointAssessment select _i isEqualTo 0) then {
 		_scoreEffectiveness set [_i, ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i)];
 		_scoreAverage = _scoreAverage + ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i);
 		_scoreCount = _scoreCount + 1;
@@ -97,10 +99,13 @@ if (_scoreCount isEqualTo 0) then {
 	_scoreAverage = _scoreAverage / _scoreCount;
 	_scoreEffectiveness apply {if (_x < 0) then {_scoreAverage} else {_x}};
 };
+diag_log format ["orbis_mission_environment missionLoop pointAssessment: %1, scoreEffectiveness: %2", _pointAssessment, _scoreEffectiveness];
 
 // calculate point distribution
 private _pointRatio = _scoreEffectiveness apply {_x / (_scoreAverage * 5)};
 private _pointDistribution = _pointRatio apply {_x * _points};
+_points = 0;
+diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", _pointDistribution];
 
 // get spawn location
 private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
@@ -114,7 +119,6 @@ if (_missionToPlane >= 360) then {
 	_missionToPlane = _missionToPlane - 360;
 };
 private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
-
 private _groundLocation = getPos selectRandom (nearestLocations [missionPlayerPos, _locationNames, 50000] select {(getPos _x distance missionCenterPos > 3000) && (getPos _x distance missionCenterPos < 10000) && (getPos _x distance missionPlayerPos > 2000)});
 
 // spawn reinforcing units
@@ -124,7 +128,8 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 	private _thisSpawn = selectRandom (orbis_mission_planeArray select {_x <= _pointDistribution select 0});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 	private _group = createGroup _objectSide;
-	_group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	_vehicle flyInHeight (300 + time random 1500);
 	_spawnGroups pushBack _group;
 
 	_pointDistribution set [0, (_pointDistribution select 0) - (_thisSpawn select 2)];
@@ -169,6 +174,12 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
 };
 
+// return leftover points
+{
+	_points = _points + _x;
+	_pointDistribution set [_forEachIndex, 0];
+} forEach _pointDistribution;
+
 // add waypoint to AO
 private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 500];
 {
@@ -199,11 +210,14 @@ private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 
 } forEach _objectSideUnits;
 
 // pause script for a moment
-sleep (300 + (time random 600)); // 5 ~ 15 min
+private _sleepTime = 300 + (time random 600); // 5 ~ 15 min
+diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];
+sleep _sleepTime;
 
 // check if objects are still running
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
 private _isRunning = !(_objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo []);
+diag_log format ["orbis_mission_environment missionLoop isRunning: %1", _isRunning];
 
 if (_isRunning) then { // start the next loop or end & set weather changes
 	[time, _points, _factionArray] spawn orbis_mission_fnc_missionLoop;

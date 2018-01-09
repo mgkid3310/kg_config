@@ -14,10 +14,10 @@ orbis_mission_truckArray = [];
 
 if (_availFactions in ["rhs_faction_msv", "rhs_faction_vdv"]) then {
 	// orbis_mission_planeArray pushBack ["JS_JC_SU35", 120];
-	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "rhs_mig29s_vvs"), "rhs_mig29s_vvs", PLANE_POINT, 2000];
-	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_KH29_vvs"), "RHS_Su25SM_KH29_vvs", PLANE_POINT, 500];
-	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_CAS_vvs"), "RHS_Su25SM_CAS_vvs", PLANE_POINT, 500];
-	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_Cluster_vvs"), "RHS_Su25SM_Cluster_vvs", PLANE_POINT, 500];
+	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "rhs_mig29s_vvs"), "rhs_mig29s_vvs", PLANE_POINT];
+	// orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_KH29_vvs"), "RHS_Su25SM_KH29_vvs", PLANE_POINT];
+	// orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_CAS_vvs"), "RHS_Su25SM_CAS_vvs", PLANE_POINT];
+	// orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Su25SM_Cluster_vvs"), "RHS_Su25SM_Cluster_vvs", PLANE_POINT];
 
 	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi24P_CAS_vvs"), "RHS_Mi24P_CAS_vvs", HELI_POINT];
 	orbis_mission_planeArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi24P_AT_vvs"), "RHS_Mi24P_AT_vvs", HELI_POINT];
