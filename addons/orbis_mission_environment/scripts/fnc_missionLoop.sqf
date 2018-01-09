@@ -53,6 +53,8 @@ private _scoreNamspaceOld = _scoreNamspace;
 
 missionNamespace setVariable ["scoreNamespace", _scoreNamspace];
 private _scores = _scoreNamspace apply {[(_x select 0) * PLANE_SCORE + (_x select 1) * HELI_SCORE, (_x select 2) * TANK_SCORE + (_x select 3) * VEHICLE_SCORE + (_x select 4) * INF_SCORE]};
+private _aaScores = _scores select 0;
+private _agScores = _scores select 1;
 diag_log format ["orbis_mission_environment missionLoop scores: %1", _scores];
 
 // update threat assessment
@@ -60,21 +62,22 @@ private _airThreat = missionNamespace getVariable ["airThreat", 0];
 private _groundThreat = missionNamespace getVariable ["groundThreat", 0];
 _airThreat = _airThreat + (time - _timeOld) * ((count _playerSidePlanes * PLANE_SCORE) + (count _playerSidehelis * HELI_SCORE));
 _groundThreat = _groundThreat + (time - _timeOld) * ((count _playerSidetanks * TANK_SCORE) + (count _playerSidevehicles * VEHICLE_SCORE) + (count _playerSideinfs * INF_SCORE));
+private _totalThreat = _airThreat + _groundThreat;
 missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
 diag_log format ["orbis_mission_environment missionLoop airThreat: %1, groundThreat: %2", _airThreat, _groundThreat];
 
 // update power assessment
-private _aaPower = 0;
+/* private _aaPower = 0;
 private _agPower = 0;
 {
-	_aaPower = _aaPower + (count _x) * (_scores select _forEachIndex select 0);
-	_agPower = _agPower + (count _x) * (_scores select _forEachIndex select 1);
+	_aaPower = _aaPower + (count _x) * (_aaScores select _forEachIndex select 0);
+	_agPower = _agPower + (count _x) * (_agScores select _forEachIndex select 1);
 } forEach _objectSideUnits;
 private _aaPowerRatio = _aaPower / _airThreat;
-private _agPowerRatio = _agPower / _groundThreat;
+private _agPowerRatio = _agPower / _groundThreat; */
 
-// calculate score/point effectiveness
+// estimate price for current units
 private _pointAssessment = _objectSideUnits apply {
 	private _price = 0;
 	{
@@ -82,27 +85,56 @@ private _pointAssessment = _objectSideUnits apply {
 	} forEach _x;
 	_price
 };
-private _scoreEffectiveness = [-1, -1, -1, -1, -1];
-private _scoreAverage = 0;
-private _scoreCount = 0;
+diag_log format ["orbis_mission_environment missionLoop pointAssessment: %1", _pointAssessment];
+
+// calculate score/point effectiveness
+private _aaScoreEffectiveness = [-1, -1, -1, -1, -1];
+private _aaScoreAverage = 0;
+private _aaScoreCount = 0;
 for "_i" from 0 to 4 do {
 	if !(_pointAssessment select _i isEqualTo 0) then {
-		_scoreEffectiveness set [_i, ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i)];
-		_scoreAverage = _scoreAverage + ((_scores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i);
-		_scoreCount = _scoreCount + 1;
+		_aaScoreEffectiveness set [_i, ((_aaScores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i)];
+		_aaScoreAverage = _aaScoreAverage + (((_aaScores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i));
+		_aaScoreCount = _aaScoreCount + 1;
 	};
 };
-if (_scoreCount isEqualTo 0) then {
-	_scoreEffectiveness = [1, 1, 1, 1, 1];
-	_scoreAverage = 1;
+if (_aaScoreCount isEqualTo 0) then {
+	_aaScoreEffectiveness = [1, 1, 1, 1, 1];
+	_aaScoreAverage = 1;
 } else {
-	_scoreAverage = _scoreAverage / _scoreCount;
-	_scoreEffectiveness apply {if (_x < 0) then {_scoreAverage} else {_x}};
+	_aaScoreAverage = _aaScoreAverage / _aaScoreCount;
+	_aaScoreEffectiveness apply {if (_x < 0) then {_aaScoreAverage} else {_x}};
 };
-diag_log format ["orbis_mission_environment missionLoop pointAssessment: %1, scoreEffectiveness: %2", _pointAssessment, _scoreEffectiveness];
+
+private _agScoreEffectiveness = [-1, -1, -1, -1, -1];
+private _agScoreAverage = 0;
+private _agScoreCount = 0;
+for "_i" from 0 to 4 do {
+	if !(_pointAssessment select _i isEqualTo 0) then {
+		_agScoreEffectiveness set [_i, ((_agScores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i)];
+		_agScoreAverage = _agScoreAverage + (((_agScores select _i) - (_scoreNamspaceOld select _i)) / (_pointAssessment select _i));
+		_agScoreCount = _agScoreCount + 1;
+	};
+};
+if (_agScoreCount isEqualTo 0) then {
+	_agScoreEffectiveness = [1, 1, 1, 1, 1];
+	_agScoreAverage = 1;
+} else {
+	_agScoreAverage = _agScoreAverage / _agScoreCount;
+	_agScoreEffectiveness apply {if (_x < 0) then {_agScoreAverage} else {_x}};
+};
+
+diag_log format ["orbis_mission_environment missionLoop aaScoreEffectiveness: %1, agScoreEffectiveness: %2", _aaScoreEffectiveness, _agScoreEffectiveness];
 
 // calculate point distribution
-private _pointRatio = _scoreEffectiveness apply {_x / (_scoreAverage * 5)};
+private _totalEffectiveness = [0, 0, 0, 0, 0];
+private _effectivenessSum = 0;
+{
+	private _value = (((_aaScoreEffectiveness select _forEachIndex) * _airThreat) + ((_agScoreEffectiveness select _forEachIndex) * _groundThreat)) / _totalThreat;
+	_totalEffectiveness set [_forEachIndex, _value];
+	_effectivenessSum = _effectivenessSum + _value;
+} forEach _totalEffectiveness;
+private _pointRatio = _totalEffectiveness apply {_x / _effectivenessSum};
 private _pointDistribution = _pointRatio apply {_x * _points};
 _points = 0;
 diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", _pointDistribution];
@@ -175,6 +207,7 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 };
 
 // return leftover points
+diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _pointDistribution];
 {
 	_points = _points + _x;
 	_pointDistribution set [_forEachIndex, 0];
