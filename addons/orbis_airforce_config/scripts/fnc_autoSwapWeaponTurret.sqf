@@ -15,7 +15,7 @@ if !(_magazinesNew isEqualType []) then {
 while {alive _vehicle} do {
 	if (_weaponOld in (_vehicle weaponsTurret _turretPath)) then {
 		{
-			_vehicle removeMagazinesTurret [_x, _turretPath;
+			_vehicle removeMagazinesTurret [_x, _turretPath];
 		} forEach _magazinesOld;
 		_vehicle removeWeaponTurret [_weaponOld, _turretPath];
 		_vehicle addWeaponTurret [_weaponNew, _turretPath];
