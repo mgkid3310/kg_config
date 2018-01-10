@@ -6,7 +6,7 @@
 #define INF_SCORE 1
 
 // point settings
-#define POINT_MULTIPLIER 0.1 // 60 points / player / 10min
+#define POINT_MULTIPLIER 0.05 // 300 points / 10player / 10min
 #define PLANE_POINT 100
 #define HELI_POINT 50
 #define TANK_POINT 50

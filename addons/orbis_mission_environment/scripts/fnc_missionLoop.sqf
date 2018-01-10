@@ -141,6 +141,7 @@ diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", 
 
 // get spawn location
 private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
+private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 500];
 private _missionPlayerPos = missionNamespace setVariable ["missionPlayerPos", [0, 0, 0]];
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
 
@@ -151,7 +152,7 @@ if (_missionToPlane >= 360) then {
 	_missionToPlane = _missionToPlane - 360;
 };
 private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
-private _groundLocation = getPos selectRandom (nearestLocations [missionPlayerPos, _locationNames, 50000] select {(getPos _x distance missionCenterPos > 3000) && (getPos _x distance missionCenterPos < 10000) && (getPos _x distance missionPlayerPos > 2000)});
+private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {(getPos _x distance _missionCenterPos > _missionAreaRadius) && (getPos _x distance _missionCenterPos < (_missionAreaRadius * 3)) && (getPos _x distance _missionPlayerPos > 2000)});
 
 // spawn reinforcing units
 private _spawnGroups = [];
@@ -199,7 +200,7 @@ while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicl
 
 while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
 	private _thisSpawn = selectRandom (orbis_mission_infArray select {_x <= _pointDistribution select 4});
-	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 3];;
+	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000];
 	private _group = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
 	_spawnGroups pushBack _group;
 
@@ -214,7 +215,6 @@ diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _poi
 } forEach _pointDistribution;
 
 // add waypoint to AO
-private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 500];
 {
 	_x addWaypoint [_missionCenterPos, _missionAreaRadius];
 } forEach _spawnGroups;
