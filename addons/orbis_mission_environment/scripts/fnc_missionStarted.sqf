@@ -6,42 +6,36 @@ missionNamespace setVariable ["misisonLoopRunning", true, true];
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 missionNamespace setVariable ["playerCountInit", _playerCount, true];
 
-// time/weather setup
-private _timeChance = [["day", 0.7], ["night", 0.3]];
-private _time = (_timeChance apply {_x select 0}) selectRandomWeighted (_timeChance apply {_x select 1});
-/* switch (_time) do { 
-	case "day": {setDate ((date set [3, 0]) set [4, 0])};
-	case "night": {setDate ((date set [3, 0]) set [4, 0])};
-	default {};
-}; */
+// weather setup
 private _weatherChance = [["sunny", 0.5], ["cloudy", 0.2], ["rainy", 0.2], ["thunderstorm", 0.1]];
 private _weather = (_weatherChance apply {_x select 0}) selectRandomWeighted (_weatherChance apply {_x select 1});
-private _randomTime = 300 + (time random 1800); // 5 ~ 35 min
+private _weatherRandomTime = 300 + (time random 1800); // 5 ~ 35 min
+diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];
 switch (_weather) do { 
 	case "sunny": {
-		_randomTime setOvercast 0.0;
-		_randomTime setRain 0.0;
+		_weatherRandomTime setOvercast 0.0;
+		_weatherRandomTime setRain 0.0;
 		10 setRainbow 0;
 	};
 	case "cloudy": {
-		_randomTime setOvercast 0.6;
-		_randomTime setRain 0.0;
+		_weatherRandomTime setOvercast 0.6;
+		_weatherRandomTime setRain 0.0;
 		10 setRainbow 0;
 	};
 	case "rainy": {
-		_randomTime setOvercast 0.8;
-		_randomTime setRain 0.3;
+		_weatherRandomTime setOvercast 0.8;
+		_weatherRandomTime setRain 0.3;
 		10 setRainbow 0;
 	};
 	case "thunderstorm": {
-		_randomTime setOvercast 1.0;
-		_randomTime setRain 0.6;
+		_weatherRandomTime setOvercast 1.0;
+		_weatherRandomTime setRain 0.6;
 		10 setRainbow 0;
 	};
 	default {};
 };
-missionNamespace setVariable ["timeAndWeather", [_time, _weather], true];
-diag_log format ["orbis_mission_environment missionStarted timeAndWeather: %1", [_time, _weather]];
+missionNamespace setVariable ["missionWeather", _weather, true];
+diag_log format ["orbis_mission_environment missionStarted weather: %1", _weather];
 
 private _sleepTime = 1800 + (time random 900); // 30 ~ 45 min
 diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];

@@ -159,7 +159,7 @@ private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set
 private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {(getPos _x distance _missionCenterPos > _missionAreaRadius) && (getPos _x distance _missionCenterPos < (_missionAreaRadius * 3)) && (getPos _x distance _missionPlayerPos > 2000)});
 
 // spawn reinforcing units
-private _spawnGroups = [];
+/*private _spawnGroups = [];
 
 while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
 	private _thisSpawn = selectRandom (orbis_mission_planeArray select {_x <= _pointDistribution select 0});
@@ -209,7 +209,7 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 	_spawnGroups pushBack _group;
 
 	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
-};
+}; */
 
 // return leftover points
 diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _pointDistribution];
@@ -262,30 +262,33 @@ if (_isRunning) then { // start the next loop or end & set weather changes
 	missionNamespace setVariable ["misisonLoopRunning", false, true];
 
 	// weather change
-	sleep (300 + (time random 300));
-	missionNamespace getVariable ["timeAndWeather", ["day", "sunny"]] params ["_time", "_weather"];
-	private _randomTime = 300 + (time random 1800);
+	private _weatherMaintain = sleep (300 + (time random 300)); // 5 ~ 10 min
+	diag_log format ["orbis_mission_environment missionLoop weatherMaintain: %1", _weatherMaintain];
+	sleep _weatherMaintain;
+	private _weather = missionNamespace getVariable ["missionWeather", "sunny"];
+	private _weatherRandomTime = 300 + (time random 1800);
+	diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];
 	switch ([_weather, ""] selectRandomWeighted [0.5, 0.5]) do { 
 		case "sunny": {
-			_randomTime setOvercast 0.0;
-			_randomTime setRain 0.0;
+			_weatherRandomTime setOvercast 0.0;
+			_weatherRandomTime setRain 0.0;
 			10 setRainbow 0;
 		};
 		case "cloudy": {
-			_randomTime setOvercast 0.2;
-			_randomTime setRain 0.0;
+			_weatherRandomTime setOvercast 0.2;
+			_weatherRandomTime setRain 0.0;
 			10 setRainbow 0;
 		};
 		case "rainy": {
-			_randomTime setOvercast 0.2;
-			_randomTime setRain 0.0;
-			sleep _randomTime;
+			_weatherRandomTime setOvercast 0.2;
+			_weatherRandomTime setRain 0.0;
+			sleep _weatherRandomTime;
 			30 setRainbow 1;
 		};
 		case "thunderstorm": {
-			_randomTime setOvercast 0.2;
-			_randomTime setRain 0.0;
-			sleep _randomTime;
+			_weatherRandomTime setOvercast 0.2;
+			_weatherRandomTime setRain 0.0;
+			sleep _weatherRandomTime;
 			30 setRainbow 1;
 		};
 		default {};
