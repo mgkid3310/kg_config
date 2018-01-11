@@ -16,7 +16,7 @@ private _time = (_timeChance apply {_x select 0}) selectRandomWeighted (_timeCha
 }; */
 private _weatherChance = [["sunny", 0.5], ["cloudy", 0.2], ["rainy", 0.2], ["thunderstorm", 0.1]];
 private _weather = (_weatherChance apply {_x select 0}) selectRandomWeighted (_weatherChance apply {_x select 1});
-private _randomTime = 300 + (time random 1800);
+private _randomTime = 300 + (time random 1800); // 5 ~ 35 min
 switch (_weather) do { 
 	case "sunny": {
 		_randomTime setOvercast 0.0;
