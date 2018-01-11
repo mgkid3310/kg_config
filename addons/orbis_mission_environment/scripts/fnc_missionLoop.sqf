@@ -78,13 +78,17 @@ private _aaPowerRatio = _aaPower / _airThreat;
 private _agPowerRatio = _agPower / _groundThreat; */
 
 // estimate price for current units
-private _pointAssessment = _objectSideUnits apply {
+private _pointAssessment = [0, 0, 0, 0, 0];
+/* _pointAssessment = _objectSideUnits apply {
 	private _price = 0;
 	{
 		_price = _price + orbis_mission_unitPrice select (orbis_mission_unitList find typeOf _x);
 	} forEach _x;
 	_price
-};
+}; */
+{
+	_pointAssessment set [(_objectSideUnits select _forEachIndex) * (orbis_misison_pointsGeneral select _forEachIndex)];
+} forEach _pointAssessment;
 diag_log format ["orbis_mission_environment missionLoop pointAssessment: %1", _pointAssessment];
 
 // calculate score/point effectiveness
