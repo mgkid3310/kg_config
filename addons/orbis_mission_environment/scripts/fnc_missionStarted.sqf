@@ -1,3 +1,4 @@
+#include "script_settings.sqf"
 diag_log format ["orbis_mission_environment missionStarted run time: %1", time];
 
 if (missionNamespace getVariable ["misisonLoopRunning", false]) exitWith {};
@@ -40,6 +41,11 @@ diag_log format ["orbis_mission_environment missionStarted weather: %1", _weathe
 private _sleepTime = 1800 + (time random 900); // 30 ~ 45 min
 diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];
 sleep _sleepTime;
+
+// setup enemy commander type
+private _commander = (orbis_mission_commanderList apply {_x select 0}) selectRandomWeighted (orbis_mission_commanderList apply {_x select 1});
+private _commanderTendency = orbis_mission_commanderArray select (orbis_mission_commanderList apply {_x select 0} find _commander);
+missionNamespace setVariable ["commanderTendency", _commanderTendency];
 
 (_this select 3) call orbis_mission_fnc_setupUnits;
 missionNamespace setVariable ["missionCenterPos", _this select 0];

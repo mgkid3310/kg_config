@@ -13,3 +13,14 @@
 #define VEHICLE_POINT 30
 #define INF_POINT 5
 orbis_misison_pointsGeneral = [PLANE_POINT, HELI_POINT, TANK_POINT, VEHICLE_POINT, INF_POINT];
+
+#define RETURN_RATIO 0
+
+// commander settings
+orbis_mission_commanderList = [["basic", 1]];
+orbis_misison_basicCommander = [1, 1, 1, 1, 1];
+orbis_mission_commanderArray = [orbis_misison_basicCommander];
+
+// other settings
+#define LOCAL_MAX 216000 // 60pts * 60min
+#define LOCAL_STD 36000 // 60pts * 10min
