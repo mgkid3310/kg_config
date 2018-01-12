@@ -64,7 +64,7 @@ private _mccArray = [
 	[_enemySide, _enemyfaction, _sidePlayer, _factionPlayer, _civFaction],
 	_objectsArray,
 	[true, true, selectRandom [false, true], selectRandom [false, true], false, selectRandom [false, true], false, false, selectRandom [false, true], false], // with cqb, civ, random armor, vehicles, no stealth, random ied, no armored civ, suicide bomber, random roadblocks, no animals
-	[3, selectRandom [0, 1]]
+	[0, [0, 1] selectRandomWeighted [0.2, 0.8]]
 ];
 
 // diag_log "orbis_remote_mcc mccRequest event fired";

@@ -1,4 +1,4 @@
-["mccRequest", {_this spawn orbis_mcc_fnc_missionRequested;/* diag_log "orbis_remote_mcc mccRequest event run" */}] call CBA_fnc_addEventHandler;
+["mccRequest", {_this call orbis_mcc_fnc_missionRequested;/* diag_log "orbis_remote_mcc mccRequest event run" */}] call CBA_fnc_addEventHandler;
 // MCC_fnc_MWObjectiveIntel = compile preprocessFileLineNumbers 'orbis_remote_mcc\scripts\fnc_MWObjectiveIntel.sqf';
 
 if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) then {
