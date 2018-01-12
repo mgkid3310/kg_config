@@ -32,6 +32,7 @@ if (_combatIsLocal && (random [LOCAL_MAX - LOCAL_STD, LOCAL_MAX, LOCAL_MAX + LOC
 	_combatIsLocal = false;
 };
 missionNamespace setVariable ["combatIsLocal", _combatIsLocal];
+diag_log format ["orbis_mission_environment missionLoop combatIsLocal: %1", _combatIsLocal];
 
 // calculate point distribution
 private _pointRatio = [1, 1, 1, 1, 1];
