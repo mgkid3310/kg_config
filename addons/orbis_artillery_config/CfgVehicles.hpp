@@ -1,4 +1,5 @@
 class CfgVehicles {
+	class EventHandlers;
 	class LandVehicle;
 	class StaticWeapon: LandVehicle {
 		class Turrets;
@@ -41,6 +42,11 @@ class CfgVehicles {
 					"rhs_mag_s463_2",
 					"rhs_mag_3of69m_2"
 				};
+			};
+		};
+		class EventHandlers: EventHandlers {
+			class RHS_EventHandlers {
+				fired = "_this spawn rhs_fnc_fired_d30";
 			};
 		};
 	};

@@ -67,25 +67,8 @@ missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
 diag_log format ["orbis_mission_environment missionLoop airThreat: %1, groundThreat: %2", _airThreat, _groundThreat];
 
-// update power assessment
-/* private _aaPower = 0;
-private _agPower = 0;
-{
-	_aaPower = _aaPower + (count _x) * (_aaScores select _forEachIndex select 0);
-	_agPower = _agPower + (count _x) * (_agScores select _forEachIndex select 1);
-} forEach _objectSideUnits;
-private _aaPowerRatio = _aaPower / _airThreat;
-private _agPowerRatio = _agPower / _groundThreat; */
-
 // estimate price for current units
 private _pointAssessment = [0, 0, 0, 0, 0];
-/* _pointAssessment = _objectSideUnits apply {
-	private _price = 0;
-	{
-		_price = _price + orbis_mission_unitPrice select (orbis_mission_unitList find typeOf _x);
-	} forEach _x;
-	_price
-}; */
 {
 	_pointAssessment set [(_objectSideUnits select _forEachIndex) * (orbis_misison_pointsGeneral select _forEachIndex)];
 } forEach _pointAssessment;
@@ -159,7 +142,7 @@ private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set
 private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {(getPos _x distance _missionCenterPos > _missionAreaRadius) && (getPos _x distance _missionCenterPos < (_missionAreaRadius * 3)) && (getPos _x distance _missionPlayerPos > 2000)});
 
 // spawn reinforcing units
-/*private _spawnGroups = [];
+private _spawnGroups = [];
 
 while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
 	private _thisSpawn = selectRandom (orbis_mission_planeArray select {_x <= _pointDistribution select 0});
@@ -209,7 +192,7 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 	_spawnGroups pushBack _group;
 
 	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
-}; */
+};
 
 // return leftover points
 diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _pointDistribution];
