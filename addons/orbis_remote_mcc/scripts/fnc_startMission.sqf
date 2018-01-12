@@ -4,9 +4,9 @@
 	[_obj1, _obj2, _obj3],
 	[_isCQB, _isCiv, _armor, _vehicles, _stealth, _isIED, _isAS, _isSB, _isRoadblocks, _animals],
 	[_reinforcement, _artillery]
-] call MCC_fnc_MWinitMission; */
+] call MCC_fnc_MWinitMission;
 
-// [] call orbis_mcc_fnc_startMission;
+[] call orbis_mcc_fnc_startMission; */
 
 // diag_log "orbis_remote_mcc startMission run";
 
