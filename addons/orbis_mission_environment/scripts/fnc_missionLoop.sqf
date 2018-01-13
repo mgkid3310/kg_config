@@ -46,7 +46,10 @@ private _pointRatioSum = 0;
 	_pointRatioSum = _pointRatioSum + _x;
 } forEach _pointRatio;
 _pointRatio = _pointRatio apply {_x / _pointRatioSum};
-private _pointDistribution = _pointRatio apply {_x * _points};
+private _pointDistribution = [0, 0, 0, 0, 0];
+{
+	_pointDistribution set [_forEachIndex, _x + (_points * (_pointRatio select _forEachIndex))];
+} forEach _pointDistribution;
 _points = 0;
 diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", _pointDistribution];
 
