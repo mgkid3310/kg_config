@@ -8,6 +8,9 @@ missionNamespace setVariable ["misisonLoopRunning", true, true];
 
 // setup weather
 private _weatherChance = [["sunny", 0.5], ["cloudy", 0.2], ["rainy", 0.2], ["thunderstorm", 0.1]];
+if (worldName in ["Altis", "Stratis"]) then { // orbis_winter_setup compatibility
+	_weatherChance = [["sunny", 0.7], ["cloudy", 0.3]];
+};
 private _weather = (_weatherChance apply {_x select 0}) selectRandomWeighted (_weatherChance apply {_x select 1});
 private _weatherRandomTime = 300 + (time random 1800); // 5 ~ 35 min
 diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];
