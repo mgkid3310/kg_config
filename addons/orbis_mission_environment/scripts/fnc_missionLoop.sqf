@@ -63,7 +63,24 @@ if (_missionToPlane >= 360) then {
 	_missionToPlane = _missionToPlane - 360;
 };
 private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
-private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {((getPos _x) distance _missionCenterPos > _missionAreaRadius) && ((getPos _x) distance _missionCenterPos < (_missionAreaRadius * 3)) && ((getPos _x) distance _missionPlayerPos > 2000)});
+private _groundLocationTemp = getPos selectRandom (nearestLocations [_missionCenterPos, _locationNames, 50000]);
+private _groundLocation = [0, 0, 0];
+{
+	private _location = _x;
+	private _position = getPos _location;
+	private _isGood = false;
+	if (((_position distance _missionCenterPos) > _missionAreaRadius) && ((_position distance _missionPlayerPos) > 2000)) then {
+		_isGood = true;
+		{
+			if ((_position distance (getPos _x)) < 2000) then {
+				_isGood = false;
+			};
+		} forEach (allPlayers - entities "HeadlessClient_F");
+	};
+	if (_isGood) exitWith {
+		_groundLocation = _position;
+	};
+} forEach _groundLocationTemp;
 
 // spawn reinforcing units
 private _spawnGroups = [];
