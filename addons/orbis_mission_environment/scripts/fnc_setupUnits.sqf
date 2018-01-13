@@ -4,20 +4,13 @@ private _objectSide = _this select 1;
 private _objectFaction = _this select 2;
 private _availFactions = [_objectFaction];
 
-/* private _objectSide = switch (_objectSide) do {
-	case west: {east};
-	case east: {west};
-	case resistance: {""};
-	case civilian: {east};
+private _objectSide = switch (_objectSide) do {
+	case west: {"west"};
+	case east: {"east"};
+	case resistance: {"guer"};
+	case civilian: {"civ"};
 	default {""}; 
 };
-private _objectFaction = switch (_objectFaction) do {
-	case west: {selectRandom _bluFactions};
-	case east: {selectRandom _opfFactions};
-	case resistance: {""};
-	case civilian: {""};
-	default {""}; 
-}; */
 
 // array of [_configEntry, _configName, _price]
 orbis_mission_planeArray = [];
