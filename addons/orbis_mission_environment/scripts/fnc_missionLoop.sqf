@@ -52,8 +52,8 @@ diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", 
 
 // get spawn location
 private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
-private _missionAreaRadius = missionNamespace setVariable ["missionAreaRadius", 500];
-private _missionPlayerPos = missionNamespace setVariable ["missionPlayerPos", [0, 0, 0]];
+private _missionAreaRadius = missionNamespace getVariable ["missionAreaRadius", 500];
+private _missionPlayerPos = missionNamespace getVariable ["missionPlayerPos", [0, 0, 0]];
 private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Mount", "Airport"];
 
 private _missionToPlayer = _missionCenterPos getDir _missionPlayerPos;
