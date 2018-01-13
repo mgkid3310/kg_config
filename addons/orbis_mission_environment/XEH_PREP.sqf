@@ -1,4 +1,4 @@
-orbis_mission_fnc_misiosnLoop = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionLoop.sqf';
+orbis_mission_fnc_missionLoop = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionLoop.sqf';
 orbis_mission_fnc_missionStarted = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_missionStarted.sqf';
 orbis_mission_fnc_pointLocal = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_pointLocal.sqf';
 orbis_mission_fnc_pointTotal = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_pointTotal.sqf';
