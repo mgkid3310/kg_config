@@ -25,7 +25,7 @@ private _enemySide = _mccArray select 1 select 0;
 [_enemyfaction, _enemySide] call MCC_fnc_MWCreateUnitsArray;
 [_enemyfaction] call MCC_fnc_createConfigs;
 
-_mccArray call MCC_fnc_MWinitMission;
+_mccArray spawn MCC_fnc_MWinitMission;
 
 // run enemy reinforcing scripts
 // [_missionCenterPos, _missionAreaRadius, _missionPlayerPos, [_playerSide, _objectSide, _objectFaction]]
