@@ -18,7 +18,7 @@ private _misisonLocation = selectRandom (nearestLocations [getPos _player, _loca
 private _misisonArea = [getPos _misisonLocation, text _misisonLocation];
 private _totalEnemyUnits = 30 + (_playerCount * 5);
 
-private _aoSize = 100 + 30 * (10 max _playerCount min 30);
+private _aoSize = 100 + (30 * (10 max _playerCount min 30));
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
 private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];

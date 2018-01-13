@@ -63,7 +63,7 @@ if (_missionToPlane >= 360) then {
 	_missionToPlane = _missionToPlane - 360;
 };
 private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
-private _groundLocationTemp = getPos selectRandom (nearestLocations [_missionCenterPos, _locationNames, 50000]);
+private _groundLocationTemp = nearestLocations [_missionCenterPos, _locationNames, 50000];
 private _groundLocation = [0, 0, 0];
 {
 	private _location = _x;
