@@ -1,7 +1,7 @@
 private _playerArray = [];
 {
 	_playerArray pushBack [(units _x) select {isPlayer _x}];
-} forEach allUnits;
+} forEach allGroups;
 
 private _text = "";
 {
