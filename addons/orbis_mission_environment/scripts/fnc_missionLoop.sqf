@@ -43,7 +43,7 @@ if (_combatIsLocal) then {
 };
 private _pointRatioSum = 0;
 {
-	_pointRatioSum = _pointRatioSum + _value;
+	_pointRatioSum = _pointRatioSum + _x;
 } forEach _pointRatioSum;
 _pointRatio = _pointRatio apply {_x / _pointRatioSum};
 private _pointDistribution = _pointRatio apply {_x * _points};
