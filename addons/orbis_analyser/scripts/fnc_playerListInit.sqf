@@ -3,7 +3,7 @@ private _playerArray = [];
 	_playerArray pushBack [(units _x) select {isPlayer _x}];
 } forEach allGroups;
 
-private _text = "";
+private _text = "Players List";
 {
 	private _group = _x;
 	_text = _text + endl + endl + format ["%1", groupId _group];

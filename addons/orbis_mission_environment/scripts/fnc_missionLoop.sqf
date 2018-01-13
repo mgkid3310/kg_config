@@ -86,7 +86,7 @@ private _groundLocation = [0, 0, 0];
 private _spawnGroups = [];
 
 while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
-	private _thisSpawn = selectRandom (orbis_mission_planeArray select {_x <= _pointDistribution select 0});
+	private _thisSpawn = selectRandom (orbis_mission_planeArray select {(_pointDistribution select 0) >= _x});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 	private _group = createGroup _objectSide;
 	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
@@ -98,7 +98,7 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 };
 
 while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
-	private _thisSpawn = selectRandom (orbis_mission_heliArray select {_x <= _pointDistribution select 1});
+	private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= _x});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1]; 
 	private _group = createGroup _objectSide;
 	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
@@ -109,7 +109,7 @@ while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliAr
 };
 
 while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
-	private _thisSpawn = selectRandom (orbis_mission_tankArray select {_x <= _pointDistribution select 2});
+	private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= _x});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
 	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
@@ -120,7 +120,7 @@ while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankAr
 };
 
 while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
-	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {_x <= _pointDistribution select 3});
+	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= _x});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
 	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
@@ -131,7 +131,7 @@ while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicl
 };
 
 while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
-	private _thisSpawn = selectRandom (orbis_mission_infArray select {_x <= _pointDistribution select 4});
+	private _thisSpawn = selectRandom (orbis_mission_infArray select {(_pointDistribution select 4) >= _x});
 	private _thisSpawnTransport = selectRandom selectRAndom [orbis_mission_transport, orbis_mission_truckArray];
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawnTransport select 1];
 	private _group = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
