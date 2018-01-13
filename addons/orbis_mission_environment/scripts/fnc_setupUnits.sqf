@@ -19,7 +19,7 @@ private _objectFaction = switch (_objectFaction) do {
 	default {""}; 
 }; */
 
-// array of [_configEntry, _configName, _price, _vehicleIndex (inf only)]
+// array of [_configEntry, _configName, _price]
 orbis_mission_planeArray = [];
 orbis_mission_heliArray = [];
 orbis_mission_tankArray = [];
@@ -70,32 +70,24 @@ for "_i" from 0 to (count (configFile >> "CfgVehicles") - 1) do {
 	};
 }; */
 
-/* private _tanks = orbis_mission_tankArray apply {_x select 0};
-private _vehicels = orbis_mission_vehicleArray apply {_x select 0};
-private _cars = _tanks + _vehicels;
-private _trucks = orbis_mission_truckArray apply {_x select 0};
-
 for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) - 1) do {
 	private _category = (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) select _i;
 	for "_j" from 0 to (count _category - 1) do {
 		private _group = _category select _j;
 		private _isInf = true;
-		private _vehicleIndex = -1;
 		for "_k" from 0 to (count _group - 1) do {
-			if (getText (configFile >> "CfgVehicles" >> (getText ((_group select _k) >> "vehicle"))) in _cars) then {
+			private _unit = getText ((_group select _k) >> "vehicle");
+			if !(toLower getText (configFile >> "CfgVehicles" >> _unit >> "category") isEqualTo "men") then {
 				_isInf = false;
 			};
-			if (getText (configFile >> "CfgVehicles" >> (getText ((_group select _k) >> "vehicle"))) in _trucks) then {
-				_vehicleIndex = _k;
-			};
 		};
-		if (_isInf && (_vehicleIndex >= 0)) then {
-			orbis_mission_infArray pushBack [(_category select _j), configName (_category select _j), (count (_category select _j) - 1) * INF_POINT, _vehicleIndex];
+		if (_isInf) then {
+			orbis_mission_infArray pushBack [_group, configName _group, (count _group) * INF_POINT];
 		};
 	};
-}; */
+};
 
-orbis_mission_infArray = MCC_MWGroupArrayMen apply {[_x select 2, _x select 0, (_x select 1) * INF_POINT]};
+orbis_mission_infArray = MCC_MWGroupArrayMen apply {[configFile >> "CfgGroups" >> _objectSide >> _objectFaction, _x select 0, (_x select 1) * INF_POINT]};
 
 orbis_mission_unitArray = [orbis_mission_planeArray, orbis_mission_heliArray, orbis_mission_tankArray, orbis_mission_vehicleArray , orbis_mission_infArray];
 orbis_mission_unitTotal = orbis_mission_planeArray + orbis_mission_heliArray + orbis_mission_tankArray + orbis_mission_vehicleArray + orbis_mission_infArray;

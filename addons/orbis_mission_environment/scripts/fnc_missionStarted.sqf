@@ -52,9 +52,6 @@ missionNamespace setVariable ["missionAreaRadius", _missionAreaRadius];
 missionNamespace setVariable ["missionPlayerPos", getPos _player];
 missionNamespace setVariable ["missionStartTime", time];
 
-private _playerCount = count (allPlayers - entities "HeadlessClient_F");
-missionNamespace setVariable ["playerCountInit", _playerCount, true];
-
 // sleep for some time
 private _timeOld = time;
 private _sleepTime = 300 + (time random 0); // 30 ~ 45 min // 1800 + (time random 900);
@@ -62,4 +59,4 @@ diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _slee
 sleep _sleepTime;
 
 // start main loop
-[_timeOld, 0, _factionArray] spawn orbis_mission_fnc_missionLoop;
+[_timeOld, 0, [0, 0, 0, 0, 0], _factionArray] spawn orbis_mission_fnc_missionLoop;

@@ -1,12 +1,11 @@
 #include "script_settings.sqf"
 diag_log format ["orbis_mission_environment missionLoop run time: %1", time];
 
-params ["_timeOld", "_points", "_factionArray"];
+params ["_timeOld", "_points", "_pointDistribution", "_factionArray"];
 _factionArray params ["_playerSide", "_objectSide", "_objectFaction"];
 
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
-private _playerCountInit = missionNamespace getVariable ["playerCountInit", _playerCount];
-_points = _points + (time - _timeOld) * _playerCount * POINT_MULTIPLIER;
+_points = _points + ((time - _timeOld) * _playerCount * POINT_MULTIPLIER);
 diag_log format ["orbis_mission_environment missionLoop points: %1", _points];
 
 // set up units array
@@ -46,7 +45,6 @@ private _pointRatioSum = 0;
 	_pointRatioSum = _pointRatioSum + _x;
 } forEach _pointRatio;
 _pointRatio = _pointRatio apply {_x / _pointRatioSum};
-private _pointDistribution = [0, 0, 0, 0, 0];
 {
 	_pointDistribution set [_forEachIndex, _x + (_points * (_pointRatio select _forEachIndex))];
 } forEach _pointDistribution;
@@ -86,16 +84,14 @@ private _groundLocation = [0, 0, 0];
 } forEach _groundLocationTemp;
 
 // spawn reinforcing units
-private _spawnGroups = [];
-
 while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
 	private _thisSpawn = selectRandom (orbis_mission_planeArray select {(_pointDistribution select 0) >= (_x select 2)});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 	private _group = createGroup _objectSide;
 	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
-	createVehicleCrew _unit;
-	private _unit = _vehicle flyInHeight (300 + time random 1500);
-	_spawnGroups pushBack _group;
+	createVehicleCrew _vehicle;
+	_vehicle flyInHeight (300 + time random 1500);
+	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [0, (_pointDistribution select 0) - (_thisSpawn select 2)];
 };
@@ -104,9 +100,9 @@ while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliAr
 	private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1]; 
 	private _group = createGroup _objectSide;
-	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
-	createVehicleCrew _unit;
-	_spawnGroups pushBack _group;
+	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	createVehicleCrew _vehicle;
+	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [1, (_pointDistribution select 1) - (_thisSpawn select 2)];
 };
@@ -115,9 +111,9 @@ while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankAr
 	private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
-	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
-	createVehicleCrew _unit;
-	_spawnGroups pushBack _group;
+	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	createVehicleCrew _vehicle;
+	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [2, (_pointDistribution select 2) - (_thisSpawn select 2)];
 };
@@ -126,9 +122,9 @@ while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicl
 	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
-	private _unit = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
-	createVehicleCrew _unit;
-	_spawnGroups pushBack _group;
+	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	createVehicleCrew _vehicle;
+	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [3, (_pointDistribution select 3) - (_thisSpawn select 2)];
 };
@@ -143,7 +139,7 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 	{
 		_x moveInCargo _transport;
 	} forEach (units _group select {_x != _transport});
-	_spawnGroups pushBack _group;
+	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
 };
@@ -155,13 +151,9 @@ diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _poi
 	_pointDistribution set [_forEachIndex, _x * (1 - RETURN_RATIO)];
 } forEach _pointDistribution;
 
-// add waypoint to AO
-{
-	_x addWaypoint [_missionCenterPos, _missionAreaRadius];
-} forEach _spawnGroups;
-
 // pause script for a moment
 private _sleepTime = 60 + (time random 0); // 5 ~ 15 min // 300 + (time random 600);
+private _timeSave = time;
 diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];
 sleep _sleepTime;
 
@@ -171,7 +163,7 @@ private _isRunning = !(_objects apply {_x getVariable ["RscAttributeTaskState", 
 diag_log format ["orbis_mission_environment missionLoop isRunning: %1", _isRunning];
 
 if (_isRunning) then { // start the next loop or end & set weather changes
-	[time, _points, _factionArray] spawn orbis_mission_fnc_missionLoop;
+	[_timeSave, _points, _pointDistribution, _factionArray] spawn orbis_mission_fnc_missionLoop;
 } else {
 	missionNamespace setVariable ["misisonLoopRunning", false, true];
 
