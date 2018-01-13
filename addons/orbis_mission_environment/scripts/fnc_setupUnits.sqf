@@ -87,7 +87,7 @@ for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFa
 	};
 };
 
-orbis_mission_infArray = MCC_MWGroupArrayMen apply {[configFile >> "CfgGroups" >> _objectSide >> _objectFaction, _x select 0, (_x select 1) * INF_POINT]};
+// orbis_mission_infArray = MCC_MWGroupArrayMen apply {[configFile >> "CfgGroups" >> _objectSide >> _objectFaction, _x select 0, (_x select 1) * INF_POINT]};
 
 orbis_mission_unitArray = [orbis_mission_planeArray, orbis_mission_heliArray, orbis_mission_tankArray, orbis_mission_vehicleArray , orbis_mission_infArray];
 orbis_mission_unitTotal = orbis_mission_planeArray + orbis_mission_heliArray + orbis_mission_tankArray + orbis_mission_vehicleArray + orbis_mission_infArray;
