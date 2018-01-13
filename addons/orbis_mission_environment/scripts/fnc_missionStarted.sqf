@@ -38,7 +38,7 @@ switch (_weather) do {
 missionNamespace setVariable ["missionWeather", _weather, true];
 diag_log format ["orbis_mission_environment missionStarted weather: %1", _weather];
 
-private _sleepTime = 1800 + (time random 900); // 30 ~ 45 min
+private _sleepTime = 300 + (time random 0); // 30 ~ 45 min // 1800 + (time random 900);
 diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];
 sleep _sleepTime;
 

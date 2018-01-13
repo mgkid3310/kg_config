@@ -44,7 +44,7 @@ if (_combatIsLocal) then {
 private _pointRatioSum = 0;
 {
 	_pointRatioSum = _pointRatioSum + _x;
-} forEach _pointRatioSum;
+} forEach _pointRatio;
 _pointRatio = _pointRatio apply {_x / _pointRatioSum};
 private _pointDistribution = _pointRatio apply {_x * _points};
 _points = 0;
@@ -63,7 +63,7 @@ if (_missionToPlane >= 360) then {
 	_missionToPlane = _missionToPlane - 360;
 };
 private _planeLoaction = (_missionCenterPos getPos [40000, _missionToPlane]) set [2, 1000];
-private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {(getPos _x distance _missionCenterPos > _missionAreaRadius) && (getPos _x distance _missionCenterPos < (_missionAreaRadius * 3)) && (getPos _x distance _missionPlayerPos > 2000)});
+private _groundLocation = getPos selectRandom (nearestLocations [_missionPlayerPos, _locationNames, 50000] select {((getPos _x) distance _missionCenterPos > _missionAreaRadius) && ((getPos _x) distance _missionCenterPos < (_missionAreaRadius * 3)) && ((getPos _x) distance _missionPlayerPos > 2000)});
 
 // spawn reinforcing units
 private _spawnGroups = [];
@@ -141,7 +141,7 @@ diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _poi
 } forEach _spawnGroups;
 
 // pause script for a moment
-private _sleepTime = 300 + (time random 600); // 5 ~ 15 min
+private _sleepTime = 60 + (time random 0); // 5 ~ 15 min // 300 + (time random 600);
 diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];
 sleep _sleepTime;
 
