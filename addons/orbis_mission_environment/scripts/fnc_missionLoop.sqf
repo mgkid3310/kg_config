@@ -164,7 +164,7 @@ sleep _sleepTime;
 
 // check if objects are still running
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
-private _isRunning = !(_objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo []);
+private _isRunning = !(_objects apply {_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"]} isEqualTo [true, true, true]);
 diag_log format ["orbis_mission_environment missionLoop isRunning: %1", _isRunning];
 
 if (_isRunning) then { // start the next loop or end & set weather changes
