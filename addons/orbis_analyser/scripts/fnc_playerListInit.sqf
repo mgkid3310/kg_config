@@ -17,4 +17,4 @@ private _text = "Players List";
 	} forEach _group;
 } forEach _playerArray;
 
-copyToClipboard _text;
+diag_log _text;
