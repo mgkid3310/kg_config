@@ -177,6 +177,7 @@ while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArr
 
 	private _group = createGroup _objectSide;
 	private _transport = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawnTransport select 1, _group] call BIS_fnc_spawnVehicle) select 0;
+	_spawnLocation set [2, 10];
 	private _groupInf = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
 	{
 		_x moveInCargo _transport;
