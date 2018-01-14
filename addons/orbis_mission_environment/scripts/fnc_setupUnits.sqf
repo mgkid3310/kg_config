@@ -40,9 +40,28 @@ if (_objectFaction in ["rhs_faction_msv", "rhs_faction_vdv"]) then {
 
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr80a_msv"), "rhs_btr80a_msv", VEHICLE_POINT];
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr80a_vdv"), "rhs_btr80a_vdv", VEHICLE_POINT];
+};
+
+if (_objectFaction in ["rhs_faction_msv"]) then {
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad"), "rhs_group_rus_msv_infantry_squad", 10 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg"), "rhs_group_rus_msv_infantry_squad_2mg", 7 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_sniper"), "rhs_group_rus_msv_infantry_squad_sniper", 7 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_mg_sniper"), "rhs_group_rus_msv_infantry_squad_mg_sniper", 7 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT"), "rhs_group_rus_msv_infantry_section_AT", 5 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA"), "rhs_group_rus_msv_infantry_section_AA", 5 * INF_POINT];
+
+	orbis_mission_truckArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr70_msv"), "rhs_btr70_msv", 0];
+};
+
+if (_objectFaction in ["rhs_faction_vdv"]) then {
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_squad"), "rhs_group_rus_vdv_infantry_squad", 6 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_squad_2mg"), "rhs_group_rus_vdv_infantry_squad_2mg", 6 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_squad_sniper"), "rhs_group_rus_vdv_infantry_squad_sniper", 6 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_squad_mg_sniper"), "rhs_group_rus_vdv_infantry_squad_mg_sniper", 6 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_section_AT"), "rhs_group_rus_vdv_infantry_section_AT", 5 * INF_POINT];
+	orbis_mission_infArray pushBack [(configFile >> "CfgGroups" >> "East" >> "rhs_faction_vdv" >> "rhs_group_rus_vdv_infantry" >> "rhs_group_rus_vdv_infantry_section_AA"), "rhs_group_rus_vdv_infantry_section_AA", 5 * INF_POINT];
 
 	orbis_mission_transport pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi8mt_vdv"), "RHS_Mi8mt_vdv", 0];
-	orbis_mission_truckArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr70_msv"), "rhs_btr70_msv", 0];
 };
 
 /* if (_availFactions in ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"]) then {
@@ -63,17 +82,18 @@ for "_i" from 0 to (count (configFile >> "CfgVehicles") - 1) do {
 	};
 }; */
 
-for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) - 1) do {
+/* for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) - 1) do {
 	private _category = (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) select _i;
-	if (isClass _category) do {
+	if (isClass _category) then {
 		for "_j" from 0 to (count _category - 1) do {
 			private _group = _category select _j;
-			if (isClass _group) do {
+			if (isClass _group) then {
 				private _isInf = true;
 				for "_k" from 0 to (count _group - 1) do {
-					private _unit = getText ((_group select _k) >> "vehicle");
-					if !(isClass _unit) do {
-						if !(toLower getText (configFile >> "CfgVehicles" >> _unit >> "category") isEqualTo "men") then {
+					private _unit = _group select _k;
+					private _unitClass = getText (_unit >> "vehicle");
+					if ((isClass _unit) && (isClass (configFile >> "CfgVehicles" >> _unitClass))) then {
+						if !(toLower getText (configFile >> "CfgVehicles" >> _unitClass >> "category") isEqualTo "men") then {
 							_isInf = false;
 						};
 					};
@@ -84,7 +104,7 @@ for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFa
 			};
 		};
 	};
-};
+}; */
 
 // orbis_mission_infArray = MCC_MWGroupArrayMen apply {[configFile >> "CfgGroups" >> _objectSide >> _objectFaction, _x select 0, (_x select 1) * INF_POINT]};
 

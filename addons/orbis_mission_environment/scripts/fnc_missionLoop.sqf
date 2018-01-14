@@ -88,9 +88,11 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 	private _thisSpawn = selectRandom (orbis_mission_planeArray select {(_pointDistribution select 0) >= (_x select 2)});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 	private _group = createGroup _objectSide;
-	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	// private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 1, "NONE"];
+	private _vehicle = (_thisSpawn select 1) createVehicle _spawnLocation;
 	createVehicleCrew _vehicle;
 	_vehicle flyInHeight (300 + time random 1500);
+	[_vehicle] join _group;
 	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [0, (_pointDistribution select 0) - (_thisSpawn select 2)];
@@ -100,8 +102,10 @@ while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliAr
 	private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1]; 
 	private _group = createGroup _objectSide;
-	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	// private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 1, "NONE"];
+	private _vehicle = (_thisSpawn select 1) createVehicle _spawnLocation;
 	createVehicleCrew _vehicle;
+	[_vehicle] join _group;
 	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [1, (_pointDistribution select 1) - (_thisSpawn select 2)];
@@ -111,8 +115,10 @@ while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankAr
 	private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
-	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	// private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 1, "NONE"];
+	private _vehicle = (_thisSpawn select 1) createVehicle _spawnLocation;
 	createVehicleCrew _vehicle;
+	[_vehicle] join _group;
 	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [2, (_pointDistribution select 2) - (_thisSpawn select 2)];
@@ -122,8 +128,10 @@ while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicl
 	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)});
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawn select 1];
 	private _group = createGroup _objectSide;
-	private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 0, "NONE"];
+	// private _vehicle = _group createUnit [_thisSpawn select 1, _spawnLocation, [], 1, "NONE"];
+	private _vehicle = (_thisSpawn select 1) createVehicle _spawnLocation;
 	createVehicleCrew _vehicle;
+	[_vehicle] join _group;
 	_group addWaypoint [_missionCenterPos, _missionAreaRadius];
 
 	_pointDistribution set [3, (_pointDistribution select 3) - (_thisSpawn select 2)];
@@ -131,11 +139,13 @@ while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicl
 
 while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
 	private _thisSpawn = selectRandom (orbis_mission_infArray select {(_pointDistribution select 4) >= (_x select 2)});
-	private _thisSpawnTransport = selectRandom selectRAndom [orbis_mission_transport, orbis_mission_truckArray];
+	private _thisSpawnTransport = selectRandom (orbis_mission_transport + orbis_mission_truckArray);
 	private _spawnLocation = _groundLocation findEmptyPosition [0, 1000, _thisSpawnTransport select 1];
 	private _group = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
-	private _transport = _group createUnit [_thisSpawnTransport select 1, _spawnLocation, [], 0, "NONE"];
+	// private _transport = _group createUnit [_thisSpawnTransport select 1, _spawnLocation, [], 1, "NONE"];
+	private _transport = (_thisSpawnTransport select 1) createVehicle _spawnLocation;
 	createVehicleCrew _transport;
+	[_transport] join _group;
 	{
 		_x moveInCargo _transport;
 	} forEach (units _group select {_x != _transport});
