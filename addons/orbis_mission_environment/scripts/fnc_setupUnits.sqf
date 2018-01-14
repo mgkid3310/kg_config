@@ -65,17 +65,23 @@ for "_i" from 0 to (count (configFile >> "CfgVehicles") - 1) do {
 
 for "_i" from 0 to (count (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) - 1) do {
 	private _category = (configFile >> "CfgGroups" >> _objectSide >> _objectFaction) select _i;
-	for "_j" from 0 to (count _category - 1) do {
-		private _group = _category select _j;
-		private _isInf = true;
-		for "_k" from 0 to (count _group - 1) do {
-			private _unit = getText ((_group select _k) >> "vehicle");
-			if !(toLower getText (configFile >> "CfgVehicles" >> _unit >> "category") isEqualTo "men") then {
-				_isInf = false;
+	if (isClass _category) do {
+		for "_j" from 0 to (count _category - 1) do {
+			private _group = _category select _j;
+			if (isClass _group) do {
+				private _isInf = true;
+				for "_k" from 0 to (count _group - 1) do {
+					private _unit = getText ((_group select _k) >> "vehicle");
+					if !(isClass _unit) do {
+						if !(toLower getText (configFile >> "CfgVehicles" >> _unit >> "category") isEqualTo "men") then {
+							_isInf = false;
+						};
+					};
+				};
+				if (_isInf) then {
+					orbis_mission_infArray pushBack [_group, configName _group, (count _group) * INF_POINT];
+				};
 			};
-		};
-		if (_isInf) then {
-			orbis_mission_infArray pushBack [_group, configName _group, (count _group) * INF_POINT];
 		};
 	};
 };
