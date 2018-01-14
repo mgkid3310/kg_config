@@ -2,8 +2,8 @@ private _name_terr = worldName;
 if !(_name_terr=="Altis" or _name_terr=="Stratis") exitWith {};
 
 if (isServer) then {
-	0 setOvercast 0.8;
-	0 setRain 0.01;
+	0 setOvercast 0;
+	0 setRain 0;
 	0 setRainbow 0;
 	setWind [0, 0, true];
 	forceWeatherChange;

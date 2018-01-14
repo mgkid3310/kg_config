@@ -40,10 +40,10 @@
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP"};
 					};
 					class pylon5: pylon1 {
-						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", /* "FIR_SH_AG_HP", */"JSJC_Fueltank"};
 					};
 					class pylon6: pylon1 {
-						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", /* "FIR_SH_AG_HP", */"JSJC_Fueltank"};
 					};
 					class pylon7: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "JSJC_Fueltank"};

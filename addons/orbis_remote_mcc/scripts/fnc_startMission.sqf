@@ -4,9 +4,9 @@
 	[_obj1, _obj2, _obj3],
 	[_isCQB, _isCiv, _armor, _vehicles, _stealth, _isIED, _isAS, _isSB, _isRoadblocks, _animals],
 	[_reinforcement, _artillery]
-] call MCC_fnc_MWinitMission; */
+] call MCC_fnc_MWinitMission;
 
-// [] call orbis_mcc_fnc_startMission;
+[] call orbis_mcc_fnc_startMission; */
 
 // diag_log "orbis_remote_mcc startMission run";
 
@@ -18,7 +18,7 @@ private _misisonLocation = selectRandom (nearestLocations [getPos _player, _loca
 private _misisonArea = [getPos _misisonLocation, text _misisonLocation];
 private _totalEnemyUnits = 30 + (_playerCount * 5);
 
-private _aoSize = 100 + 30 * (10 max _playerCount min 30);
+private _aoSize = 100 + (30 * (10 max _playerCount min 30));
 
 private _bluFactions = ["rhs_faction_usarmy_d", "rhs_faction_usmc_d"];
 private _opfFactions = ["rhs_faction_msv", "rhs_faction_vdv"];
@@ -48,8 +48,8 @@ if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide i
 private _objectsArray = ["None", "None", "None"];
 private _objectData = [
 	["Secure HVT", 1], ["Kill HVT", 0.6], 
-	["Destroy Vehicle", 0.3], ["Destroy AA", 0.3], ["Destroy Artillery", 0.3], 
-	["Destroy Weapon Cahce", 0.3], ["Destroy Fuel Depot", 0.3], ["Destroy Radar/Radio", 0.3], 
+	["Destroy Vehicle", 0.3], ["Destroy AA", 0.0], ["Destroy Artillery", 0.0], 
+	["Destroy Weapon Cahce", 0.5], ["Destroy Fuel Depot", 0.5], ["Destroy Radar/Radio", 0.5], 
 	["Acquire Intel", 1], ["Download Intel", 1], 
 	["Capture Area", 0], ["Disarm IED", 0]
 ];
