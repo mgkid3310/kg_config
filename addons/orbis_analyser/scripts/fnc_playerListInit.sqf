@@ -1,3 +1,5 @@
+// call orbis_analyser_fnc_playerListInit;
+
 private _playerArray = [];
 {
 	private _side = "";
@@ -13,16 +15,18 @@ private _playerArray = [];
 
 private _text = endl + "Players List";
 {
-	private _group = _x;
-	_text = _text + endl + endl + format ["%1, %2", _side, groupId (_group select 0)];
+	_x params ["_group", "_side", "_units"];
+	_text = _text + endl + endl + format ["%1, %2", _side, groupId _group];
 	{
 		_text = _text + endl;
-		if (leader (_group select 0) isEqualTo leader _x) then {
+		if (leader _group isEqualTo leader _x) then {
 			_text = _text + format ["Leader: %1", name _x];
 		} else {
 			_text = _text + format ["Member: %1", name _x];
 		};
-	} forEach (_group select 2);
+	} forEach _units;
 } forEach _playerArray;
+_text = _text + endl;
 
 diag_log _text;
+// copyToClipboard _text;
