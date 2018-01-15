@@ -15,4 +15,4 @@ Authors (Contributors)
 
 Orbis2358 (mgkid3310@naver.com) : Project Manager / Programmer
 
-jadeguy : Texture Designer
+jadeguy (kimjisu0914@naver.com) : Texture Designer
