@@ -18,6 +18,11 @@ in the 'Seperate Licenses' paragraph in this file.
 
 Seperate Licenses
 
-1. '3 Commando Brigade' has copyrights for listed files under CC BY-NC-ND 4.0:
+1. 'ACE3 Team' has copyrights for files in subfolders listed under GNU General
+Public License v2.0:
+\addons\ace_compat_rhs_afrf3\
+\addons\ace_compat_rhs_usf3;
+
+2. '3 Commando Brigade' has copyrights for listed files under CC BY-NC-ND 4.0:
 \addons\uk3cb_baf_weapons_ace.pbo
 \addons\uk3cb_baf_weapons_ace.pbo.UK3CB_BAF_Weapon_2_2_1.bisign
