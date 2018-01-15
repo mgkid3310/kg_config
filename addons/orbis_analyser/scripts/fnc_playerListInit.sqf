@@ -13,7 +13,7 @@ private _playerArray = [];
 	};
 } forEach allGroups;
 
-private _text = endl + "Players List";
+private _text = "Players List";
 {
 	_x params ["_group", "_side", "_units"];
 	_text = _text + endl + endl + format ["%1, %2", _side, groupId _group];
@@ -26,7 +26,5 @@ private _text = endl + "Players List";
 		};
 	} forEach _units;
 } forEach _playerArray;
-_text = _text + endl;
 
-diag_log _text;
-// copyToClipboard _text;
+_text
