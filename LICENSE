@@ -1,7 +1,8 @@
 General License
 
-All files in this folder follow CC BY-NC-ND 4.0, which can be viewed from the
-link below, and is inherited to subfolders EXCEPT listed conditions:
+All files in this folder and subfolders follow CC BY-NC-ND 4.0, which can be viewed
+from the link below. This license gives the right to authors mentioned in Readme.md
+file. This license has listed exceptions:
 
 http://creativecommons.org/licenses/by-nc-nd/4.0/
 
@@ -10,9 +11,14 @@ and its subfolders follow the license written in the LICENSE file instead of
 what's inherited from its upper folder unless there's another LISENCE file in
 its subfolders.
 
-2. Some files may have seperate license, and is listed in the 'Seperate Licenses'
-paragraph in this file.
+2. Some files may have seperate license or have original authors, and is listed
+in the 'Seperate Licenses' paragraph in this file.
 
 
 
 Seperate Licenses
+
+1. 'ACE3 Team' has copyrights for files in listed subfolders under GNU General
+Public License v2.0, which can be viewed in the LICENSE file in the subfolder:
+\addons\compat_rhs_afrf3\
+\addons\compat_rhs_usf3\
