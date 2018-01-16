@@ -3,4 +3,5 @@ orbis_mission_fnc_missionStarted = compile preprocessFileLineNumbers 'orbis_miss
 orbis_mission_fnc_pointLocal = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_pointLocal.sqf';
 orbis_mission_fnc_pointTotal = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_pointTotal.sqf';
 orbis_mission_fnc_setupUnits = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_setupUnits.sqf';
+orbis_mission_fnc_sleepTime = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_sleepTime.sqf';
 orbis_mission_fnc_unitKilled = compile preprocessFileLineNumbers 'orbis_mission_environment\scripts\fnc_unitKilled.sqf';
