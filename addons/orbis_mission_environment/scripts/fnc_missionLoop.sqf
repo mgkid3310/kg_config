@@ -214,7 +214,7 @@ diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _poi
 } forEach _pointDistribution;
 
 // pause script for a moment
-private _sleepTime = 300 + (time random 600); // 5 ~ 15 min
+private _sleepTime = 900 + (time random 900); // 15 ~ 30 min
 private _timeSave = time;
 diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];
 sleep _sleepTime;
