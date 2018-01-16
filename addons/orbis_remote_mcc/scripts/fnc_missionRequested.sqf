@@ -5,7 +5,7 @@
 if !(isServer) exitWith {
 	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: missionRequested not running on server";};
 };
-if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) exitWith {=
+if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) exitWith {
 	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: mcc is not installed";};
 };
 
