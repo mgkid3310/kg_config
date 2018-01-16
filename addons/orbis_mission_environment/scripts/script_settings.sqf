@@ -12,7 +12,6 @@
 #define TANK_POINT 50
 #define VEHICLE_POINT 30
 #define INF_POINT 5
-orbis_misison_pointsGeneral = [PLANE_POINT, HELI_POINT, TANK_POINT, VEHICLE_POINT, INF_POINT];
 
 #define RETURN_RATIO 0
 

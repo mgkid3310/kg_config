@@ -55,7 +55,7 @@ diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", 
 private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
 private _missionAreaRadius = missionNamespace getVariable ["missionAreaRadius", 500];
 private _missionPlayerPos = missionNamespace getVariable ["missionPlayerPos", [0, 0, 0]];
-private _locationNames = ["NameCity", "NameCityCapital", "NameVillage", "NameLocal", "Hill", "Airport"];
+private _locationNames = ["NameCity", "NameCityCapital", "NameVillage"];
 
 private _missionToPlayer = _missionCenterPos getDir _missionPlayerPos;
 private _dirMax = _missionToPlayer + 45;
@@ -67,24 +67,47 @@ private _planeLoaction = [0, 0, 0];
 _planeLoaction set [0, (_missionCenterPos select 0) + (30000 * cos _missionToPlane)];
 _planeLoaction set [1, (_missionCenterPos select 1) + (30000 * sin _missionToPlane)];
 _planeLoaction set [2, 1000];
+
 private _groundLocationTemp = nearestLocations [_missionCenterPos, _locationNames, 30000];
+private _groundLocationSuitable = _groundLocationTemp select {((getPos _this distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && (getPos _this distance _missionPlayerPos) > 2000) && (getPos _this isFlatEmpty [-1, -1, 0.25, 0, false, objNull])};
 private _groundLocation = [0, 0, 0];
-{
-	private _location = _x;
-	private _position = getPos _location;
-	private _isGood = false;
-	if (((_position distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && ((_position distance _missionPlayerPos) > 2000)/* && !(surfaceIsWater _position)*/) then {
-		_isGood = true;
+private _isLocationValid = false;
+if (count _groundLocationSuitable > 0) then { // find suitable position from locations
+	{
+		private _position = getPos _x;
+		private _isGood = true;
+		{
+			if ((_position distance (getPos _x)) < 2000) exitWith {
+				_isGood = false;
+			};
+		} forEach (allPlayers - entities "HeadlessClient_F");
+		if (_isGood) exitWith {
+			_groundLocation = _position;
+			_isLocationValid = true;
+		};
+	} forEach _groundLocationSuitable;
+};
+
+if !(_isLocationValid) then { // no suitable position from locations, find random position
+	private _isGood = true;
+	private _try = 0;
+	while (_isGood && (_try < 10)) do {
+		_try = _try + 1;
+		private _groundLocationRand = [_missionCenterPos, _missionAreaRadius * 1.5, 30000, 0, 0, 0.25, 0, [[_missionPlayerPos, 2000]], [0, 0, 0]] call BIS_fnc_findSafePos;
+		if (_groundLocationRand != [0, 0, 0]) exitWith {};
+		private _isGood = true;
 		{
 			if ((_position distance (getPos _x)) < 2000) then {
 				_isGood = false;
 			};
 		} forEach (allPlayers - entities "HeadlessClient_F");
+		if (_isGood) exitWith {
+			_groundLocation = _groundLocationRand;
+			_isLocationValid = true;
+		};
 	};
-	if (_isGood) exitWith {
-		_groundLocation = _position;
-	};
-} forEach _groundLocationTemp;
+};
+
 diag_log format ["orbis_mission_environment missionLoop planeLoaction: %1, groundLocation: %2", _planeLoaction, _groundLocation];
 
 // spawn reinforcing units
@@ -110,92 +133,94 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 	waitUntil {diag_frameNo > _frameNo};
 };
 
-while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
-	private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)});
-	private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+if (_isLocationValid) then { // check if we have good locations. If not, skip ground unit spawns
+	while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
+		private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)});
+		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
-	if (_spawnLocation isEqualTo []) exitWith {};
+		if (_spawnLocation isEqualTo []) exitWith {};
 
-	_spawnLocation set [2, 30];
-	private _group = createGroup _objectSide;
-	private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
-	private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
-	_waypoint setWaypointType "SAD";
-	_group setCombatMode "RED";
+		_spawnLocation set [2, 30];
+		private _group = createGroup _objectSide;
+		private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
+		private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
+		_waypoint setWaypointType "SAD";
+		_group setCombatMode "RED";
 
-	_groups append [_group];
-	_pointDistribution set [1, (_pointDistribution select 1) - (_thisSpawn select 2)];
+		_groups append [_group];
+		_pointDistribution set [1, (_pointDistribution select 1) - (_thisSpawn select 2)];
 
-	private _frameNo = diag_frameNo;
-	waitUntil {diag_frameNo > _frameNo};
-};
+		private _frameNo = diag_frameNo;
+		waitUntil {diag_frameNo > _frameNo};
+	};
 
-while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
-	private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)});
-	private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+	while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
+		private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)});
+		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
-	if (_spawnLocation isEqualTo []) exitWith {};
+		if (_spawnLocation isEqualTo []) exitWith {};
 
-	private _group = createGroup _objectSide;
-	private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
-	private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
-	_waypoint setWaypointType "SAD";
-	_group setCombatMode "RED";
+		private _group = createGroup _objectSide;
+		private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
+		private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
+		_waypoint setWaypointType "SAD";
+		_group setCombatMode "RED";
 
-	_groups append [_group];
-	_pointDistribution set [2, (_pointDistribution select 2) - (_thisSpawn select 2)];
+		_groups append [_group];
+		_pointDistribution set [2, (_pointDistribution select 2) - (_thisSpawn select 2)];
 
-	private _frameNo = diag_frameNo;
-	waitUntil {diag_frameNo > _frameNo};
-};
+		private _frameNo = diag_frameNo;
+		waitUntil {diag_frameNo > _frameNo};
+	};
 
-while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
-	private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)});
-	private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+	while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
+		private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)});
+		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
-	if (_spawnLocation isEqualTo []) exitWith {};
+		if (_spawnLocation isEqualTo []) exitWith {};
 
-	private _group = createGroup _objectSide;
-	private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
-	private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
-	_waypoint setWaypointType "SAD";
-	_group setCombatMode "RED";
+		private _group = createGroup _objectSide;
+		private _vehicle = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawn select 1, _group] call BIS_fnc_spawnVehicle) select 0;
+		private _waypoint = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
+		_waypoint setWaypointType "SAD";
+		_group setCombatMode "RED";
 
-	_groups append [_group];
-	_pointDistribution set [3, (_pointDistribution select 3) - (_thisSpawn select 2)];
+		_groups append [_group];
+		_pointDistribution set [3, (_pointDistribution select 3) - (_thisSpawn select 2)];
 
-	private _frameNo = diag_frameNo;
-	waitUntil {diag_frameNo > _frameNo};
-};
+		private _frameNo = diag_frameNo;
+		waitUntil {diag_frameNo > _frameNo};
+	};
 
-while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
-	private _thisSpawn = selectRandom (orbis_mission_infArray select {(_pointDistribution select 4) >= (_x select 2)});
-	private _thisSpawnTransport = selectRandom (orbis_mission_transport + orbis_mission_truckArray);
-	private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawnTransport select 1];
+	while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
+		private _thisSpawn = selectRandom (orbis_mission_infArray select {(_pointDistribution select 4) >= (_x select 2)});
+		private _thisSpawnTransport = selectRandom (orbis_mission_transport + orbis_mission_truckArray);
+		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawnTransport select 1];
 
-	if (_spawnLocation isEqualTo []) exitWith {};
+		if (_spawnLocation isEqualTo []) exitWith {};
 
-	private _group = createGroup _objectSide;
-	private _transport = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawnTransport select 1, _group] call BIS_fnc_spawnVehicle) select 0;
-	_spawnLocation set [2, 10];
-	private _groupInf = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
-	{
-		_x moveInCargo _transport;
-	} forEach (units _groupInf);
-	private _waypointTR = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
-	private _waypointSAD = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
-	private _waypointInf = _groupInf addWaypoint [_missionCenterPos, _missionAreaRadius];
-	_waypointTR setWaypointType "TR UNLOAD";
-	_waypointSAD setWaypointType "SAD";
-	_waypointInf setWaypointType "SAD";
-	_group setCombatMode "RED";
-	_groupInf setCombatMode "RED";
+		private _group = createGroup _objectSide;
+		private _transport = ([_spawnLocation, _spawnLocation getDir _missionCenterPos, _thisSpawnTransport select 1, _group] call BIS_fnc_spawnVehicle) select 0;
+		_spawnLocation set [2, 10];
+		private _groupInf = [_spawnLocation, _objectSide, _thisSpawn select 0] call BIS_fnc_spawnGroup;
+		{
+			_x moveInCargo _transport;
+		} forEach (units _groupInf);
+		private _waypointTR = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
+		private _waypointSAD = _group addWaypoint [_missionCenterPos, _missionAreaRadius];
+		private _waypointInf = _groupInf addWaypoint [_missionCenterPos, _missionAreaRadius];
+		_waypointTR setWaypointType "TR UNLOAD";
+		_waypointSAD setWaypointType "SAD";
+		_waypointInf setWaypointType "SAD";
+		_group setCombatMode "RED";
+		_groupInf setCombatMode "RED";
 
-	_groups append [_group, _groupInf];
-	_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
+		_groups append [_group, _groupInf];
+		_pointDistribution set [4, (_pointDistribution select 4) - (_thisSpawn select 2)];
 
-	private _frameNo = diag_frameNo;
-	waitUntil {diag_frameNo > _frameNo};
+		private _frameNo = diag_frameNo;
+		waitUntil {diag_frameNo > _frameNo};
+	};
 };
 
 // add spawned units to curator
