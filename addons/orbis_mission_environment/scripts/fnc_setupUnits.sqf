@@ -35,8 +35,8 @@ if (_objectFaction in ["rhs_faction_msv", "rhs_faction_vdv"]) then {
 	orbis_mission_heliArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi24V_UPK23_vvs"), "RHS_Mi24V_UPK23_vvs", HELI_POINT];
 	orbis_mission_heliArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi24V_FAB_vvs"), "RHS_Mi24V_FAB_vvs", HELI_POINT];
 
-	orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t80u"), "rhs_t80u", TANK_POINT];
-	orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t90a_tv"), "rhs_t90a_tv", TANK_POINT];
+	orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t72bd_tv"), "rhs_t72bd_tv", TANK_POINT];
+	// orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t80u"), "rhs_t80u", TANK_POINT];
 
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr80a_msv"), "rhs_btr80a_msv", VEHICLE_POINT];
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr80a_vdv"), "rhs_btr80a_vdv", VEHICLE_POINT];
