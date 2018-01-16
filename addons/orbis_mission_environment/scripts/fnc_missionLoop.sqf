@@ -113,8 +113,8 @@ if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop 
 // spawn reinforcing units
 private _groups = [];
 
-while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
-	private _availArray = orbis_mission_planeArray select {(_pointDistribution select 1) >= (_x select 2)};
+while {{(_pointDistribution select 0) >= (_x select 2)} count orbis_mission_planeArray > 0} do { // plane
+	private _availArray = orbis_mission_planeArray select {(_pointDistribution select 0) >= (_x select 2)};
 	private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 
@@ -135,7 +135,7 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 };
 
 if (_isLocationValid) then { // check if we have good locations. If not, skip ground unit spawns
-	while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
+	while {{(_pointDistribution select 1) >= (_x select 2)} count orbis_mission_heliArray > 0} do { // heli
 		private _availArray = orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
@@ -156,8 +156,8 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 		waitUntil {diag_frameNo > _frameNo};
 	};
 
-	while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
-		private _availArray = orbis_mission_tankArray select {(_pointDistribution select 1) >= (_x select 2)};
+	while {{(_pointDistribution select 2) >= (_x select 2)} count orbis_mission_tankArray > 0} do { // tank
+		private _availArray = orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
@@ -176,8 +176,8 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 		waitUntil {diag_frameNo > _frameNo};
 	};
 
-	while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
-		private _availArray = orbis_mission_vehicleArray select {(_pointDistribution select 1) >= (_x select 2)};
+	while {{(_pointDistribution select 3) >= (_x select 2)} count orbis_mission_vehicleArray > 0} do { // vehicle
+		private _availArray = orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
@@ -196,8 +196,8 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 		waitUntil {diag_frameNo > _frameNo};
 	};
 
-	while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
-		private _availArray = orbis_mission_infArray select {(_pointDistribution select 1) >= (_x select 2)};
+	while {{(_pointDistribution select 4) >= (_x select 2)} count orbis_mission_infArray > 0} do { // inf
+		private _availArray = orbis_mission_infArray select {(_pointDistribution select 4) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _availArrayTransport = orbis_mission_transport + orbis_mission_truckArray;
 		private _thisSpawnTransport = _availArrayTransport selectRandomWeighted (_availArrayTransport apply {_x select 3});
