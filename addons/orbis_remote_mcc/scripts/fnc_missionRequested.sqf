@@ -2,7 +2,7 @@
 #include "script_settings.sqf"
 
 // check if is running on server & mcc is installed
-if !(isServer) exitWith {=
+if !(isServer) exitWith {
 	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: missionRequested not running on server";};
 };
 if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) exitWith {=
