@@ -1,12 +1,12 @@
 #include "script_settings.sqf"
-diag_log format ["orbis_mission_environment missionLoop run time: %1", time];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop run time: %1", time];};
 
 params ["_timeOld", "_points", "_pointDistribution", "_factionArray"];
 _factionArray params ["_playerSide", "_objectSide", "_objectFaction"];
 
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
 _points = _points + ((time - _timeOld) * _playerCount * POINT_MULTIPLIER);
-diag_log format ["orbis_mission_environment missionLoop points: %1", _points];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop points: %1", _points];};
 
 // set up units array
 private _playerSidePlanes = (entities "Plane") select {(side _x isEqualTo _playerSide) && (alive _x)};
@@ -23,7 +23,7 @@ _groundThreat = _groundThreat + (time - _timeOld) * ((count _playerSidetanks * T
 private _totalThreat = _airThreat + _groundThreat;
 missionNamespace setVariable ["airThreat", _airThreat];
 missionNamespace setVariable ["groundThreat", _groundThreat];
-diag_log format ["orbis_mission_environment missionLoop airThreat: %1, groundThreat: %2", _airThreat, _groundThreat];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop airThreat: %1, groundThreat: %2", _airThreat, _groundThreat];};
 
 // define if local or total warfare
 private _combatIsLocal = missionNamespace getVariable ["combatIsLocal", true];
@@ -31,7 +31,7 @@ if (_combatIsLocal && (random [LOCAL_MAX - LOCAL_STD, LOCAL_MAX, LOCAL_MAX + LOC
 	_combatIsLocal = false;
 };
 missionNamespace setVariable ["combatIsLocal", _combatIsLocal];
-diag_log format ["orbis_mission_environment missionLoop combatIsLocal: %1", _combatIsLocal];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop combatIsLocal: %1", _combatIsLocal];};
 
 // calculate point distribution
 private _pointRatio = [1, 1, 1, 1, 1];
@@ -49,7 +49,7 @@ _pointRatio = _pointRatio apply {_x / _pointRatioSum};
 	_pointDistribution set [_forEachIndex, _x + (_points * (_pointRatio select _forEachIndex))];
 } forEach _pointDistribution;
 _points = 0;
-diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", _pointDistribution];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop pointDistribution: %1", _pointDistribution];};
 
 // get spawn location
 private _missionCenterPos = missionNamespace getVariable ["missionCenterPos", [0, 0, 0]];
@@ -69,7 +69,7 @@ _planeLoaction set [1, (_missionCenterPos select 1) + (30000 * sin _missionToPla
 _planeLoaction set [2, 1000];
 
 private _groundLocationTemp = nearestLocations [_missionCenterPos, _locationNames, 30000];
-private _groundLocationSuitable = _groundLocationTemp select {((getPos _this distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && (getPos _this distance _missionPlayerPos) > 2000) && (getPos _this isFlatEmpty [-1, -1, 0.25, 0, false, objNull])};
+private _groundLocationSuitable = _groundLocationTemp select {((getPos _x distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && ((getPos _x distance _missionPlayerPos) > 2000) && (getPos _x isFlatEmpty [-1, -1, 0.25, 1, 0, false, objNull] != [])};
 private _groundLocation = [0, 0, 0];
 private _isLocationValid = false;
 if (count _groundLocationSuitable > 0) then { // find suitable position from locations
@@ -108,13 +108,14 @@ if !(_isLocationValid) then { // no suitable position from locations, find rando
 	};
 };
 
-diag_log format ["orbis_mission_environment missionLoop planeLoaction: %1, groundLocation: %2", _planeLoaction, _groundLocation];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop planeLoaction: %1, groundLocation: %2", _planeLoaction, _groundLocation];};
 
 // spawn reinforcing units
 private _groups = [];
 
 while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeArray > 0} do { // plane
-	private _thisSpawn = selectRandom (orbis_mission_planeArray select {(_pointDistribution select 0) >= (_x select 2)});
+	private _availArray = orbis_mission_planeArray select {(_pointDistribution select 1) >= (_x select 2)};
+	private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 	private _spawnLocation = [[_planeLoaction, 300]] call BIS_fnc_randomPos;
 
 	if (_spawnLocation isEqualTo []) exitWith {};
@@ -135,7 +136,8 @@ while {{(_x select 2) <= _pointDistribution select 0} count orbis_mission_planeA
 
 if (_isLocationValid) then { // check if we have good locations. If not, skip ground unit spawns
 	while {{(_x select 2) <= _pointDistribution select 1} count orbis_mission_heliArray > 0} do { // heli
-		private _thisSpawn = selectRandom (orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)});
+		private _availArray = orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)};
+		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
 		if (_spawnLocation isEqualTo []) exitWith {};
@@ -155,7 +157,8 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	};
 
 	while {{(_x select 2) <= _pointDistribution select 2} count orbis_mission_tankArray > 0} do { // tank
-		private _thisSpawn = selectRandom (orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)});
+		private _availArray = orbis_mission_tankArray select {(_pointDistribution select 1) >= (_x select 2)};
+		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
 		if (_spawnLocation isEqualTo []) exitWith {};
@@ -174,7 +177,8 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	};
 
 	while {{(_x select 2) <= _pointDistribution select 3} count orbis_mission_vehicleArray > 0} do { // vehicle
-		private _thisSpawn = selectRandom (orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)});
+		private _availArray = orbis_mission_vehicleArray select {(_pointDistribution select 1) >= (_x select 2)};
+		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
 
 		if (_spawnLocation isEqualTo []) exitWith {};
@@ -193,8 +197,10 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	};
 
 	while {{(_x select 2) <= _pointDistribution select 4} count orbis_mission_infArray > 0} do { // inf
-		private _thisSpawn = selectRandom (orbis_mission_infArray select {(_pointDistribution select 4) >= (_x select 2)});
-		private _thisSpawnTransport = selectRandom (orbis_mission_transport + orbis_mission_truckArray);
+		private _availArray = orbis_mission_infArray select {(_pointDistribution select 1) >= (_x select 2)};
+		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
+		private _availArrayTransport = orbis_mission_transport + orbis_mission_truckArray;
+		private _thisSpawnTransport = _availArrayTransport selectRandomWeighted (_availArrayTransport apply {_x select 3});
 		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawnTransport select 1];
 
 		if (_spawnLocation isEqualTo []) exitWith {};
@@ -232,22 +238,22 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 } forEach allCurators;
 
 // return leftover points
-diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _pointDistribution];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop pointLeftover: %1", _pointDistribution];};
 {
 	_points = _points + (_x * RETURN_RATIO);
 	_pointDistribution set [_forEachIndex, _x * (1 - RETURN_RATIO)];
 } forEach _pointDistribution;
 
 // pause script for a moment
-private _sleepTime = 900 + (time random 900); // 15 ~ 30 min
+private _sleepTime = ["loop"] call orbis_mission_fnc_sleepTime;
 private _timeSave = time;
-diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop sleepTime: %1", _sleepTime];};
 sleep _sleepTime;
 
 // check if objects are still running
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
 private _isRunning = !(_objects apply {_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"]} isEqualTo [true, true, true]);
-diag_log format ["orbis_mission_environment missionLoop isRunning: %1", _isRunning];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop isRunning: %1", _isRunning];};
 
 if (_isRunning) then { // start the next loop or end & set weather changes
 	[_timeSave, _points, _pointDistribution, _factionArray] spawn orbis_mission_fnc_missionLoop;
@@ -256,11 +262,11 @@ if (_isRunning) then { // start the next loop or end & set weather changes
 
 	// weather change
 	private _weatherMaintain = sleep (300 + (time random 300)); // 5 ~ 10 min
-	diag_log format ["orbis_mission_environment missionLoop weatherMaintain: %1", _weatherMaintain];
+	if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop weatherMaintain: %1", _weatherMaintain];};
 	sleep _weatherMaintain;
 	private _weather = missionNamespace getVariable ["missionWeather", "sunny"];
 	private _weatherRandomTime = 300 + (time random 1800);
-	diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];
+	if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];};
 	switch ([_weather, ""] selectRandomWeighted [0.5, 0.5]) do { 
 		case "sunny": {
 			_weatherRandomTime setOvercast 0.0;

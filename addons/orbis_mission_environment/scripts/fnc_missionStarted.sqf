@@ -1,5 +1,5 @@
 #include "script_settings.sqf"
-diag_log format ["orbis_mission_environment missionStarted run time: %1", time];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionStarted run time: %1", time];};
 
 params ["_missionCenterPos", "_missionAreaRadius", "_player", "_factionArray"];
 
@@ -13,7 +13,7 @@ if (worldName in ["Altis", "Stratis"]) then { // orbis_winter_setup compatibilit
 };
 private _weather = (_weatherChance apply {_x select 0}) selectRandomWeighted (_weatherChance apply {_x select 1});
 private _weatherRandomTime = 300 + (time random 1800); // 5 ~ 35 min
-diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop weatherRandomTime: %1", _weatherRandomTime];};
 switch (_weather) do { 
 	case "sunny": {
 		_weatherRandomTime setOvercast 0.0;
@@ -38,7 +38,7 @@ switch (_weather) do {
 	default {};
 };
 missionNamespace setVariable ["missionWeather", _weather, true];
-diag_log format ["orbis_mission_environment missionStarted weather: %1", _weather];
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionStarted weather: %1", _weather];};
 
 // setup enemy commander type
 private _commander = (orbis_mission_commanderList apply {_x select 0}) selectRandomWeighted (orbis_mission_commanderList apply {_x select 1});
@@ -54,8 +54,8 @@ missionNamespace setVariable ["missionStartTime", time];
 
 // sleep for some time
 private _timeOld = time;
-private _sleepTime = 1800 + (time random 900); // 30 ~ 45 min
-diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];
+private _sleepTime = ["start"] call orbis_mission_fnc_sleepTime;
+if (LOG_MODE > 0) then {diag_log format ["orbis_mission_environment missionStarted sleepTime: %1", _sleepTime];};
 sleep _sleepTime;
 
 // start main loop
