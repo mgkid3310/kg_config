@@ -8,8 +8,8 @@
 
 [] call orbis_mcc_fnc_startMission; */
 
-if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc startMission run";};
 #include "script_settings.sqf"
+if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc startMission run";};
 
 private _player = _this select 0;
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
