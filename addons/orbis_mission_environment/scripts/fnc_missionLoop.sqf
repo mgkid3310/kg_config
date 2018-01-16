@@ -69,7 +69,7 @@ _planeLoaction set [1, (_missionCenterPos select 1) + (30000 * sin _missionToPla
 _planeLoaction set [2, 1000];
 
 private _groundLocationTemp = nearestLocations [_missionCenterPos, _locationNames, 30000];
-private _groundLocationSuitable = _groundLocationTemp select {((getPos _x distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && ((getPos _x distance _missionPlayerPos) > 2000) && (getPos _x isFlatEmpty [-1, -1, 0.25, 1, 0, false, objNull] != [])};
+private _groundLocationSuitable = _groundLocationTemp select {((getPos _x distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && ((getPos _x distance _missionPlayerPos) > 2000) && (count (getPos _x isFlatEmpty [-1, -1, 0.25, 1, 0, false, objNull]) > 0)};
 private _groundLocation = [0, 0, 0];
 private _isLocationValid = false;
 if (count _groundLocationSuitable > 0) then { // find suitable position from locations
