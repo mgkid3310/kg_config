@@ -9,6 +9,6 @@ class CfgPatches {
 	};
 };
 
-#include "CfgWeapons"
+#include "CfgWeapons.hpp"
 #include "ACE3_Medical_Treatments.hpp"
 #include "CfgEventHandlers.hpp"
