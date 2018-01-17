@@ -1,6 +1,6 @@
 // dev settings
-#define LOG_MODE 1
-#define DEV_MODE 1
+#define LOG_MODE 0
+#define DEV_MODE 0
 
 // define unit scores
 #define PLANE_SCORE 10
@@ -10,7 +10,7 @@
 #define INF_SCORE 1
 
 // point settings
-#define POINT_MULTIPLIER 1 // 30 points / 10player / 10min 0.005
+#define POINT_MULTIPLIER 0.005 // 30 points / 10player / 10min
 #define PLANE_POINT 100
 #define HELI_POINT 50
 #define TANK_POINT 50
