@@ -1,3 +1,3 @@
 // dev settings
-#define LOG_MODE 1
+#define LOG_MODE 0
 #define DEV_MODE 0
