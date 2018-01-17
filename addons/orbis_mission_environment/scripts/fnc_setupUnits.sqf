@@ -36,9 +36,11 @@ if (_objectFaction in ["rhs_faction_msv", "rhs_faction_vdv"]) then {
 	orbis_mission_heliArray pushBack [(configFile >> "CfgVehicles" >> "RHS_Mi24V_FAB_vvs"), "RHS_Mi24V_FAB_vvs", HELI_POINT, 1];
 
 	orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t72bd_tv"), "rhs_t72bd_tv", TANK_POINT, 1];
-	// orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t80u"), "rhs_t80u", TANK_POINT, 1];
+	orbis_mission_tankArray pushBack [(configFile >> "CfgVehicles" >> "rhs_t80u"), "rhs_t80u", TANK_POINT, 1];
 
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_btr80a_msv"), "rhs_btr80a_msv", VEHICLE_POINT, 1];
+	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_bmp3_late_msv"), "rhs_bmp3_late_msv", VEHICLE_POINT, 1];
+	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_bmd4m_vdv"), "rhs_bmd4m_vdv", VEHICLE_POINT, 1];
 	orbis_mission_vehicleArray pushBack [(configFile >> "CfgVehicles" >> "rhs_gaz66_zu23_msv"), "rhs_gaz66_zu23_msv", VEHICLE_POINT, 0.2];
 };
 
