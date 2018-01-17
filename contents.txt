@@ -18,5 +18,6 @@ orbis_sma_config: stable
 orbis_stui_config: stable
 orbis_suppress_config: stable
 orbis_tank_config: stable
+orbis_tfw_config: stable
 orbis_usaf_config: stable
 orbis_winter_setup: stable
