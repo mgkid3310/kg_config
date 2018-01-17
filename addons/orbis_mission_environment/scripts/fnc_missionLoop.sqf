@@ -72,6 +72,9 @@ private _groundLocationTemp = nearestLocations [_missionCenterPos, _locationName
 private _groundLocationSuitable = _groundLocationTemp select {((getPos _x distance _missionCenterPos) > (_missionAreaRadius * 1.5)) && ((getPos _x distance _missionPlayerPos) > 2000) && (count (getPos _x isFlatEmpty [-1, -1, 0.25, 1, 0, false, objNull]) > 0)};
 private _groundLocation = [0, 0, 0];
 private _isLocationValid = false;
+
+if (DEV_MODE > 0) then {diag_log format ["orbis_mission_environment missionLoop groundLocationTemp: %1, groundLocationSuitable: %2", _groundLocationTemp, _groundLocationSuitable];};
+
 if (count _groundLocationSuitable > 0) then { // find suitable position from locations
 	{
 		private _position = getPos _x;
@@ -138,7 +141,7 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	while {{(_pointDistribution select 1) >= (_x select 2)} count orbis_mission_heliArray > 0} do { // heli
 		private _availArray = orbis_mission_heliArray select {(_pointDistribution select 1) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
-		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+		private _spawnLocation = [_groundLocation, 10, 1000, 1, 0, 0.25, 0, [], []] call BIS_fnc_findSafePos;
 
 		if (_spawnLocation isEqualTo []) exitWith {};
 
@@ -159,7 +162,7 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	while {{(_pointDistribution select 2) >= (_x select 2)} count orbis_mission_tankArray > 0} do { // tank
 		private _availArray = orbis_mission_tankArray select {(_pointDistribution select 2) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
-		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+		private _spawnLocation = [_groundLocation, 10, 1000, 1, 0, 0.25, 0, [], []] call BIS_fnc_findSafePos;
 
 		if (_spawnLocation isEqualTo []) exitWith {};
 
@@ -179,7 +182,7 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 	while {{(_pointDistribution select 3) >= (_x select 2)} count orbis_mission_vehicleArray > 0} do { // vehicle
 		private _availArray = orbis_mission_vehicleArray select {(_pointDistribution select 3) >= (_x select 2)};
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
-		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawn select 1];
+		private _spawnLocation = [_groundLocation, 10, 1000, 1, 0, 0.25, 0, [], []] call BIS_fnc_findSafePos;
 
 		if (_spawnLocation isEqualTo []) exitWith {};
 
@@ -201,7 +204,7 @@ if (_isLocationValid) then { // check if we have good locations. If not, skip gr
 		private _thisSpawn = _availArray selectRandomWeighted (_availArray apply {_x select 3});
 		private _availArrayTransport = orbis_mission_transport + orbis_mission_truckArray;
 		private _thisSpawnTransport = _availArrayTransport selectRandomWeighted (_availArrayTransport apply {_x select 3});
-		private _spawnLocation = _groundLocation findEmptyPosition [100, 1000, _thisSpawnTransport select 1];
+		private _spawnLocation = [_groundLocation, 10, 1000, 1, 0, 0.25, 0, [], []] call BIS_fnc_findSafePos;
 
 		if (_spawnLocation isEqualTo []) exitWith {};
 
