@@ -1,23 +1,23 @@
 // ["mccRequest", [_player, _mccArray]] call CBA_fnc_serverEvent;
+#include "script_settings.sqf"
 
 // check if is running on server & mcc is installed
 if !(isServer) exitWith {
-	diag_log "orbis_remote_mcc mcc request fail: startMission not running on server";
+	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: missionRequested not running on server";};
 };
 if !(isClass (configFile >> "CfgPatches" >> "mcc_sandbox")) exitWith {
-	diag_log "orbis_remote_mcc mcc request fail: mcc is not installed";
+	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: mcc is not installed";};
 };
 
 // check if a mission is already running
 private _objects = entities [[], ["Logic"], true] select {typeOf _x isEqualTo "MCC_ModuleObjective_F"};
 private _isRunning = !(_objects apply {!(_x getVariable ["RscAttributeTaskState", ""] in ["Succeeded", "Failed"])} isEqualTo []);
 if (_isRunning) exitWith {
-	systemChat "orbis_remote_mcc mcc request fail: a mission is already running";
-	diag_log "orbis_remote_mcc mcc request fail: a mission is already running";
+	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: a mission is already running";};
 };
 
 params ["_player", "_mccArray"];
-diag_log format ["orbis_remote_mcc mcc requested by: %1, mccArray: %2", name _player, _mccArray];
+if (LOG_MODE > 0) then {diag_log format ["orbis_remote_mcc mcc requested by: %1, mccArray: %2", name _player, _mccArray];};
 
 // run mcc scripts for a mission
 private _enemyfaction = _mccArray select 1 select 1;

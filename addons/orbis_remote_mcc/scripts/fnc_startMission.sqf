@@ -8,7 +8,8 @@
 
 [] call orbis_mcc_fnc_startMission; */
 
-// diag_log "orbis_remote_mcc startMission run";
+#include "script_settings.sqf"
+if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc startMission run";};
 
 private _player = _this select 0;
 private _playerCount = count (allPlayers - entities "HeadlessClient_F");
@@ -42,7 +43,7 @@ private _enemyfaction = switch (_enemySide) do {
 private _civFaction = "CIV_F";
 if ((_sidePlayer isEqualTo "") || (_factionPlayer isEqualTo "") || (_enemySide isEqualTo "") || (_enemyfaction isEqualTo "") || (_civFaction isEqualTo "")) exitWith {
 	systemChat "orbis_remote_mcc mcc request fail: side/faction error";
-	diag_log "orbis_remote_mcc mcc request fail: side/faction error";
+	if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mcc request fail: side/faction error";};
 };
 
 private _objectsArray = ["None", "None", "None"];
@@ -67,5 +68,5 @@ private _mccArray = [
 	[0, [0, 1] selectRandomWeighted [0.2, 0.8]]
 ];
 
-// diag_log "orbis_remote_mcc mccRequest event fired";
+if (LOG_MODE > 0) then {diag_log "orbis_remote_mcc mccRequest event fired";};
 ["mccRequest", [_player, _mccArray]] call CBA_fnc_serverEvent;

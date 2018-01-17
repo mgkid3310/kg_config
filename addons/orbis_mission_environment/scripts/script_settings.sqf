@@ -1,3 +1,7 @@
+// dev settings
+#define LOG_MODE 0
+#define DEV_MODE 0
+
 // define unit scores
 #define PLANE_SCORE 10
 #define HELI_SCORE 5
@@ -12,7 +16,6 @@
 #define TANK_POINT 50
 #define VEHICLE_POINT 30
 #define INF_POINT 5
-orbis_misison_pointsGeneral = [PLANE_POINT, HELI_POINT, TANK_POINT, VEHICLE_POINT, INF_POINT];
 
 #define RETURN_RATIO 0
 
@@ -22,5 +25,5 @@ orbis_misison_basicCommander = [1, 1, 1, 1, 1];
 orbis_mission_commanderArray = [orbis_misison_basicCommander];
 
 // other settings
-#define LOCAL_MAX 216000 // 60pts * 60min
-#define LOCAL_STD 36000 // 60pts * 10min
+#define LOCAL_MAX 96000 // 20inf * 80min
+#define LOCAL_STD 18000 // 20inf * 15min
