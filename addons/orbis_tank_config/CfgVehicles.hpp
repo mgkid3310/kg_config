@@ -80,6 +80,13 @@ class CfgVehicles {
 				init = "_this spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
+		class Exhausts {
+			class Exhaust1 {
+				position = "vyfuk start";
+				direction = "vyfuk konec";
+				effect = ""; // "ExhaustsEffectBig"
+			};
+		};
 	};
 
 	class APC_Tracked_03_base_F: Tank_F {};
@@ -129,6 +136,13 @@ class CfgVehicles {
 		class EventHandlers: EventHandlers {
 			class RHSUSF_EventHandlers {
 				init = "_this spawn orbis_tank_fnc_vehicleInit;";
+			};
+		};
+		class Exhausts {
+			class Exhaust1 {
+				position = "vyfuk start";
+				direction= " vyfuk konec";
+				effect = ""; // "ExhaustEffectTankSide"
 			};
 		};
 	};
@@ -190,6 +204,28 @@ class CfgVehicles {
 		class EventHandlers: EventHandlers {
 			class RHSUSF_EventHandlers {
 				init = "_this spawn orbis_tank_fnc_vehicleInit; _this call RHS_fnc_M1_init";
+			};
+		};
+		class Exhausts {
+			class Exhaust1 {
+				position = "exhaustL1";
+				direction = "exhaustL_Dir";
+				effect = ""; //"RHS_ExhaustEffectTankGasBack"
+			};
+			class Exhaust1L {
+				position = "exhaustL2";
+				direction = "exhaustL_Dir";
+				effect = ""; //"RHS_ExhaustEffectTankGasBack"
+			};
+			class Exhaust2 {
+				position = "exhaustR1";
+				direction = "exhaustR_Dir";
+				effect = ""; //"RHS_ExhaustEffectTankGasBack"
+			};
+			class Exhaust2R {
+				position = "exhaustR2";
+				direction = "exhaustR_Dir";
+				effect = ""; //"RHS_ExhaustEffectTankGasBack"
 			};
 		};
 		/* class ACE_Actions: ACE_Actions {
