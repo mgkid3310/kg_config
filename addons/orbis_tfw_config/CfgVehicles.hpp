@@ -21,7 +21,6 @@ class CfgVehicles {
 		hiddenSelectionsTextures[] = {"orbis_tfw_config\textures\ROKA_D_Digi_Backpack_Radio_IA.paa"};
 	};
 	class tfw_roka_arctic: tfw_roka_digi{
-		scope = 1;
 		displayName = "ROKA RT-1523G (ASIP) Arctic";
 		hiddenSelectionsTextures[] = {"orbis_tfw_config\textures\ROKA_D_Arctic_Backpack_Radio_IA.paa"};
 	};
@@ -43,7 +42,7 @@ class CfgVehicles {
 	};
 
 	class tfw_roka_a_digi: tfw_ilbe_a_wd {
-		scope = 1;
+		scope = 2;
 		displayName = "ROKA RT-1523G (ASIP) Digi ANT";
 		descriptionShort = "RT-1523G (ASIP) long range radio 20km";
 		hiddenSelectionsTextures[] = {"orbis_tfw_config\textures\ROKA_D_Digi_Backpack_Radio_IA.paa"};
@@ -70,7 +69,7 @@ class CfgVehicles {
 	};
 
 	class tfw_roka_dd_digi: tfw_ilbe_dd_wd {
-		scope = 1;
+		scope = 2;
 		displayName = "ROKA RT-1523G (ASIP) Digi VHF/ UHF Antenna";
 		descriptionShort = "RT-1523G (ASIP) long range radio 20km";
 		hiddenSelectionsTextures[] = {"orbis_tfw_config\textures\ROKA_D_Digi_Backpack_Radio_IA.paa"};
@@ -97,7 +96,7 @@ class CfgVehicles {
 	};
 
 	class tfw_roka_blade_digi: tfw_ilbe_blade_wd {
-		scope = 1;
+		scope = 2;
 		displayName = "ROKA RT-1523G (ASIP) Digi VHF Blade Antenna";
 		descriptionShort = "RT-1523G (ASIP) long range radio 20km";
 		hiddenSelectionsTextures[] = {"orbis_tfw_config\textures\ROKA_D_Digi_Backpack_Radio_IA.paa"};
