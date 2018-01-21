@@ -12,8 +12,8 @@ class CfgPatches {
 	orbis_winter_setup = "call compile preProcessFileLineNumbers 'orbis_winter_setup\XEH_preInit.sqf'";
 }; */
 
-class Extended_postInit_EventHandlers {
+/* class Extended_postInit_EventHandlers {
 	class orbis_winter_setup {
 		init = "call compile preprocessFileLineNumbers 'orbis_winter_setup\XEH_postInit.sqf'";
 	};
-};
+}; */
