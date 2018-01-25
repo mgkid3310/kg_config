@@ -1,4 +1,4 @@
-# kg_config
+# kg_optic
 Source code for Arma 3 KG(Kimchi Guys) group's custom addon
 
 ----
