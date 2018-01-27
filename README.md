@@ -13,5 +13,6 @@ wip_ver: Work in progress addons. Does not include files from dev_ver or master 
 
 Authors (Contributors)
 
-Orbis2358 (mgkid3310@naver.com) : Project Manager / Programmer  
+Hush1234 (jsw7448@naver.com) : Project Manager  
+Orbis2358 (mgkid3310@naver.com) : Programmer  
 jadeguy (kimjisu0914@naver.com) : Texture Designer
