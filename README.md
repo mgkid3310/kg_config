@@ -1,6 +1,8 @@
 # kg_config
 Source code for Arma 3 KG(Kimchi Guys) group's custom addon
 
+This git is currently not used. Checkout kg_optic by Hush1234 instead.
+
 ----
 
 dev_ver: Development version. Will be soon added to stable version. Uploaded as 'KG Config dev ver.' on Steam Workshop but might not be synced real-time.
@@ -13,6 +15,5 @@ wip_ver: Work in progress addons. Does not include files from dev_ver or master 
 
 Authors (Contributors)
 
-Hush1234 (jsw7448@naver.com) : Project Manager  
-Orbis2358 (mgkid3310@naver.com) : Programmer  
+Orbis2358 (mgkid3310@naver.com) : Project Manager / Programmer  
 jadeguy (kimjisu0914@naver.com) : Texture Designer
