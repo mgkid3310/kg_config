@@ -10,5 +10,5 @@ master: Stable version. Currently uploaded as 'KG Optic' on Steam Workshop.
 Authors (Contributors)
 
 Hush1234 (jsw7448@naver.com) : Project Manager  
-Orbis2358 (mgkid3310@naver.com) : Programmer   
+Orbis2358 (mgkid3310@naver.com) : Programmer  
 jadeguy (kimjisu0914@naver.com) : Texture Designer 
