@@ -51,6 +51,15 @@ class CfgVehicles {
 		};
 	};
 
+	class rhsusf_m109_usarmy: StaticCannon {
+		class Turrets: Turrets {
+			class MainTurret: MainTurret {
+				turretInfoType = "ACE_Mk6_RscWeaponRangeArtillery";
+				gunnerOpticsModel = "\A3\Weapons_F\acc\reticle_Mortar_01_F.p3d";
+			};
+		};
+	};
+
 	/* class Man;
 	class CAManBase: Man {
 		class ACE_SelfActions {
