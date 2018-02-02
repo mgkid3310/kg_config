@@ -3,8 +3,8 @@ class CfgPatches {
 		name = "Orbis Airforce Config";
 		author = "Orbis2358";
 		requiredVersion = 0.1;
-		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", /* "FIR_F16_F", "FIR_F16D_F", */"JS_JC_FA18", "JS_JC_SU35"};
-		units[] = {/* "F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics" */};
+		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", "FIR_F16_F", "FIR_F16D_F", "JS_JC_FA18", "JS_JC_SU35"};
+		units[] = {"F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics"};
 		weapons[] = {};
 	};
 };
@@ -209,7 +209,7 @@ class CfgVehicles {
 	class Plane_Fighter_03_base_F: Plane_Base_F {};
 
 	#include "FIR_A10_config.hpp"
-	// #include "FIR_F16_config.hpp"
+	#include "FIR_F16_config.hpp"
 	#include "JSJC_FA18_config.hpp"
 	#include "JSJC_Su35_config.hpp"
 };
