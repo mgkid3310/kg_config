@@ -1,7 +1,7 @@
 private _isInit = missionNamespace getVariable ["vvsPointInit", true];
 
 if !(_isInit) then {
-	private _players = count (allPlayers - entities "HeadlessClient_F")
+	private _players = count (allPlayers - entities "HeadlessClient_F");
 	private _points = linearConversion [10, 30, _players, 100, 200];
 	missionNamespace setVariable ["VVScoin", _points, true];
 	hintSilent format ["VVS points given: %1", _points];
