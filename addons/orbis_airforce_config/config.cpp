@@ -82,7 +82,7 @@ class CfgMagazines {
 	};
 
 	class FIR_F16C_Fueltank_P_1rnd_M: VehicleMagazine {
-		hardpoints[] = {"FIR_F16_AG_HP", "FIR_Aerobatics_Side", "FIR_Training_Side"};
+		hardpoints[] = {"FIR_F16_AG_HP", "FIR_F16_Fueltank_HP_config", "FIR_Aerobatics_Side", "FIR_Training_Side"};
 	};
 	class FIR_F16C_center_Fueltank_P_1rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_Under_HP", "FIR_Aerobatics_Center", "FIR_Training_Center"};
@@ -112,6 +112,10 @@ class CfgMagazines {
 	};
 	class FIR_Meteor_P_1rnd_M : VehicleMagazine {
 		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config", "FIR_Meteor_HP_config"};
+	};
+
+	class FIR_AGM88_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"FIR_F16_Combined_HP", "FIR_SH_Combined_HP" ,"FIR_BLUFOR_Combined_HP", "FIR_AV8B_HARM_HP", "FIR_EA18G_Combined_HP", "FIR_HARM_HP_config"};
 	};
 
 	/* class js_m_fa18_buddypod_x1: VehicleMagazine {
