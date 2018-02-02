@@ -188,14 +188,14 @@
 			class VehicleSystemsDisplayManagerComponentLeft: VehicleSystemsTemplateLeftSensorsPilot {
 				class Components: components {
 					class SensorDisplay {
-						range[] = {2000, 4000, 8000, 16000, 32000};
+						range[] = {2000, 4000, 8000, 16000, 30000};
 					};
 				};
 			};
 			class VehicleSystemsDisplayManagerComponentRight: VehicleSystemsTemplateRightSensorsPilot {
 				class Components: components {
 					class SensorDisplay {
-						range[] = {2000, 4000, 8000, 16000, 32000};
+						range[] = {2000, 4000, 8000, 16000, 30000};
 					};
 				};
 			};
