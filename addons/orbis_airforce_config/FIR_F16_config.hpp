@@ -123,7 +123,7 @@
 		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
 		magazines[] = {"FIR_240rnd_CMFlare_Chaff_Magazine"};
 
-		#include "FIR_F16Training_Components.hpp.hpp"
+		#include "FIR_F16Training_Components.hpp"
 
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16TrainingInit;";
