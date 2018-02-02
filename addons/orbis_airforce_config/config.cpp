@@ -4,7 +4,7 @@ class CfgPatches {
 		author = "Orbis2358";
 		requiredVersion = 0.1;
 		requiredAddons[] = {"FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", "FIR_F16_F", "FIR_F16D_F", "JS_JC_FA18", "JS_JC_SU35"};
-		units[] = {"F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics"};
+		units[] = {"F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics", "F16D_Training"};
 		weapons[] = {};
 	};
 };
@@ -82,10 +82,10 @@ class CfgMagazines {
 	};
 
 	class FIR_F16C_Fueltank_P_1rnd_M: VehicleMagazine {
-		hardpoints[] = {"FIR_F16_AG_HP", "FIR_Aerobatics_Side"};
+		hardpoints[] = {"FIR_F16_AG_HP", "FIR_Aerobatics_Side", "FIR_Training_Side"};
 	};
 	class FIR_F16C_center_Fueltank_P_1rnd_M: VehicleMagazine {
-		hardpoints[] = {"FIR_F16_Under_HP", "FIR_Aerobatics_Center"};
+		hardpoints[] = {"FIR_F16_Under_HP", "FIR_Aerobatics_Center", "FIR_Training_Center"};
 	};
 	class FIR_SUU25_P_8rnd_M: VehicleMagazine {
 		hardpoints[] = {"FIR_F16_Combined_HP", "FIR_F16_AG_HP", "B_BOMB_PYLON", "FIR_A10_BOMB_HP", "FIR_SH_AG_HP", "FIR_Aerobatics_Side", "FIR_Aerobatics_Wing"};
@@ -108,7 +108,10 @@ class CfgMagazines {
 	};
 	class FIR_AIM9X_P_2rnd_M : VehicleMagazine{
 		displayName = "AIM-9X Sidewinder x2";
-		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config"};			
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config"};	
+	};
+	class FIR_Meteor_P_1rnd_M : VehicleMagazine {
+		hardpoints[] = {"B_BOMB_PYLON", "FIR_A10C_AA_HP", "FIR_BLUFOR_AA_HP", "FIR_BLUFOR_Combined_HP", "FIR_SH_Dual_HP_config", "FIR_Meteor_HP_config"};
 	};
 
 	/* class js_m_fa18_buddypod_x1: VehicleMagazine {
