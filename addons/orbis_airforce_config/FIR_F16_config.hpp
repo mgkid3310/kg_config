@@ -24,14 +24,17 @@
 							"FIR_MISC",
 							"FIR_Clean_MISC",
 							"FIR_F16_AA_HP",
-							"FIR_Meteor_HP_config"
+							"FIR_Meteor_HP_config",
+							"FIR_HARM_HP_config"
 						};
 						attachment="FIR_AIM120_P_1rnd_M";
 					};
 					class pylons4: pylons1 {
 						hardpoints[] = { // "FIR_F16_AG_HP"
 							"FIR_MISC",
-							"FIR_Clean_MISC"
+							"FIR_Clean_MISC",
+							"FIR_F16_Fueltank_HP_config",
+							"FIR_HARM_HP_config"
 						};
 						attachment="FIR_F16C_Fueltank_P_1rnd_M";
 					};
@@ -123,7 +126,7 @@
 		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
 		magazines[] = {"FIR_240rnd_CMFlare_Chaff_Magazine"};
 
-		#include "FIR_F16Training_Components.hpp.hpp"
+		#include "FIR_F16Training_Components.hpp"
 
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16TrainingInit;";
