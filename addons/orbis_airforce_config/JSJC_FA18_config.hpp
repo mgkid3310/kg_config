@@ -66,7 +66,7 @@
 
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18E {
-				init = "_this spawn JS_JC_fnc_FA18E_init; _this spawn orbis_airforce_fnc_FA18Einit; _this call BIS_fnc_AircraftSystemsInit";
+				init = "_this spawn JS_JC_fnc_FA18E_init; _this spawn orbis_airforce_fnc_FA18EInit; _this call BIS_fnc_AircraftSystemsInit";
 				hit = ""; // _this call BIS_fnc_PlaneAiEject
 			};
 		};
@@ -115,18 +115,75 @@
 			};
 		};
 
-		/* class Turrets {
+		class Turrets {
 			class MainTurret: NewTurret {
 				class Components: Components {
 					#include "JSJC_FA18_Sensors.hpp"
 				};
 			};
-		}; */
+		};
 
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18F {
-				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18Finit; _this call BIS_fnc_AircraftSystemsInit";
+				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18FInit; _this call BIS_fnc_AircraftSystemsInit";
 				hit = "";
 			};
 		};
 	};
+
+	/* class JS_JC_FA18F_Training: JS_JC_FA18F {
+		displayName = "F/A-18 F Super Hornet (Training)";
+
+		class Components: Components {
+			class TransportPylonsComponent {
+				class Pylons {
+					class pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon2: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon3: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon4: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon5: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon6: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon7: pylon1 {
+						hardpoints[] = {"JSJC_Fueltank"};
+					};
+					class pylon8: pylon1 {
+						hardpoints[] = {"JSJC_Fueltank"};
+					};
+					class pylon9: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon10: pylon1 {
+						hardpoints[] = {};
+					};
+					class pylon11: pylon1 {
+						hardpoints[] = {"JSJC_Fueltank"};
+					};
+				};
+			};
+		};
+
+		class Turrets {
+			class MainTurret: NewTurret {
+				isCopilot = 1;
+				gunnerName = "Instructor";
+			};
+		};
+
+		class Eventhandlers: Eventhandlers {
+			class JS_JC_FA18F_Training: JS_JC_FA18F {
+				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18FTrainingInit; _this call BIS_fnc_AircraftSystemsInit";
+			};
+		};
+	}; */
