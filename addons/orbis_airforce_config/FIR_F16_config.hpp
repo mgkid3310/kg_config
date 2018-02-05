@@ -58,14 +58,14 @@
 		};
 
 		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_fnc_airforce_commonInit;";
+			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; [_this, true] spawn orbis_airforce_fnc_F16CommonLoop;";
 		};
 	};
 	class FIR_F16D_Base: Plane_Fighter_03_base_F {
 		#include "FIR_F16_UserActions.hpp"
 
 		class EventHandlers {
-			// init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_fnc_airforce_commonInit;";
+			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; [_this, true] spawn orbis_airforce_fnc_F16CommonLoop;";
 		};
 	};
 
@@ -87,7 +87,7 @@
 		
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16AerobaticInit;";
-			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
+			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
 		};
 	};
 
@@ -109,7 +109,7 @@
 
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16AerobaticInit;";
-			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
+			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [this, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
 		};
 	};
 	class F16D_Training: FIR_F16D_ROKAF {
