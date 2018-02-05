@@ -5,6 +5,9 @@ private _particleColorOld = _vehicle getVariable ["particleColor", [0, 0, 0, 0]]
 private _objectFollowOld = _vehicle getVariable ["objectFollow", objNull];
 private _particleSourceOld = _vehicle getVariable ["smokeSource", objNull];
 
+deleteVehicle _objectFollowOld;
+deleteVehicle _particleSourceOld;
+
 if (_smokeMod isEqualTo _smokeModOld) exitWith {};
 if (_smokeMod isEqualTo "off") exitWith {
 	_vehicle setVariable ["smokeMod", "off"];
@@ -12,9 +15,6 @@ if (_smokeMod isEqualTo "off") exitWith {
 	_vehicle setVariable ["objectFollow", objNull];
 	_vehicle setVariable ["smokeSource", objNull];
 };
-
-deleteVehicle _objectFollowOld;
-deleteVehicle _particleSourceOld;
 
 sleep 0.3;
 
