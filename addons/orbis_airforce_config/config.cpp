@@ -206,12 +206,12 @@ class VehicleSystemsTemplateRightSensorsPilot: DefaultVehicleSystemsDisplayManag
 	class components: components {};
 };
 
+class Components;
+class NewTurret;
 class Eventhandlers;
 class CfgVehicles {
 	class Plane;
-	class Plane_Base_F: Plane {
-		class Components;
-	};
+	class Plane_Base_F: Plane {};
 	class Plane_CAS_01_base_F: Plane_Base_F {};
 	class Plane_Fighter_03_base_F: Plane_Base_F {};
 
