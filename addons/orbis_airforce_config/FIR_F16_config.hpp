@@ -123,8 +123,8 @@
 		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa";
 		hiddenselectionstextures[] = {"FIR_F16D\skin\body_rokaf_d_co.paa", "FIR_F16D\skin\wing_rokaf_co.paa"};
 		editorPreview = "\FIR_F16D\ui\preview\pic_rokaf.paa";
-		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
-		magazines[] = {"FIR_240rnd_CMFlare_Chaff_Magazine"};
+		weapons[] = {"FIR_MasterArm"};
+		magazines[] = {};
 
 		#include "FIR_F16Training_Components.hpp"
 

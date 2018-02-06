@@ -13,11 +13,16 @@ while {alive _vehicle} do {
 		};
 
 		if (_flare isEqualType "") then {
-			_vehicle removeMagazines "FIR_240rnd_CMFlare_Chaff_Magazine";
-			_vehicle addMagazine _flare;
+			if (_flare isEqualTo "") then {
+				_vehicle removeMagazines "FIR_240rnd_CMFlare_Chaff_Magazine";
+				_vehicle removeweapon "FIR_CMLauncher";
+			} else {
+				_vehicle removeMagazines "FIR_240rnd_CMFlare_Chaff_Magazine";
+				_vehicle addMagazine _flare;
+			};
 		};
 
-		private _f16_pylon = GetPylonMagazines _vehicle;
+		private _f16_pylon = getPylonMagazines _vehicle;
 		private _fuelcount = {_x == "FIR_F16C_Fueltank_P_1rnd_M"} count _f16_pylon;
 		private _fuelcount2 = {_x == "FIR_F16C_center_Fueltank_P_1rnd_M"} count _f16_pylon;
 		private _fuelLevel = 1;
