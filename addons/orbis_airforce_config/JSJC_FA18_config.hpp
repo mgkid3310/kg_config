@@ -133,6 +133,8 @@
 
 	class JS_JC_FA18F_Training: JS_JC_FA18F {
 		displayName = "F/A-18 F Super Hornet (Training)";
+		weapons[] = {"js_w_master_arms_safe"};
+		magazines[] = {};
 
 		class Components: Components {
 			class TransportPylonsComponent {
