@@ -117,6 +117,9 @@
 
 		class Turrets {
 			class MainTurret: NewTurret {
+				// isCopilot = 1;
+				primaryGunner = 0;
+
 				class Components: Components {
 					#include "JSJC_FA18_Sensors.hpp"
 				};
@@ -131,7 +134,7 @@
 		};
 	};
 
-	class JS_JC_FA18F_Training: JS_JC_FA18F {
+	/* class JS_JC_FA18F_Training: JS_JC_FA18F {
 		displayName = "F/A-18 F Super Hornet (Training)";
 		weapons[] = {"js_w_master_arms_safe"};
 		magazines[] = {};
@@ -176,7 +179,7 @@
 			};
 		};
 
-		class Turrets {
+		class Turrets: Turrets {
 			class MainTurret: NewTurret {
 				isCopilot = 1;
 				gunnerName = "Instructor";
@@ -188,4 +191,4 @@
 				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18FTrainingInit; _this call BIS_fnc_AircraftSystemsInit";
 			};
 		};
-	};
+	}; */
