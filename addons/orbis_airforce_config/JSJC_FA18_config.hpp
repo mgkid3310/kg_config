@@ -131,7 +131,7 @@
 		};
 	};
 
-	/* class JS_JC_FA18F_Training: JS_JC_FA18F {
+	class JS_JC_FA18F_Training: JS_JC_FA18F {
 		displayName = "F/A-18 F Super Hornet (Training)";
 
 		class Components: Components {
@@ -186,4 +186,4 @@
 				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18FTrainingInit; _this call BIS_fnc_AircraftSystemsInit";
 			};
 		};
-	}; */
+	};
