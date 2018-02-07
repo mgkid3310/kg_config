@@ -16,15 +16,12 @@ class CfgWeapons {
 	class cannon_120mm: CannonCore {
 		ace_overpressure_range = 0.1;
 	};
-
 	class cannon_125mm: CannonCore {
 		ace_overpressure_range = 0.1;
 	};
-
 	class cannon_105mm: CannonCore {
 		ace_overpressure_range = 0.1;
 	};
-
 	class mortar_155mm_AMOS: CannonCore {
 		ace_overpressure_range = 0.1;
 	};
@@ -34,13 +31,12 @@ class CfgWeapons {
 
 class CfgSounds {
 	class RHSUSF_Error_High {
-		name="Tank beep high";
-		sound[]=
-		{
+		name = "Tank beep high";
+		sound[] = {
 			"\rhsusf\addons\rhsusf_c_m1a1\scripts\alarm_loop1.wss",
 			10,
 			1.5
 		};
-		titles[]={};
+		titles[] = {};
 	};
 };
