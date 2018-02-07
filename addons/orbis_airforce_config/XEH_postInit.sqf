@@ -5,7 +5,7 @@
 		"ace_pylons_setPylonLoadOutEvent", 
 		{
 			params ["_aircraft", "_pylonIndex", "_pylon", "_turret"];
-			sleep 1;
+			sleep 0.1;
 			private _isForcedRear = ("FIR_SH_AG_HP" in getArray (configFile >> "CfgMagazines" >> _pylon >> "hardpoints")) && (typeOf _aircraft in ["JS_JC_FA18F"]);
 			_aircraft setPylonLoadOut [_pylonIndex, _pylon, true, [_turret, [0]] select _isForcedRear];
 		}
