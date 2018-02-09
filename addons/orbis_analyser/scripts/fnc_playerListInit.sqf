@@ -21,8 +21,10 @@ private _groupNames = _groupList apply {_x select 1};
 
 private _groups = [];
 {
-	_groups pushBack (units _x select (_x in allPlayers));
+	_groups pushBack (units _x select {_x in allPlayers});
 } forEach allGroups;
+
+private _targetGroups = _groups select {side (_x select 0) isEqualTo side player};
 
 private _text = "플레이어 목록";
 {
@@ -43,6 +45,6 @@ private _text = "플레이어 목록";
 		};
 		_text = _text + endl + format ["%1: %2", _job, name _x];
 	} forEach _x;
-} forEach (_groups select {side (_x select 0) isEqualTo side player});
+} forEach _targetGroups;
 
 _text
