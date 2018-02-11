@@ -1,4 +1,9 @@
 	class FIR_F16_Base: Plane_Fighter_03_base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
+
+		
 		#include "FIR_F16_UserActions.hpp"
 
 		class Components: Components {
@@ -65,6 +70,10 @@
 		};
 	};
 	class FIR_F16D_Base: Plane_Fighter_03_base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
+
 		#include "FIR_F16_UserActions.hpp"
 
 		class EventHandlers {

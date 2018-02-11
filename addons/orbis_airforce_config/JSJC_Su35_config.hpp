@@ -1,4 +1,8 @@
 	class JS_JC_SU35: Plane_Base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
+
 		class Components: Components {
 			#include "JSJC_FA18_Sensors.hpp"
 

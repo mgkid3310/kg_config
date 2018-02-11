@@ -1,4 +1,8 @@
 	class FIR_A10A_Base: Plane_CAS_01_base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
+
 		#include "FIR_A10_UserActions.hpp"
 		
 		class EventHandlers {
@@ -6,6 +10,10 @@
 		};
 	};
 	class FIR_A10C_Base: Plane_CAS_01_base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
+
 		#include "FIR_A10_UserActions.hpp"
 
 		class Components: Components {
