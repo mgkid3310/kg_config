@@ -3,7 +3,6 @@
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
 
-		
 		#include "FIR_F16_UserActions.hpp"
 
 		class Components: Components {
