@@ -9,52 +9,28 @@
 			class TransportPylonsComponent {
 				class pylons {
 					class pylons1 {
-						hardpoints[] = {
-							"FIR_MISC",
-							"FIR_F16_AA_HP"
-						};
-						attachment="FIR_AIM120_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_F16_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylons2: pylons1 {
-						hardpoints[] = {
-							"FIR_MISC",
-							"FIR_Clean_MISC",
-							"FIR_F16_AA_HP"
-						};
-						attachment="FIR_AIM9X_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_Clean_MISC", "FIR_F16_AA_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylons3: pylons1 {
-						hardpoints[] = { // "FIR_F16_Combined_HP"
-							"FIR_MISC",
-							"FIR_Clean_MISC",
-							"FIR_F16_AA_HP",
-							"FIR_Meteor_HP_config",
-							"FIR_HARM_HP_config"
-						};
-						attachment="FIR_AIM120_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_Clean_MISC", "FIR_F16_AA_HP", "FIR_Meteor_HP_config", "FIR_HARM_HP_config"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylons4: pylons1 {
-						hardpoints[] = { // "FIR_F16_AG_HP"
-							"FIR_MISC",
-							"FIR_Clean_MISC",
-							"FIR_F16_Fueltank_HP_config",
-							"FIR_HARM_HP_config"
-						};
-						attachment="FIR_F16C_Fueltank_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_Clean_MISC", "FIR_F16_Fueltank_HP_config", "FIR_HARM_HP_config"};
+						attachment = "FIR_F16C_Fueltank_P_1rnd_M";
 					};
 					class pylons5: pylons1 {
-						hardpoints[] = {
-							"FIR_MISC",
-							"FIR_F16_Under_HP"
-						};
-						attachment="FIR_F16C_center_Fueltank_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_F16_Under_HP"};
+						attachment = "FIR_F16C_center_Fueltank_P_1rnd_M";
 					};
 					class pylons6: pylons1 {
-						hardpoints[] = {
-							"FIR_MISC",
-							"FIR_F16_Aux_HP"
-						};
-						attachment="FIR_Empty_P_1rnd_M";
+						hardpoints[] = {"FIR_MISC", "FIR_F16_Aux_HP"};
+						attachment = "FIR_Empty_P_1rnd_M";
 					};
 					class pylons7: pylons4 {};
 					class pylons8: pylons3 {};

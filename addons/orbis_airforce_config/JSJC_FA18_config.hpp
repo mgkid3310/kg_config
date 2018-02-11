@@ -33,36 +33,47 @@
 							"FIR_SH_Fueltank_HP",
 							"FIR_SH_Aux_HP" */
 						};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon2: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon3: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon4: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon5: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", /* "FIR_SH_AG_HP", */"JSJC_Fueltank"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon6: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", /* "FIR_SH_AG_HP", */"JSJC_Fueltank"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon7: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "JSJC_Fueltank"};
+						attachment = "FIR_AIM120_P_type1_2rnd_M";
 					};
 					class pylon8: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "JSJC_Fueltank"};
+						attachment = "FIR_AIM120_P_type1_2rnd_M";
 					};
 					class pylon9: pylon1 {
 						hardpoints[] = {"FIR_SH_AA_HP", "FIR_SH_AUX_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon10: pylon1 {
 						hardpoints[] = {"FIR_SH_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon11: pylon1 {
 						hardpoints[] = {"FIR_SH_Under_HP", "JSJC_Fueltank"};
+						attachment = "js_m_fa18_wing_tank_x1";
 					};
 				};
 			};
@@ -88,36 +99,47 @@
 				class Pylons {
 					class pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon2: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP"};
+						attachment = "FIR_AIM9X_P_1rnd_M";
 					};
 					class pylon3: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon4: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon5: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						attachment = "FIR_AGM65G_P_1rnd_M";
 					};
 					class pylon6: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						attachment = "FIR_AGM65G_P_1rnd_M";
 					};
 					class pylon7: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						attachment = "FIR_GBU38_P_1rnd_M";
 					};
 					class pylon8: pylon1 {
 						hardpoints[] = {"FIR_SH_Wingtip_HP", "FIR_SH_AA_HP", "FIR_SH_Dual_HP_config", "FIR_SH_AG_HP", "JSJC_Fueltank"};
+						attachment = "FIR_GBU38_P_1rnd_M";
 					};
 					class pylon9: pylon1 {
 						hardpoints[] = {"FIR_SH_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon10: pylon1 {
 						hardpoints[] = {"FIR_SH_AA_HP"};
+						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylon11: pylon1 {
 						hardpoints[] = {"FIR_SH_Under_HP", "JSJC_Fueltank"};
+						attachment = "js_m_fa18_wing_tank_x1";
 					};
 				};
 			};
