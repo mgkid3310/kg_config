@@ -83,8 +83,9 @@ class CfgAmmo {
 	class rhs_ammo_d462 : Smoke_120mm_AMOS_White {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
-		submunitionAmmo = "rhs_ammo_m18_green";
-		submunitionConeAngle = 8;
+		submunitionAmmo = "SmokeShellGreen";
+		submunitionConeAngle = 6;
+		submunitionConeType[] = {"poissondisc",8};
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
