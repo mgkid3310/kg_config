@@ -14,7 +14,7 @@ class cfgWeapons {
 		canLock = 0;
 		
 		class ItemInfo : CBA_MiscItem_ItemInfo {
-			mass = 80;
+			mass = 40;
 		};
 	};
 };

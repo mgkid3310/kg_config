@@ -10,7 +10,7 @@ class CfgVehicles {
                     statement = "[_player,'Deadly_item_ConcertinaWire'] call deadly_concertina_wire_fnc_place";
 					showDisabled = 0;
 					priority = 2;
-					icon = "\Deadly_Concertina_Wire\UI\concertina_wire.paa";
+					icon = "\deadly_concertina_wire\UI\concertina_wire.paa";
 				};
 			};
 		};
