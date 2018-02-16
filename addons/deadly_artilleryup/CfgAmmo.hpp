@@ -2,6 +2,9 @@ class CfgAmmo {
 	class Sh_155mm_AMOS;
 	class Smoke_120mm_AMOS_White;
 	class Flare_82mm_AMOS_White;
+	class rhs_ammo_of462;
+	class rhs_ammo_bk_base;
+	class SmokeShellArty;
 
 	class rhs_ammo_m1_he: Sh_155mm_AMOS {
 		simulation = "shotBullet";
@@ -65,11 +68,11 @@ class CfgAmmo {
 		whistleDist = 0;
 	};
 	
-	class rhs_ammo_of462;
-	class rhs_ammo_bk_base;
+	
 	class rhs_ammo_3of56 : rhs_ammo_of462 {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
+		EffectFly = "ArtilleryTrails";
 		hit = 260;
 		indirectHit = 190;
 		indirectHitRange = 45;
@@ -78,14 +81,16 @@ class CfgAmmo {
 	class rhs_ammo_bk13 : rhs_ammo_bk_base {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell2";
+		EffectFly = "ArtilleryTrails";
 	};
 	
 	class rhs_ammo_d462 : Smoke_120mm_AMOS_White {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
-		submunitionAmmo = "SmokeShellGreen";
+		EffectFly = "ArtilleryTrails";
+		submunitionAmmo = "SmokeShellArtyGreen";
 		submunitionConeAngle = 6;
-		submunitionConeType[] = {"poissondisc",8};
+		submunitionConeType[] = {"poissondisc",4};
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
@@ -96,15 +101,26 @@ class CfgAmmo {
 		whistleDist = 0;
 	};
 	
-	class rhs_ammo_s463 : Flare_82mm_AMOS_White {
-		ace_rearm_caliber = 122;
-		ace_rearm_dummy = "dummy_artillery_shell";
+	class SmokeShellArtyGreen : SmokeShellArty {
+		smokeColor[] = {0.2125,0.6258,0.4891,1};
+		timeToLive = 60;
 	};
 	
 	/*
+	class rhs_ammo_s463 : Flare_82mm_AMOS_White {
+		ace_rearm_caliber = 122;
+		ace_rearm_dummy = "dummy_artillery_shell";
+		EffectFly = "ArtilleryTrails";
+		brightness = 0;
+		intensity = 0;
+		lightColor[] = {0.4,0.5,0.4,0.2};
+	};
+	*/
+	
 	class rhs_ammo_s463 : Smoke_120mm_AMOS_White {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
+		EffectFly = "ArtilleryTrails";
 		submunitionAmmo = "rhs_ammo_s463_flare";
 		submunitionConeAngle = 0;
 		submunitionConeType[] = {"randomcenter",1};
@@ -116,12 +132,12 @@ class CfgAmmo {
 		soundHit[] = {"", 0, 1};
 		CraterEffects = "";
 		whistleDist = 0;
-		triggerDistance = 400;
-		triggerSpeedCoef = 0.01;
+		triggerDistance = 600;
+		triggerSpeedCoef = 1;
 	};
 	
 	class rhs_ammo_s463_flare : Flare_82mm_AMOS_White {
-		coefGravity = 0.6;
+		coefGravity = 0.5;
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
@@ -131,10 +147,9 @@ class CfgAmmo {
 		CraterEffects = "";
 		whistleDist = 0;
 		triggerTime = 0.1;
-		lightColor[] = {0.4,0.6,0.4,0};
-		brightness = 20;
+		lightColor[] = {0.4,0.5,0.4,0.2};
+		brightness = 10;
 		intensity = 4000000;
-		timeToLive = 120;
+		timeToLive = 140;
 	};
-	*/
 };
