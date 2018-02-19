@@ -42,7 +42,7 @@
 					class pylons6: pylons5 {
 						hardpoints[] = {"FIR_MISC", "FIR_A10_BOMB_HP", "FIR_A10C_BOMB_HP", "FIR_A10_BOMB_2K_HP", "FIR_A10C_BOMB_2K_HP"};
 					};
-					class pylons7: pylons5 {
+					class pylons7: pylons4 {
 						hardpoints[] = {"FIR_MISC", "FIR_A10_BOMB_HP", "FIR_A10C_BOMB_HP", "FIR_A10_BOMB_2K_HP", "FIR_A10C_BOMB_2K_HP"};
 					};
 					class pylons8: pylons3 {
