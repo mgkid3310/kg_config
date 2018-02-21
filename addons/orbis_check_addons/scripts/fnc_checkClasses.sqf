@@ -31,8 +31,8 @@ if !(_blacks isEqualTo []) then {
 };
 
 if !(_checkClear) then {
-	private _text = "애드온이 업데이트 되지 않은것으로 확인되었음<br/>";
-	_text = _text + "관련 공지는 아래 링크를 참조할것<br/>";
-	_text = _text + "<a href=" + orbis_chk_url + ">공지글 링크</a>";
+	private _text = "애드온이 업데이트 되지 않은것으로 확인되었음<br/>"; 
+	_text = _text + "관련 공지는 아래 링크를 참조할것<br/>"; 
+	_text = _text + format ["<a href='%1'>공지글 링크</a>", orbis_chk_url]; 
 	[parseText _text, "애드온 업데이트 필요"] spawn BIS_fnc_guiMessage;
 };
