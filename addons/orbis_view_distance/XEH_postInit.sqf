@@ -1,16 +1,21 @@
 if (hasInterface) then {
-	setViewDistance 10000;
-	setObjectViewDistance [1600, 100];
+	private _terrain = profileNamespace getVariable ["orbis_view_terrain", 10000];
+	private _object = profileNamespace getVariable ["orbis_view_object", 1600];
+	private _shadow = profileNamespace getVariable ["orbis_view_shadow", 100];
+
+	setViewDistance _terrain;
+	setObjectViewDistance [_object, _shadow];
 
 	[
 		"orbis_view_terrain",
 		"SLIDER",
 		["Terrain View Distance", "Sets terrain view distance"],
 		"Orbis View Distance",
-		[0, 10000, 10000, 0],
+		[0, 10000, _terrain, 0],
 		nil,
 		{
 			setViewDistance _this;
+			profileNamespace setVariable ["orbis_view_terrain", _this];
 		}
 	] call CBA_Settings_fnc_init;
 
@@ -19,10 +24,11 @@ if (hasInterface) then {
 		"SLIDER",
 		["Object View Distance", "Sets object view distance"],
 		"Orbis View Distance",
-		[0, 10000, 1600, 0],
+		[0, 10000, _object, 0],
 		nil,
 		{
 			setObjectViewDistance [_this, getObjectViewDistance select 1];
+			profileNamespace setVariable ["orbis_view_object", _this];
 		}
 	] call CBA_Settings_fnc_init;
 
@@ -31,10 +37,11 @@ if (hasInterface) then {
 		"SLIDER",
 		["Shadow View Distance", "Sets shadow view distance"],
 		"Orbis View Distance",
-		[0, 500, 100, 0],
+		[0, 500, _shadow, 0],
 		nil,
 		{
 			setObjectViewDistance [getObjectViewDistance select 0, _this];
+			profileNamespace setVariable ["orbis_view_shadow", _this];
 		}
 	] call CBA_Settings_fnc_init;
 };
