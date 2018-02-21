@@ -4,6 +4,6 @@ orbis_chk_whitelist = [];
 orbis_chk_blacklist = ["Ryanzombies"];
 
 [] spawn {
-	sleep 1;
+	sleep 0.1;
 	call orbis_chk_fnc_checkClasses;
 };
