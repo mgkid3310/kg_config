@@ -3,6 +3,9 @@
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
 
+		rudderCoef[] = {0.25, 0.9, 1.3, 1.375, 1.4, 1.425, 1.45, 1.475, 1.49, 1.505, 1.35, 0.55, 0.45, 0.35, 0.25, 0.15}; // {0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3}
+		wheelSteeringSensitivity = 1.2;
+
 		#include "FIR_F16_UserActions.hpp"
 
 		class Components: Components {
@@ -48,6 +51,9 @@
 		receiveRemoteTargets = true;
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
+
+		rudderCoef[] = {0.25, 0.9, 1.3, 1.375, 1.4, 1.425, 1.45, 1.475, 1.49, 1.505, 1.35, 0.55, 0.45, 0.35, 0.25, 0.15}; // {0.5, 1.8, 2.6, 2.75, 2.8, 2.85, 2.9, 2.95, 2.98, 3.01, 2.7, 1.1, 0.9, 0.7, 0.5, 0.3}
+		wheelSteeringSensitivity = 1.2;
 
 		#include "FIR_F16_UserActions.hpp"
 
