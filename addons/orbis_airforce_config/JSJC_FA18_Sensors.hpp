@@ -1,4 +1,4 @@
-			class SensorsManagerComponent {
+			/* class SensorsManagerComponent {
 				class Components {
 					class IRSensorComponent: SensorTemplateIR {
 						class AirTarget {
@@ -184,7 +184,7 @@
 						maxTrackableATL = 1e+010;
 					};
 				};
-			};
+			}; */
 			class VehicleSystemsDisplayManagerComponentLeft: VehicleSystemsTemplateLeftSensorsPilot {
 				class Components: components {
 					class SensorDisplay {
