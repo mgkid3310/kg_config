@@ -19,8 +19,8 @@ class cfgVehicles {
 		maximumload = 0;
 		model = "\A3\weapons_f\Ammoboxes\bags\Backpack_Compact";
 		picture = "\A3\weapons_f\ammoboxes\bags\data\ui\icon_B_C_Compact_dgtl_ca.paa";
-		scope = public;
-		side = TWest;
+		scope = 2;
+		side = 3;
 		
 		class assembleInfo : assembleinfo {
 			assembleto = "Deadly_Camouflage_Digi_0";
@@ -40,8 +40,8 @@ class cfgVehicles {
 		maximumload = 0;
 		model = "\A3\weapons_f\Ammoboxes\bags\Backpack_Gorod";
 		picture = "\A3\Weapons_F_beta\ammoboxes\bags\data\ui\icon_B_Gorod_oli_ca.paa";
-		scope = public;
-		side = TWest;
+		scope = 2;
+		side = 3;
 		
 		class assembleInfo : assembleinfo {
 			assembleto = "Deadly_Camouflage_Digi_1";
@@ -61,8 +61,8 @@ class cfgVehicles {
 		maximumload = 0;
 		model = "\A3\weapons_f\Ammoboxes\bags\Backpack_Compact";
 		picture = "\A3\Weapons_F\Ammoboxes\Bags\data\UI\icon_B_AssaultPack_ocamo_ca.paa";
-		scope = public;
-		side = TWest;
+		scope = 2;
+		side = 3;
 		
 		class assembleInfo : assembleinfo {
 			assembleto = "Deadly_Camouflage_Hex_0";
@@ -82,8 +82,8 @@ class cfgVehicles {
 		maximumload = 0;
 		model = "\A3\weapons_f\Ammoboxes\bags\Backpack_Gorod";
 		picture = "\A3\Weapons_F\Ammoboxes\Bags\data\UI\icon_B_C_Gorod_hex_ca.paa";
-		scope = public;
-		side = TWest;
+		scope = 2;
+		side = 3;
 		
 		class assembleInfo : assembleinfo {
 			assembleto = "Deadly_Camouflage_Hex_1";
