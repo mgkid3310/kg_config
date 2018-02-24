@@ -5,7 +5,5 @@ _vehicle animate ["hp3_hide", 1];
 _vehicle animate ["hp7_hide", 1];
 _vehicle animate ["hp8_hide", 1];
 
-_vehicle addEventHandler ["Killed", {[_this select 0, "off"] spawn orbis_airforce_fnc_toggleSmoke;}];
-
-[_vehicle] spawn orbis_airforce_fnc_F16AerobaticLoop;
 [_vehicle] spawn orbis_airforce_fnc_F16AerobaticPostInit;
+[_vehicle, false, "FIR_960rnd_CMFlare_Chaff_Magazine"] spawn orbis_airforce_fnc_F16CommonLoop;
