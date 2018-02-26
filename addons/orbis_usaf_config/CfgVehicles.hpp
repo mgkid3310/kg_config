@@ -24,7 +24,7 @@ class CfgVehicles {
 				priority = 5;
 				onlyforplayer = 0;
 				position = "pos nose open";
-				radius = 30;
+				radius = 50;
 				showWindow = 0;
 				condition = "(ACE_player in [driver this, commander this]) && !(attachedObjects this isEqualTo []) && (this animationPhase 'back_ramp_half_switch' == 1)";
 				statement = "[this] spawn orbis_fnc_paradropCargos";
