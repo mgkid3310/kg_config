@@ -24,7 +24,7 @@
 						attachment = "FIR_AIM120_P_1rnd_M";
 					};
 					class pylons4: pylons1 {
-						hardpoints[] = {"FIR_MISC", "FIR_Clean_MISC", "FIR_F16_Fueltank_HP_config", "FIR_HARM_HP_config"};
+						hardpoints[] = {"FIR_MISC", "FIR_Clean_MISC", "FIR_F16_Fueltank_HP_config"};
 						attachment = "FIR_F16C_Fueltank_P_1rnd_M";
 					};
 					class pylons5: pylons1 {
