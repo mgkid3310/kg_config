@@ -14,7 +14,7 @@ while {alive _vehicle} do {
 		};
 	};
 
-	if ((_flare isEqualType "") && ("FIR_240rnd_CMFlare_Chaff_Magazine" in magazines _vehicle)) then {
+	if ((_flare isEqualType "") && ("FIR_240rnd_CMFlare_Chaff_Magazine" in (magazinesAllTurrets _vehicle apply {_x select 0}))) then {
 		if (_turret isEqualType []) then {
 			_vehicle removeMagazinesTurret ["FIR_240rnd_CMFlare_Chaff_Magazine", _turretPath];
 			if (_flare isEqualTo "") then {
