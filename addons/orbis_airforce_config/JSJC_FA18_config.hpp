@@ -13,7 +13,7 @@
 		magazines[]=
 		{
 			"FIR_M61A2_412rnd_M",
-			"240Rnd_CMFlareMagazine",
+			"FIR_240rnd_CMFlare_Chaff_Magazine",
 			"Laserbatteries"
 		};
 
@@ -115,7 +115,7 @@
 		magazines[]=
 		{
 			"FIR_M61A2_412rnd_M",
-			"240Rnd_CMFlareMagazine"
+			"FIR_240rnd_CMFlare_Chaff_Magazine"
 		};
 
 		class Components: Components {
