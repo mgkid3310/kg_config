@@ -1,6 +1,7 @@
 private _vehicle = _this select 0;
 private _useCannon = _this select 1;
-private _flare = _this param [2, 0];
+private _flare = param [2, 0];
+private _turretPath = param [3, 0];
 
 while {alive _vehicle} do {
 	if (_vehicle hasWeapon "FIR_M61A2") then {
@@ -12,13 +13,21 @@ while {alive _vehicle} do {
 			_vehicle removeweapon "FIR_M61A2";
 		};
 
-		if (_flare isEqualType "") then {
-			if (_flare isEqualTo "") then {
-				_vehicle removeMagazines "FIR_240rnd_CMFlare_Chaff_Magazine";
-				_vehicle removeweapon "FIR_CMLauncher";
+		if ((_flare isEqualType "") && ("FIR_240rnd_CMFlare_Chaff_Magazine" in magazines _vehicle)) then {
+			if (_turret isEqualType []) then {
+				_vehicle removeMagazinesTurret ["FIR_240rnd_CMFlare_Chaff_Magazine", _turretPath];
+				if (_flare isEqualTo "") then {
+					_vehicle removeWeaponTurret ["FIR_CMLauncher", _turretPath];
+				} else {
+					_vehicle addMagazineTurret [_flare, _turretPath];
+				};
 			} else {
 				_vehicle removeMagazines "FIR_240rnd_CMFlare_Chaff_Magazine";
-				_vehicle addMagazine _flare;
+				if (_flare isEqualTo "") then {
+					_vehicle removeWeapon "FIR_CMLauncher";
+				} else {
+					_vehicle addMagazine _flare;
+				};
 			};
 		};
 

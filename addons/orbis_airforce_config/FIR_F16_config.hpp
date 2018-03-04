@@ -79,7 +79,7 @@
 		#include "FIR_F16Aerobatic_UserActions.hpp"
 		
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16AerobaticInit;";
+			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16CAerobaticInit;";
 			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [_this, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
 		};
 	};
@@ -101,7 +101,7 @@
 		#include "FIR_F16Aerobatic_UserActions.hpp"
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16AerobaticInit;";
+			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16DAerobaticInit;";
 			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [_this, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
 		};
 	};
