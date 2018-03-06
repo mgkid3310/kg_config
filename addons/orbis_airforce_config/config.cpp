@@ -31,6 +31,7 @@ class CfgVehicles {
 	class Plane_Fighter_03_base_F: Plane_Base_F {};
 
 	#include "FIR_A10_config.hpp"
+	#include "FIR_F15_config.hpp"
 	#include "FIR_F16_config.hpp"
 	#include "JSJC_FA18_config.hpp"
 	#include "JSJC_Su35_config.hpp"
