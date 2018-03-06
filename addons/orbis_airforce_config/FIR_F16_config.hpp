@@ -44,7 +44,7 @@
 		};
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16CommonLoop;";
+			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16LoopCommon;";
 		};
 	};
 	class FIR_F16D_Base: Plane_Fighter_03_base_F {
@@ -58,7 +58,7 @@
 		#include "FIR_F16_UserActions.hpp"
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16CommonLoop;";
+			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16LoopCommon;";
 		};
 	};
 
