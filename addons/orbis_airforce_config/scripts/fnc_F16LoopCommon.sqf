@@ -32,36 +32,36 @@ while {alive _vehicle} do {
 		};
 	};
 
-	private _f16_pylon = getPylonMagazines _vehicle;
-	private _fuelcount = {_x == "FIR_F16C_Fueltank_P_1rnd_M"} count _f16_pylon;
-	private _fuelcount2 = {_x == "FIR_F16C_center_Fueltank_P_1rnd_M"} count _f16_pylon;
+	private _pylons = getPylonMagazines _vehicle;
+	private _fuelcount = {_x == "FIR_F16C_Fueltank_P_1rnd_M"} count _pylons;
+	private _fuelcount2 = {_x == "FIR_F16C_center_Fueltank_P_1rnd_M"} count _pylons;
 	private _fuelLevel = 1;
 	switch (_fuelcount) do {
 		case 2: {
 			if (_fuelcount2 == 1) then {
 				_fuelLevel = 1;
-				_vehicle animate ["fuelswitch",1];      
+				_vehicle animate ["fuelswitch", 1];
 			} else {
 				_fuelLevel = 0.9;
-				_vehicle animate ["fuelswitch",1];          
+				_vehicle animate ["fuelswitch", 1];
 			};
 		};
 		case 1: {
 			if (_fuelcount2 == 1) then {
 				_fuelLevel = 0.8;
-				_vehicle animate ["fuelswitch",1];      
+				_vehicle animate ["fuelswitch", 1];
 			} else {
 				_fuelLevel = 0.7;
-				_vehicle animate ["fuelswitch",1];          
+				_vehicle animate ["fuelswitch", 1];
 			};
 		};
 		case 0: {
 			if (_fuelcount2 == 1) then {
 				_fuelLevel = 0.6;
-				_vehicle animate ["fuelswitch",1];      
+				_vehicle animate ["fuelswitch", 1];
 			} else {
 				_fuelLevel = 0.5;
-				_vehicle animate ["fuelswitch",0];          
+				_vehicle animate ["fuelswitch", 0];
 			};
 		};
 	};
