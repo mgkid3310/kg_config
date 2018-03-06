@@ -17,7 +17,7 @@
 				};
 			};
 		};
-	};
+	}
 ] call CBA_fnc_addEventHandler;
 
 [] spawn {
