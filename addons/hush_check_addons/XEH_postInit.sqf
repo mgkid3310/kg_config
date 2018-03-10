@@ -1,4 +1,4 @@
-orbis_chk_currentVersion = 30;
+orbis_chk_currentVersion = 31;
 orbis_chk_url = "http://cafe.naver.com/kimchiguys?iframe_url=/ArticleList.nhn%3Fsearch.clubid=24983981%26search.menuid=1%26search.boardtype=L";
 orbis_chk_whitelist = ["brg_africa"];
 orbis_chk_blacklist = ["Ryanzombies"];
