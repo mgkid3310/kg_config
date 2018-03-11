@@ -21,7 +21,6 @@ class CfgWeapons {
 };
 
 
-
 /*
 _weaponName = vehicle ACE_player;
 

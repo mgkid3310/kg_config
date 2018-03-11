@@ -6,13 +6,13 @@ private _blacks = [];
 	if !(isClass (configFile >> "CfgPatches" >> _x)) then {
 		_whites pushBack _x;
 	};
-} forEach orbis_chk_whitelist;
+} forEach hush_chk_whitelist;
 
 {
 	if (isClass (configFile >> "CfgPatches" >> _x)) then {
 		_blacks pushBack _x;
 	};
-} forEach orbis_chk_blacklist;
+} forEach hush_chk_blacklist;
 
 systemChat "orbis_check_addons: addon check completed";
 
@@ -31,8 +31,9 @@ if !(_blacks isEqualTo []) then {
 };
 
 if !(_checkClear) then {
-	private _text = "애드온이 업데이트 되지 않은것으로 확인되었음<br/>"; 
-	_text = _text + "관련 공지는 아래 링크를 참조할것<br/>"; 
-	_text = _text + format ["<a href='%1'>공지글 링크</a>", orbis_chk_url]; 
+	private _text = "애드온이 업데이트 되지 않은것으로 확인되었음<br/>";
+	_text = _text + "관련 공지는 아래 링크를 참조할것<br/>";
+	_text = _text + format ["<a href='%1'>공지 게시판 링크</a><br\>", hush_chk_url];
+	_text = _text + format ["(현재 버전: %1)", hush_chk_currentVersion];
 	[parseText _text, "애드온 업데이트 필요"] spawn BIS_fnc_guiMessage;
 };
