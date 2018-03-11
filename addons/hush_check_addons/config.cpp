@@ -1,7 +1,7 @@
 class CfgPatches {
-	class orbis_check_addons {
-		name = "Orbis Check Addons";
-		author = "Orbis2358";
+	class hush_check_addons {
+		name = "Hush Check Addons";
+		author = "Hush1234";
 		requiredVersion = 0.1;
 		requiredAddons[] = {};
 		units[] = {};
