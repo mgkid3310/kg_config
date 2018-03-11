@@ -3,6 +3,20 @@
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
 
+		weapons[] = 
+		{
+			"js_w_master_arms_safe",
+			"FIR_M61A2",
+			"FIR_CMLauncher",
+			"Laserdesignator_mounted"
+		};
+		magazines[]=
+		{
+			"FIR_M61A2_412rnd_M",
+			"FIR_240rnd_CMFlare_Chaff_Magazine",
+			"Laserbatteries"
+		};
+
 		class Components: Components {
 			#include "JSJC_FA18_Sensors.hpp"
 
@@ -91,6 +105,18 @@
 		receiveRemoteTargets = true;
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
+
+		weapons[] = 
+		{
+			"js_w_master_arms_safe",
+			"FIR_M61A2",
+			"FIR_CMLauncher"
+		};
+		magazines[]=
+		{
+			"FIR_M61A2_412rnd_M",
+			"FIR_240rnd_CMFlare_Chaff_Magazine"
+		};
 
 		class Components: Components {
 			#include "JSJC_FA18_Sensors.hpp"

@@ -1,10 +1,6 @@
 orbis_fnc_attachCurrent = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_attachCurrent.sqf';
+orbis_fnc_deployCargodrop = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_deployCargodrop.sqf';
 orbis_fnc_paradropCargos = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_paradropCargos.sqf';
-
-// Lala_C17_fnc_attachToSmooth = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_attachToSmooth_config.sqf';
-Lala_C17_fnc_canLoad = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_canLoad_config.sqf';
-Lala_C17_fnc_loadCargo = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_loadCargo_config.sqf';
-Lala_C17_fnc_unloadCargo = compile preprocessFileLineNumbers 'orbis_usaf_config\scripts\fnc_unloadCargo_config.sqf';
 
 
 //vDirAndUp = [obj1,obj2] call KK_fnc_vectorDirAndUpRelative;
