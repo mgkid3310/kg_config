@@ -4,7 +4,7 @@ class CfgPatches {
 		author = "Orbis2358";
 		requiredVersion = 0.1;
 		requiredAddons[] = {"ace_pylons", "FIR_AirWeaponSystem_US", "FIR_A10A_F", "FIR_A10C_F", "FIR_F15_F", "FIR_F16_F", "FIR_F16D_F", "JS_JC_FA18", "JS_JC_SU35"};
-		units[] = {"F16C_ROKAF_Aerobatics", "F16D_ROKAF_Aerobatics", "F16D_Training"/* , "JS_JC_FA18F_Training" */};
+		units[] = {/* "F16C_ROKAF_Aerobatics", */"F16D_ROKAF_Aerobatics", "F16D_Training"/* , "JS_JC_FA18F_Training" */};
 		weapons[] = {};
 	};
 };

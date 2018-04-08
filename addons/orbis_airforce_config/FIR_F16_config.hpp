@@ -64,7 +64,7 @@
 
 	class FIR_F16C: FIR_F16_Base {};
 	class FIR_F16C_ROKAF: FIR_F16C {};
-	class F16C_ROKAF_Aerobatics: FIR_F16C_ROKAF {
+	/* class F16C_ROKAF_Aerobatics: FIR_F16C_ROKAF {
 		displayName = "F-16C Fighting Falcon (ROKAF Aerobatics)";
 		fir_f16d_custom_skin = 1;
 		fir_f16d_custom_name = "ROKAF Aerobatics";
@@ -82,7 +82,7 @@
 			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16CAerobaticInit;";
 			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [_this select 0, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
 		};
-	};
+	}; */
 
 	class FIR_F16D: FIR_F16D_Base {};
 	class FIR_F16D_ROKAF: FIR_F16D {};
