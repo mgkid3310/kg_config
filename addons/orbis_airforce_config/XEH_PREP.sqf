@@ -1,6 +1,7 @@
 orbis_airforce_fnc_autoSwapWeapon = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_autoSwapWeapon.sqf";
 
-orbis_airforce_fnc_F15Loop = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F15Loop.sqf";
+orbis_airforce_fnc_F15EInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F15EInit.sqf";
+orbis_airforce_fnc_F15ELoop = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F15ELoop.sqf";
 orbis_airforce_fnc_F16AerobaticPostInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F16AerobaticPostInit.sqf";
 // orbis_airforce_fnc_F16CAerobaticInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F16CAerobaticInit.sqf";
 orbis_airforce_fnc_F16DAerobaticInit = compile preProcessFileLineNumbers "orbis_airforce_config\scripts\fnc_F16DAerobaticInit.sqf";
