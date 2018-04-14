@@ -16,6 +16,8 @@
 					class VehicleSystemsDisplayManagerComponentLeft: VehicleSystemsTemplateLeftSensorsPilot {
 						class Components: components {
 							class SensorDisplay {
+								componentType = "SensorsDisplayComponent";
+								resource = "RscCustomInfoSensors";
 								range[] = {2000, 4000, 8000, 16000, 30000};
 							};
 						};
@@ -23,6 +25,8 @@
 					class VehicleSystemsDisplayManagerComponentRight: VehicleSystemsTemplateRightSensorsPilot {
 						class Components: components {
 							class SensorDisplay {
+								componentType = "SensorsDisplayComponent";
+								resource= " RscCustomInfoSensors";
 								range[] = {2000, 4000, 8000, 16000, 30000};
 							};
 						};
