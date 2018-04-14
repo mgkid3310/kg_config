@@ -173,7 +173,7 @@
 
 		class Turrets {
 			class MainTurret: NewTurret {
-				// isCopilot = 1;
+				isCopilot = 0;
 				primaryGunner = 0;
 
 				class Components: Components {
