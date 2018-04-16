@@ -21,6 +21,17 @@ private _actionSmoke = [
 	[0, 0, 0],
 	10
 ] call ace_interact_menu_fnc_createAction;
+private _actionFlagMain = [
+	"changeFlag",
+	"Clange Flag",
+	"",
+	{},
+	{true},
+	{},
+	[],
+	[0, 0, 0],
+	10
+] call ace_interact_menu_fnc_createAction;
 private _actionFlagRemove = [
 	"removeFlag",
 	"Remove Flag",
@@ -87,30 +98,36 @@ private _actionFlagWhite = [
 	_vehicle,
 	0,
 	["ACE_MainActions"],
+	_actionFlagMain
+] call ace_interact_menu_fnc_addActionToObject;
+[
+	_vehicle,
+	0,
+	["ACE_MainActions", "changeFlag"],
 	_actionFlagRemove
 ] call ace_interact_menu_fnc_addActionToObject;
 [
 	_vehicle,
 	0,
-	["ACE_MainActions"],
+	["ACE_MainActions", "changeFlag"],
 	_actionFlagRed
 ] call ace_interact_menu_fnc_addActionToObject;
 [
 	_vehicle,
 	0,
-	["ACE_MainActions"],
+	["ACE_MainActions", "changeFlag"],
 	_actionFlagGreen
 ] call ace_interact_menu_fnc_addActionToObject;
 [
 	_vehicle,
 	0,
-	["ACE_MainActions"],
+	["ACE_MainActions", "changeFlag"],
 	_actionFlagBlue
 ] call ace_interact_menu_fnc_addActionToObject;
 [
 	_vehicle,
 	0,
-	["ACE_MainActions"],
+	["ACE_MainActions", "changeFlag"],
 	_actionFlagWhite
 ] call ace_interact_menu_fnc_addActionToObject;
 
