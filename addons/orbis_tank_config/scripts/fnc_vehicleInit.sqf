@@ -23,7 +23,7 @@ private _actionSmoke = [
 ] call ace_interact_menu_fnc_createAction;
 private _actionFlagMain = [
 	"changeFlag",
-	"Clange Flag",
+	"Change Flag",
 	"",
 	{},
 	{true},
