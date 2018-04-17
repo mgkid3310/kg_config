@@ -3,7 +3,7 @@
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
 
-		weapons[] = 
+		weapons[] =
 		{
 			"js_w_master_arms_safe",
 			"FIR_M61A2",
@@ -95,8 +95,11 @@
 
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18E {
-				init = "_this spawn JS_JC_fnc_FA18E_init; _this spawn orbis_airforce_fnc_FA18EInit; _this call BIS_fnc_AircraftSystemsInit";
+				// init = "_this spawn JS_JC_fnc_FA18E_init; _this call BIS_fnc_AircraftSystemsInit";
 				hit = ""; // _this call BIS_fnc_PlaneAiEject
+			};
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_FA18EInit";
 			};
 		};
 	};
@@ -106,7 +109,7 @@
 		reportRemoteTargets = true;
 		reportOwnPosition = true;
 
-		weapons[] = 
+		weapons[] =
 		{
 			"js_w_master_arms_safe",
 			"FIR_M61A2",
@@ -184,8 +187,11 @@
 
 		class Eventhandlers: Eventhandlers {
 			class JS_JC_FA18F {
-				init = "_this spawn JS_JC_fnc_FA18F_init; _this spawn orbis_airforce_fnc_FA18FInit; _this call BIS_fnc_AircraftSystemsInit";
+				// init = "_this spawn JS_JC_fnc_FA18F_init; _this call BIS_fnc_AircraftSystemsInit";
 				hit = "";
+			};
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_FA18EInit";
 			};
 		};
 	};

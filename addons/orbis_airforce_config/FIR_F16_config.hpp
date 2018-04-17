@@ -44,7 +44,10 @@
 		};
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16LoopCommon;";
+			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'";
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_F16LoopCommon";
+			};
 		};
 	};
 	class FIR_F16D_Base: Plane_Fighter_03_base_F {
@@ -58,7 +61,10 @@
 		#include "FIR_F16_UserActions.hpp"
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; [_this select 0, true] spawn orbis_airforce_fnc_F16LoopCommon;";
+			// init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf";
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_F16LoopCommon";
+			};
 		};
 	};
 
@@ -77,7 +83,7 @@
 
 		#include "FIR_F16Aerobatic_Components.hpp"
 		#include "FIR_F16Aerobatic_UserActions.hpp"
-		
+
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16CAerobaticInit;";
 			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [_this select 0, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
@@ -101,11 +107,15 @@
 		#include "FIR_F16Aerobatic_UserActions.hpp"
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16DAerobaticInit;";
-			killed = "_this call BIS_Effects_EH_Killed; ['toggleSmoke', [_this select 0, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
+			// init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'";
+			// killed = "_this call BIS_Effects_EH_Killed";
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_F16DAerobaticInit;";
+				killed = "['toggleSmoke', [_this select 0, 'off', [0, 0, 0, 0]]] call CBA_fnc_globalEvent";
+			};
 		};
 	};
-	class F16D_Training: FIR_F16D_ROKAF {
+	/* class F16D_Training: FIR_F16D_ROKAF {
 		displayName = "F-16D Fighting Falcon (ROKAF Training)";
 		fir_f16d_custom_skin = 1;
 		fir_f16d_custom_name = "ROKAF Training";
@@ -121,4 +131,4 @@
 		class EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16TrainingInit;";
 		};
-	};
+	}; */

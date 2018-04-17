@@ -36,6 +36,9 @@
 		};
 
 		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F15EInit;";
+			// init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'";
+			class orbis_config {
+				init = "_this spawn orbis_airforce_fnc_F15EInit;";
+			};
 		};
 	};
