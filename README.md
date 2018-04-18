@@ -3,7 +3,7 @@ Source code for Arma 3 KG(Kimchi Guys) group's custom addon
 
 ----
 
-Branch summary  
+Branch Summary  
 
 master : stable version. currently uploaded as 'KG Optic' on Steam Workshop  
 update_ready : next scheduled update version. pulls commits from dev branches  
