@@ -1,13 +1,19 @@
 # kg_optic
-Source code for Arma 3 KG(Kimchi Guys) group's custom addon
+Source code for Arma 3 KG(Kimchi Guys) group's custom addon  
 
 ----
 
-master: Stable version. Currently uploaded as 'KG Optic' on Steam Workshop.
+Branch summary  
+
+master : stable version. currently uploaded as 'KG Optic' on Steam Workshop  
+update_ready : next scheduled update version. pulls commits from dev branches  
+dev_deadly : development version for Deadly36's work  
+dev_hush : development version for Hush1234's work  
+dev_orbis : development version for Orbis2358's work  
 
 ----
 
-Authors (Contributors)
+Authors (Contributors)  
 
 Hush1234 (jsw7448@naver.com) : Project Manager  
 Orbis2358 (mgkid3310@naver.com) : Programmer  
