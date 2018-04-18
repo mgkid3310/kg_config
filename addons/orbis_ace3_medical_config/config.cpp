@@ -9,6 +9,32 @@ class CfgPatches {
 	};
 };
 
+#include "define_medical.hpp"
+#include "script_component.hpp"
+
 #include "CfgWeapons.hpp"
-#include "ACE3_Medical_Treatments.hpp"
+#include "ACE_Medical_Treatments.hpp"
 #include "CfgEventHandlers.hpp"
+
+class CfgVehicles {
+	class Man;
+	class CAManBase: Man {
+		class ACE_SelfActions {
+            #include "ACE_Medical_SelfActions.hpp"
+        };
+
+        class ACE_Actions {
+            #define EXCEPTIONS exceptions[] = {"isNotSwimming"};
+            #include "ACE_Medical_Actions.hpp"
+
+            // Create a consolidates medical menu for treatment while boarded
+            class ACE_MainActions {
+                class Medical {
+                    #undef EXCEPTIONS
+                    #define EXCEPTIONS exceptions[] = {"isNotInside", "isNotSwimming"};
+                    #include "ACE_Medical_Actions.hpp"
+                };
+            };
+        };
+	};
+};

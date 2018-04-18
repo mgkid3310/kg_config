@@ -37,6 +37,26 @@ if (!local _unit) exitWith {
 
 // Orbis config
 [_unit] call orbis_fnc_clearExpired;
+private _openWounds = _unit getVariable [QGVAR(openWounds), []];
+private _sam = _unit getVariable [QGVAR(orbis_samSplint), [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]];
+// private _cast = _unit getVariable [QGVAR(orbis_orthopedicCast), [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]];
+private _damage = _unit getVariable [QGVAR(bodyPartStatus), [0, 0, 0, 0, 0, 0]];
+for "_i" from 0 to 5 do {
+    private _bleeding = false;
+    private _hasDamage = (_damage select _i) > 0;
+    {
+        if (((_x select 2) isEqualTo _i) && ((_x select 4) * (_x select 3) > 0)) exitWith {
+            _bleeding = true;
+        };
+    } forEach _openWounds;
+
+    if ((_bleeding || _hasDamage) && ((_sam select _i select 0) > 0)) then {
+        [_unit, _i] call orbis_fnc_treatmentSAMSplintDamaged;
+    };
+    /* if ((_bleeding || _hasDamage) && ((_cast select _i) > 0)) then {
+        [_unit, _i] call orbis_fnc_treatmentOrthopedicCastDamaged;
+    }; */
+};
 
 // Play injured sounds
 private _pain = _unit getVariable [QGVAR(pain), 0];
