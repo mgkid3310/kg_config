@@ -1,4 +1,4 @@
-params ["_vehicle"];
+private _vehicle = _this select 0;
 
 _vehicle animate ["hp2_hide", 1];
 _vehicle animate ["hp3_hide", 1];

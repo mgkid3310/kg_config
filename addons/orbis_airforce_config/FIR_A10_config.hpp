@@ -50,7 +50,7 @@
 					};
 					class pylons9: pylons2 {
 						hardpoints[] = {"FIR_MISC", "FIR_A10_BOMB_HP", "FIR_A10C_BOMB_HP", "FIR_A10_AUX_HP"};
-						attachment = "FIR_Litening_std_P_1rnd_M";
+						attachment = "FIR_Litening_Nomodel_P_1rnd_M";
 					};
 					class pylons10: pylons1 {
 						hardpoints[] = {"FIR_MISC", "FIR_A10_BOMB_HP", "FIR_A10C_BOMB_HP"};
