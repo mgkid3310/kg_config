@@ -12,4 +12,5 @@ Authors (Contributors)
 Hush1234 (jsw7448@naver.com) : Project Manager  
 Orbis2358 (mgkid3310@naver.com) : Programmer  
 Deadly36 (kjo66041@naver.com) : Programmer  
-jadeguy (kimjisu0914@naver.com) : Texture Designer 
+jadeguy (kimjisu0914@naver.com) : Texture Designer
+seoge87 (mikey87@naver.com) : Texture Designer
