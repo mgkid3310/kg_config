@@ -9,7 +9,7 @@ private _helies = [];
 private _planeMarkers = [];
 private _heliMarkers = [];
 
-while {(player distance _monitor) < 10} do {
+while {((player distance _monitor) < 10) && (player getVariable ["isUsingRadarScreen", true])} do {
     // update planes info
     if (time > _timeNext) then {
         _planes = (entities "Plane") select {(side driver _x isEqualTo side player) && (alive _x)};
