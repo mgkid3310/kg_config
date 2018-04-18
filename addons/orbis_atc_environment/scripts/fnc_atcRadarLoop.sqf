@@ -46,6 +46,6 @@ while {((player distance _monitor) < 10) && (player getVariable ["isUsingRadarSc
 } forEach (_planeMarkers + _heliMarkers);
 
 if !((player distance _monitor) < 10) then {
-    [parseText format["<t align='center' color='#00CC00'>Became too far from the Radar Screen</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2] spawn BIS_fnc_textTiles;
+    [parseText format["<t align='center'>Became too far from the Radar Screen</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2] spawn BIS_fnc_textTiles;
 };
 player setVariable ["isUsingRadarScreen", false, true];
