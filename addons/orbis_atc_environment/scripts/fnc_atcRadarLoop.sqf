@@ -1,7 +1,6 @@
 private _monitor = _this select 0;
 
 player setVariable ["isUsingRadarScreen", true, true];
-[parseText format["<t align='center' color='#00CC00'>Radar Screen Activated</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2] spawn BIS_fnc_textTiles;
 
 private _timeNext = 0;
 private _planes = [];
@@ -38,5 +37,15 @@ while {((player distance _monitor) < 10) && (player getVariable ["isUsingRadarSc
 	waitUntil {diag_frameNo > _frameNo};
 };
 
+// delete remaining markers
+{
+    _x params ["_marker1", "_marker2", "_marker3"];
+    deleteMarkerLocal _marker1;
+    deleteMarkerLocal _marker2;
+    deleteMarkerLocal _marker3;
+} forEach (_planeMarkers + _heliMarkers);
+
+if !((player distance _monitor) < 10) then {
+    [parseText format["<t align='center' color='#00CC00'>Became too far from the Radar Screen</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2] spawn BIS_fnc_textTiles;
+};
 player setVariable ["isUsingRadarScreen", false, true];
-[parseText format["<t align='center' color='#00CC00'>Became too far from the Radar Screen</t>"], [0.25, 1, 0.5, 0.05], [1, 1], 2] spawn BIS_fnc_textTiles;
