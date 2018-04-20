@@ -101,9 +101,13 @@ class ACE_Medical_Actions {
 
 		// add new treatments
         class SAMSplint: fieldDressing {
+			treatmentType = "Others";
+			treatmentDisplay = "Applying SAM Splint";
             displayName = "$STR_kg_optic_medical_config_apply_samSplint";
             displayNameProgress = "$STR_kg_optic_medical_config_applying_samSplint";
             allowedSelections[] = {"hand_l", "hand_r", "leg_l", "leg_r"};
+            allowSelfTreatment = 0;
+			requiredMedic = 1;
             items[] = {"orbis_samSplint"};
             treatmentTime = "[ACE_player, [15, 10, 10]] call orbis_fnc_treatmentTime";
             callbackSuccess = "orbis_fnc_treatmentSAMSplint";
@@ -111,9 +115,13 @@ class ACE_Medical_Actions {
             litter[] = {};
         };
         class OrthopedicCast: fieldDressing {
+			treatmentType = "Others";
+			treatmentDisplay = "Applying Orthopedic Cast";
             displayName = "$STR_kg_optic_medical_config_apply_orthopedicCast";
             displayNameProgress = "$STR_kg_optic_medical_config_applyinging_orthopedicCast";
             allowedSelections[] = {"hand_l", "hand_r", "leg_l", "leg_r"};
+            allowSelfTreatment = 0;
+			requiredMedic = 2;
             items[] = {"orbis_orthopedicCast"};
             treatmentTime = "[ACE_player, [40, 40, 40]] call orbis_fnc_treatmentTime";
             callbackSuccess = "orbis_fnc_treatmentOrthopedicCast";
