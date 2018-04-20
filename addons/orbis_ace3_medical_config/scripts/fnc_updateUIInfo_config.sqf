@@ -43,6 +43,11 @@ if (((_target getVariable [QEGVAR(medical,tourniquets), [0, 0, 0, 0, 0, 0]]) sel
     _genericMessages pushBack [localize ELSTRING(medical,Status_Tourniquet_Applied), [0.77, 0.51, 0.08, 1]];
 };
 
+// Orbis config: add splint status
+if (((_target getVariable [QEGVAR(medical,orbis_samSplint), [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]]) select _selectionN select 0) > 0) then {
+    _genericMessages pushBack [localize "STR_kg_optic_medical_config_Status_SAMSplint_Applied", [0.77, 0.51, 0.08, 1]];
+};
+
 if (_target getVariable [QEGVAR(medical,hasPain), false]) then {
     _genericMessages pushBack [localize ELSTRING(medical,Status_Pain), [1, 1, 1, 1]];
 };
@@ -58,7 +63,7 @@ if (_totalIvVolume >= 1) then {
     _genericMessages pushBack [format [localize ELSTRING(medical,receivingIvVolume), floor _totalIvVolume], [1, 1, 1, 1]];
 };
 
-// Orbis config
+// Orbis config: add what others are doing
 _joint = _target getVariable [QEGVAR(medical,jointTreatment), []];
 
 if (!(_joint isEqualTo [])) then {
