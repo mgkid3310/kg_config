@@ -29,7 +29,7 @@
 						class Components: components {
 							class SensorDisplay {
 								componentType = "SensorsDisplayComponent";
-								resource= "RscCustomInfoSensors";
+								resource = "RscCustomInfoSensors";
 								range[] = {2000, 4000, 8000, 16000, 30000};
 							};
 						};
