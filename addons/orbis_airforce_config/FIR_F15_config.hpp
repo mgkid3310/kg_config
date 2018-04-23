@@ -1,4 +1,7 @@
 	class FIR_F15E_Base: Plane_Fighter_03_base_F {
+		receiveRemoteTargets = true;
+		reportRemoteTargets = true;
+		reportOwnPosition = true;
 
 		class UserActions {
 			class F15E_Gui_Open {
