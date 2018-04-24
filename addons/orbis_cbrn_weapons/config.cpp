@@ -9,4 +9,5 @@ class CfgPatches {
 	};
 };
 
+// #include "CfgCBRNs.hpp"
 // #include "CfgEventHandlers.hpp"
