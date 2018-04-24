@@ -29,7 +29,7 @@ class CfgVehicles {
 	class rhsusf_hmmwe_base: MRAP_01_base_F {
 		class EventHandlers: EventHandlers {
 			class orbis_config {
-				init = "[_this select 0, '', true, false] spawn orbis_tank_fnc_vehicleInit;";
+				init = "[_this select 0, '', true, false] spawn orbis_tank_fnc_vehicleInit;"; // [_vehicle, _magazine(smoke), _hasFlag, _hasAlert]
 			};
 		};
 	};
