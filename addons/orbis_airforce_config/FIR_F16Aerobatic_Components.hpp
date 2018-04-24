@@ -41,11 +41,11 @@
 					};
 					class pylons4: pylons1 {
 						hardpoints[] = {"FIR_Aerobatics_Side", "FIR_Clean_MISC", "FIR_MISC"};
-						attachment = "FIR_F16C_Fueltank_P_1rnd_M";
+						attachment = "FIR_Clean_P_1rnd_M";
 					};
 					class pylons5: pylons1 {
 						hardpoints[] = {"FIR_Aerobatics_Center","FIR_MISC"};
-						attachment = "FIR_F16C_center_Fueltank_P_1rnd_M";
+						attachment = "FIR_Empty_P_1rnd_M";
 					};
 					class pylons6: pylons1 {
 						hardpoints[] = {"FIR_Aerobatics_Aux","FIR_MISC"};

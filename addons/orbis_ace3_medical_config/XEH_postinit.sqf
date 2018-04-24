@@ -1,0 +1,2 @@
+["orbis_event_treatmentOrthopedicCastLocal", orbis_fnc_treatmentOrthopedicCastLocal] call CBA_fnc_addEventHandler;
+["orbis_event_treatmentSAMSplintLocal", orbis_fnc_treatmentSAMSplintLocal] call CBA_fnc_addEventHandler;
