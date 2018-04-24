@@ -1,5 +1,5 @@
 private _vehicle = _this select 0;
-private _useCannon = _this select 1;
+private _useCannon = param [1, true];
 private _flare = param [2, 0];
 private _turretPath = param [3, 0];
 

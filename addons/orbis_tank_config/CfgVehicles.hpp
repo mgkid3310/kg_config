@@ -3,6 +3,11 @@ class ACE_MainActions;
 
 class CfgVehicles {
 	class LandVehicle;
+	class Car: LandVehicle {};
+	class Car_F: Car {};
+	class MRAP_01_base_F: Car_F {
+		class EventHandlers;
+	};
 	class Tank: LandVehicle {
 		class NewTurret;
 		class HitPoints;
@@ -19,6 +24,14 @@ class CfgVehicles {
 			class HitRTrack;
 		};
 		class EventHandlers;
+	};
+
+	class rhsusf_hmmwe_base: MRAP_01_base_F {
+		class EventHandlers: EventHandlers {
+			class orbis_config {
+				init = "[_this select 0, '', true, false] spawn orbis_tank_fnc_vehicleInit;"; // [_vehicle, _magazine(smoke), _hasFlag, _hasAlert]
+			};
+		};
 	};
 
 	class APC_Tracked_02_base_F: Tank_F {};
@@ -67,7 +80,7 @@ class CfgVehicles {
 			class HitFuel {
 				armor = 0.250000;
 				material = -1;
-				name = "palivo";  
+				name = "palivo";
 				visual = "";
 				passThrough = 0.500000;
 				explosionShielding = 0.500000;
@@ -76,8 +89,8 @@ class CfgVehicles {
 			};
 		};
 		class EventHandlers: EventHandlers {
-			class RHSUSF_EventHandlers {
-				init = "[_this select 0, 'rhsusf_mag_L8A3_8'] spawn orbis_tank_fnc_vehicleInit;";
+			class orbis_config {
+				init = "[_this select 0, 'rhsusf_mag_L8A3_8', true, true] spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
 		class Exhausts {
@@ -134,8 +147,8 @@ class CfgVehicles {
 			};
 		};
 		class EventHandlers: EventHandlers {
-			class RHSUSF_EventHandlers {
-				init = "[_this select 0, 'rhsusf_mag_L8A3_8'] spawn orbis_tank_fnc_vehicleInit;";
+			class orbis_config {
+				init = "[_this select 0, 'rhsusf_mag_L8A3_8', true, true] spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
 		class Exhausts {
@@ -202,8 +215,8 @@ class CfgVehicles {
 			};
 		};
 		class EventHandlers: EventHandlers {
-			class RHSUSF_EventHandlers {
-				init = "[_this select 0, 'rhsusf_mag_L8A3_12'] spawn orbis_tank_fnc_vehicleInit; _this call RHS_fnc_M1_init";
+			class orbis_config {
+				init = "[_this select 0, 'rhsusf_mag_L8A3_12', true, true] spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
 		class Exhausts {
@@ -230,17 +243,6 @@ class CfgVehicles {
 		};
 		/* class ACE_Actions: ACE_Actions {
 			class ACE_MainActions: ACE_MainActions {
-				class reloadSmoke {
-                    selection = "";
-					displayName = "Reload Smoke";
-                    distance = 10;
-					condition = "true"; // "[_target] call orbis_tank_fnc_canRearmSmoke";
-					statement = "[_target] call orbis_tank_fnc_rearmSmokeScreen";
-                    showDisabled = 0;
-                    exceptions[] = {};
-                    priority = 5;
-					icon = "";
-				};
 				class flipTank {
 					displayName = "Flip Tank";
 					condition = "{alive _x} count (crew (_this select 0)) isEqualTo 0";

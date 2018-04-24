@@ -1,4 +1,4 @@
-params ["_vehicle"];
+private _vehicle = _this select 0;
 
 private _time = CBA_missionTime + 5;
 waitUntil {(_vehicle animationPhase "hp2_hide" isEqualTo 0) || (CBA_missionTime > _time)};
