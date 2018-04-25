@@ -19,7 +19,7 @@ if (local _target) then {
 };
 
 [_target, _removeItem] call FUNC(addToTriageCard);
-[_target, "activity", "$STR_kg_optic_medical_config_appliedOrthopedicCast", [[_caller, false, true] call EFUNC(common,getName)]] call FUNC(addToLog);
-[_target, "activity_view", "$STR_kg_optic_medical_config_appliedOrthopedicCast", [[_caller, false, true] call EFUNC(common,getName)]] call FUNC(addToLog);
+[_target, "activity", "STR_kg_optic_medical_config_appliedOrthopedicCast", [[_caller, false, true] call EFUNC(common,getName)]] call FUNC(addToLog);
+[_target, "activity_view", "STR_kg_optic_medical_config_appliedOrthopedicCast", [[_caller, false, true] call EFUNC(common,getName)]] call FUNC(addToLog);
 
 true
