@@ -43,8 +43,8 @@
 			};
 		};
 
-		class EventHandlers {
-			init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'";
+		class EventHandlers: EventHandlers {
+			// init = "[_this select 0] execVM '\FIR_F16\sqs\init\init.sqf'";
 			class orbis_config {
 				init = "_this spawn orbis_airforce_fnc_F16LoopCommon";
 			};
@@ -94,19 +94,19 @@
 	class FIR_F16D_ROKAF: FIR_F16D {};
 	class F16D_ROKAF_Aerobatics: FIR_F16D_ROKAF {
 		displayName = "F-16D Fighting Falcon (ROKAF Aerobatics)";
-		fir_f16d_custom_skin = 1;
-		fir_f16d_custom_name = "ROKAF Aerobatics";
-		fir_f16d_custom_code = "FIR_F16D_ROKAF_Aerobatics";
-		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa";
-		hiddenselectionstextures[] = {"FIR_F16D\skin\body_rokaf_d_co.paa", "FIR_F16D\skin\wing_rokaf_co.paa"};
-		editorPreview = "\FIR_F16D\ui\preview\pic_rokaf.paa";
 		weapons[] = {"FIR_MasterArm", "FIR_CMLauncher"};
 		magazines[] = {"FIR_960rnd_CMFlare_Chaff_Magazine"};
+		/* fir_f16d_custom_skin = 1;
+		fir_f16d_custom_name = "ROKAF Aerobatics";
+		fir_f16d_custom_code = "FIR_F16D_ROKAF_Aerobatics";
+		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa"
+		hiddenselectionstextures[] = {"FIR_F16D\skin\body_rokaf_d_co.paa", "FIR_F16D\skin\wing_rokaf_co.paa"};
+		editorPreview = "\FIR_F16D\ui\preview\pic_rokaf.paa"; */
 
 		#include "FIR_F16Aerobatic_Components.hpp"
 		#include "FIR_F16Aerobatic_UserActions.hpp"
 
-		class EventHandlers {
+		class EventHandlers: EventHandlers {
 			// init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'";
 			// killed = "_this call BIS_Effects_EH_Killed";
 			class orbis_config {
@@ -128,7 +128,7 @@
 
 		#include "FIR_F16Training_Components.hpp"
 
-		class EventHandlers {
+		class EventHandlers: EventHandlers {
 			init = "[_this select 0] execVM '\FIR_F16D\sqs\init\init.sqf'; _this spawn orbis_airforce_fnc_F16TrainingInit;";
 		};
 	}; */
