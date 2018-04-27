@@ -99,7 +99,7 @@
 		/* fir_f16d_custom_skin = 1;
 		fir_f16d_custom_name = "ROKAF Aerobatics";
 		fir_f16d_custom_code = "FIR_F16D_ROKAF_Aerobatics";
-		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa"
+		fir_f16d_custom_preview_pic = "\FIR_F16D\ui\preview\pic_rokaf.paa";
 		hiddenselectionstextures[] = {"FIR_F16D\skin\body_rokaf_d_co.paa", "FIR_F16D\skin\wing_rokaf_co.paa"};
 		editorPreview = "\FIR_F16D\ui\preview\pic_rokaf.paa"; */
 
