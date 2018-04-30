@@ -14,7 +14,7 @@ class CfgWeapons {
 		scope = 2;
 		author = "Orbis2358";
 		displayName = "$STR_kg_optic_medical_config_samSplint_display";
-		picture = "orbis_ace3_medical_config\icons\samSplint_icon.paa";
+		picture = "\orbis_ace3_medical_config\icons\samSplint_icon.paa";
 		model = QPATHTOF(data\tourniquet.p3d);
 		descriptionShort = "$STR_kg_optic_medical_config_samSplint_short";
 		descriptionUse = "$STR_kg_optic_medical_config_samSplint_use";
@@ -26,7 +26,7 @@ class CfgWeapons {
 		scope = 2;
 		author = "Orbis2358";
 		displayName = "$STR_kg_optic_medical_config_orthopedicCast_display";
-		picture = "orbis_ace3_medical_config\icons\orthopedicCast_icon.paa";
+		picture = "\orbis_ace3_medical_config\icons\orthopedicCast_icon.paa";
 		model = QPATHTOF(data\tourniquet.p3d);
 		descriptionShort = "$STR_kg_optic_medical_config_orthopedicCast_short";
 		descriptionUse = "$STR_kg_optic_medical_config_orthopedicCast_use";

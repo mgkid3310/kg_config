@@ -11,7 +11,9 @@ private _particleSourcesOld = _vehicle getVariable ["smokeSources", []];
 } forEach _particleSourcesOld;
 deleteVehicle _objectFollowOld;
 
-if (_smokeMod isEqualTo _smokeModOld) exitWith {};
+if (_smokeMod isEqualTo _smokeModOld) exitWith {
+	_vehicle setVariable ["smokeReady", true, true];
+};
 if (_smokeMod isEqualTo "off") exitWith {
 	_vehicle setVariable ["smokeMod", "off"];
 	_vehicle setVariable ["particleColor", [0, 0, 0, 0]];
