@@ -25,6 +25,10 @@ class CfgVehicles {
 		};
 		class EventHandlers;
 	};
+	class APC_Tracked_02_base_F: Tank_F {};
+	class APC_Tracked_03_base_F: Tank_F {};
+	class MBT_01_base_F: Tank_F {};
+	class MBT_01_arty_base_F: MBT_01_base_F {};
 
 	class rhsusf_hmmwe_base: MRAP_01_base_F {
 		class EventHandlers: EventHandlers {
@@ -34,7 +38,14 @@ class CfgVehicles {
 		};
 	};
 
-	class APC_Tracked_02_base_F: Tank_F {};
+	class rhsusf_RG33L_base: MRAP_01_base_F {
+		class EventHandlers: EventHandlers {
+			class orbis_config {
+				init = "[_this select 0, '', true, false] spawn orbis_tank_fnc_vehicleInit;";
+			};
+		};
+	};
+
 	class rhsusf_m113tank_base: APC_Tracked_02_base_F {
 		armor = 600; // 200
 		armorStructural = 1050; // 350
@@ -102,7 +113,6 @@ class CfgVehicles {
 		};
 	};
 
-	class APC_Tracked_03_base_F: Tank_F {};
 	class RHS_M2A2_Base: APC_Tracked_03_base_F {
 		armor = 870; // 290
 		armorStructural = 840; // 280
@@ -160,7 +170,6 @@ class CfgVehicles {
 		};
 	};
 
-	class MBT_01_base_F: Tank_F {};
 	class rhsusf_m1a1tank_base: MBT_01_base_F {
 		armor = 1800; // 600
 		armorStructural = 1800; // 600
@@ -310,6 +319,14 @@ class CfgVehicles {
 						gunnerOpticsModel = "\rhsusf\addons\rhsusf_m1a1\gunnerOptics_M1A2_4";
 					};
 				};
+			};
+		};
+	};
+
+	class rhsusf_m109tank_base: MBT_01_arty_base_F {
+		class EventHandlers: EventHandlers {
+			class orbis_config {
+				init = "[_this select 0, '', true, true] spawn orbis_tank_fnc_vehicleInit;";
 			};
 		};
 	};
