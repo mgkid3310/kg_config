@@ -14,12 +14,10 @@ private _hasDamage = (_damage select _part) > 0;
 private _sam = _target getVariable [QGVAR(orbis_samSplint), [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]];
 private _hasSAM = ((_sam select _part) select 0) > 0;
 
-private _openWounds = _target getVariable [QGVAR(openWounds), []];
-private _bleeding = false;
-{
-    if (((_x select 2) isEqualTo _part) && ((_x select 4) * (_x select 3) > 0)) exitWith {
-        _bleeding = true;
-    };
-} forEach _openWounds;
+private _tourniquets = _target getVariable [QGVAR(tourniquets), [0, 0, 0, 0, 0, 0]];
+private _hasTourniquet = (_tourniquets select _part) != 0;
 
-(_hasDamage && !_hasSAM && !_bleeding)
+private _openWounds = _target getVariable [QGVAR(openWounds), []];
+private _bleedingWound = {((_x select 2) isEqualTo _part) && ((_x select 4) * (_x select 3) > 0)} count _openWounds > 0;
+
+(_hasDamage && !_hasSAM && (_hasTourniquet || !_bleedingWound))

@@ -125,7 +125,7 @@ class ACE_Medical_Actions {
             items[] = {"orbis_orthopedicCast"};
             treatmentTime = "[ACE_player, [40, 40, 40]] call orbis_fnc_treatmentTime";
             callbackSuccess = "orbis_fnc_treatmentOrthopedicCast";
-            condition = "[_this select 1, _this select 2, true] call orbis_fnc_canTreatOrthopedicCast";
+            condition = "[_this select 1, _this select 2, false] call orbis_fnc_canTreatOrthopedicCast";
             litter[] = {};
         };
 	};

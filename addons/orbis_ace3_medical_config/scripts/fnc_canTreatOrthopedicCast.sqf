@@ -3,7 +3,7 @@
 
 private _target = _this select 0;
 private _part = _this select 1;
-private _openOnly = param [2, false];
+private _bandagedAlso = param [2, true];
 
 if !(_part isEqualType 0) then {
     _part = [_part] call FUNC(selectionNameToNumber);
@@ -16,20 +16,7 @@ private _sam = _target getVariable [QGVAR(orbis_samSplint), [[0, 0], [0, 0], [0,
 private _hasSAM = ((_sam select _part) select 0) > 0;
 
 private _openWounds = _target getVariable [QGVAR(openWounds), []];
-private _hasWound = false;
-{
-    if ((_x select 2) isEqualTo _part) exitWith {
-        _hasWound = true;
-    };
-} forEach _openWounds;
+private _bandagedWounds = _target getVariable [QGVAR(bandagedWounds), []];
+private _bleedingWound = {((_x select 2) isEqualTo _part) && ((_x select 4) * (_x select 3) > 0)} count ([_openWounds, _bandagedWounds] select _bandagedAlso) > 0;
 
-if (!_openOnly && !_hasWound) then {
-    private _bandagedWounds = _target getVariable [QGVAR(bandagedWounds), []];
-    {
-        if ((_x select 2) isEqualTo _part) exitWith {
-            _hasWound = true;
-        };
-    } forEach _bandagedWounds;
-};
-
-((_hasDamage || _hasSAM) && !_hasWound)
+((_hasDamage || _hasSAM) && !_bleedingWound)
