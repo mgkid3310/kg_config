@@ -1,4 +1,4 @@
-class CfgPatches {
+/*class CfgPatches {
 	class orbis_terrain_config {
 		name = "Orbis Terrain Config";
 		author = "Orbis2358";
@@ -25,3 +25,4 @@ class CfgWorlds
 		drawTaxiway = 1;
 	};
 };
+*/
