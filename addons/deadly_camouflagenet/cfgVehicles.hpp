@@ -109,7 +109,7 @@ class cfgVehicles {
 		armor = 200;
 		cost = 1000;
 		destrType = "DestructTent";
-		displayName = "";
+		displayName = "Camouflage Net (Woodland)";
 		editorCategory = "EdCat_Structures_Altis";
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\CamoNet_INDP_open_F.jpg";
 		editorSubcategory = "EdSubcat_Military";
@@ -140,6 +140,7 @@ class cfgVehicles {
 	class Deadly_Camouflage_Digi_1 : Deadly_Camouflage_Digi_0 {
 		ace_dragging_carryPosition[] = {0,6,2};
 		_generalMacro = "Deadly_Camouflage_Digi_1";
+		displayname = "Camouflage Vehicle Cover (Woodland)";
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\CamoNet_INDP_open_F.jpg";
 		icon = "\A3\Structures_F\Mil\Shelters\Data\UI\map_CamoNet_Big_CA.paa";
 		mapSize = 19.32;
@@ -156,6 +157,7 @@ class cfgVehicles {
 	
 	class Deadly_Camouflage_Hex_0 : Deadly_Camouflage_Digi_0 {
 		_generalMacro = "Deadly_Camouflage_Hex_0";
+		displayName = "Camouflage Net (Desert)";
 		hiddenSelectionsTextures[] = {"\A3\Structures_F\Mil\Shelters\Data\CamoNet_OPFOR_CA.paa"};
 		
 		class assembleInfo {
@@ -169,6 +171,7 @@ class cfgVehicles {
 	
 	class Deadly_Camouflage_Hex_1 : Deadly_Camouflage_Digi_1 {
 		_generalMacro = "Deadly_Camouflage_Hex_1";
+		displayname = "Camouflage Vehicle Cover (Desert)";
 		hiddenSelectionsTextures[] = {"\A3\Structures_F\Mil\Shelters\Data\CamoNet_OPFOR_CA.paa"};
 		
 		class assembleInfo {
