@@ -4,3 +4,6 @@ ace_mk6mortar_fnc_rangeTablePageChange = compile preprocessFileLineNumbers 'dead
 ace_mk6mortar_fnc_rangeTablePreCalculatedValues = compile preprocessFileLineNumbers 'deadly_artilleryup\scripts\fnc_rangeTablePreCalculatedValues.sqf'; */
 // rhs_fnc_fired_m119 = compile preprocessFileLineNumbers 'deadly_artilleryup\scripts\fnc_fired_m119.sqf';
 rhs_fnc_fired_d30 = compile preprocessFileLineNumbers 'deadly_artilleryup\scripts\fnc_fired_d30.sqf';
+
+deadly_artilleryup_fnc_load = compile preprocessFileLineNumbers "deadly_artilleryup\scripts\fnc_load.sqf";
+deadly_artilleryup_fnc_unload = compile preprocessFileLineNumbers "deadly_artilleryup\scripts\fnc_unload.sqf";
