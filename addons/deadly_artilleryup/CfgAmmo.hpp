@@ -10,9 +10,9 @@ class CfgAmmo {
 		simulation = "shotBullet";
 		cost = 100;
 		artilleryLock = 1;
-		hit = 220; // 110
-		indirectHit = 150; // 75
-		indirectHitRange = 21;
+		hit = 165; // 110
+		indirectHit = 115; // 75
+		indirectHitRange = 31;
 		timetolive = 220;
 		class CamShakeExplode {
 			power = "(105*0.2)*10";
@@ -73,8 +73,8 @@ class CfgAmmo {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
 		EffectFly = "ArtilleryTrails";
-		hit = 260;
-		indirectHit = 190;
+		hit = 235;
+		indirectHit = 165;
 		indirectHitRange = 45;
 	};
 	
@@ -106,17 +106,6 @@ class CfgAmmo {
 		timeToLive = 60;
 	};
 	
-	/*
-	class rhs_ammo_s463 : Flare_82mm_AMOS_White {
-		ace_rearm_caliber = 122;
-		ace_rearm_dummy = "dummy_artillery_shell";
-		EffectFly = "ArtilleryTrails";
-		brightness = 0;
-		intensity = 0;
-		lightColor[] = {0.4,0.5,0.4,0.2};
-	};
-	*/
-	
 	class rhs_ammo_s463 : Smoke_120mm_AMOS_White {
 		ace_rearm_caliber = 122;
 		ace_rearm_dummy = "dummy_artillery_shell";
@@ -132,7 +121,7 @@ class CfgAmmo {
 		soundHit[] = {"", 0, 1};
 		CraterEffects = "";
 		whistleDist = 0;
-		triggerDistance = 600;
+		triggerDistance = 640;
 		triggerSpeedCoef = 1;
 	};
 	

@@ -3,7 +3,7 @@ class CfgVehicles {
 	class LandVehicle;
 	class StaticWeapon: LandVehicle {
 		class Turrets;
-		class MainTurret;	
+		class MainTurret;
 	};
 	class StaticCannon: StaticWeapon {};
 
@@ -43,10 +43,46 @@ class CfgVehicles {
 				};
 			};
 		};
+		
 		class EventHandlers: EventHandlers {
 		init = "{(_this select 0) removeMagazine _x} forEach ['rhs_mag_3of56','rhs_mag_bk13','rhs_mag_d462','rhs_mag_s463'];";
 			class RHS_EventHandlers {
 				fired = "_this spawn rhs_fnc_fired_d30";
+			};
+		};
+        class ACE_Actions {
+            class ACE_MainActions {
+				condition = "true";
+				displayName = "Interactions";
+				distance = 5;
+				selection = "";
+				
+				class ACE_Load {
+					displayName = "Disassemble D-30";
+					distance = 5;
+					condition = "true";
+					statement = "[_player,_target] spawn deadly_artilleryup_fnc_load";
+					showDisabled = 0;
+				};
+            };
+        };
+		
+		class UserActions {
+			class fold {
+				condition = "false";
+				displayName = "Fold gun";
+				onlyForplayer = 0;
+				position = "aimpoint";
+				radius = 2.51;
+				statement = "[this,1] call rhs_fnc_d30_pack;";
+			};
+			class Unfold {
+				condition = "false";
+				displayName = "Unfold gun";
+				onlyForplayer = 0;
+				position = "aimpoint";
+				radius = 2.51;
+				statement = "[this,0] call rhs_fnc_d30_pack;";
 			};
 		};
 	};
@@ -89,4 +125,42 @@ class CfgVehicles {
 			};
 		};
 	}; */
+	
+	class ThingX;
+	
+    class Deadly_D30_Container: ThingX {
+		author = "Deadly";
+		displayname = "Disassembled D-30";
+		editorCategory = "EdCat_Supplies";
+		editorSubcategory = "EdSubcat_Storage";
+		faction = "BLU_F";
+		icon = "iconObject_1x3";
+		scope = 2;
+		
+		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Repair_F.jpg";
+		model = "\A3\Supplies_F_Heli\Slingload\Slingload_01_Repair_F.p3d";
+		
+		ace_cargo_size = -1;
+		ace_dragging_canDrag = 1;
+		ace_dragging_DragDirection = 90;
+		ace_dragging_DragPosition[] = {0,2.5,0};
+		ace_dragging_canCarry = 0;
+		
+        class ACE_Actions {
+            class ACE_MainActions {
+				condition = "true";
+				displayName = "Interactions";
+				distance = 8;
+				selection = "";
+				
+				class ACE_Unload {
+					displayName = "Assemble D-30";
+					distance = 8;
+					condition = "true";
+					statement = "[_player,_target] spawn deadly_artilleryup_fnc_unload";
+					showDisabled = 0;
+				};
+            };
+        };
+    };
 };
