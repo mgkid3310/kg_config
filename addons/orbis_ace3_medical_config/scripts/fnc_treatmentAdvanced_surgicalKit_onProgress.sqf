@@ -38,7 +38,7 @@ if ((_totalTime - _elapsedTime) <= ((count _bandagedWounds - 1) * 5)) then {
 	_target setVariable [QGVAR(bandagedWounds), _bandagedWounds, true];
 
 	// Any body part that has no bandaged wounds is healed to full health
-	private _openWounds = _unit getVariable [QGVAR(openWounds), []];
+	private _openWounds = _target getVariable [QGVAR(openWounds), []];
 	private _bodyStatus = _target getVariable [QGVAR(bodyPartStatus), [0, 0, 0, 0, 0, 0]];
 	diag_log format ["orbis_debug medical surgicalKit: _bandagedWounds: %1, _openWounds: %2, _bodyStatus: %3", _bandagedWounds, _openWounds, _bodyStatus];
 	private _index = 0;
